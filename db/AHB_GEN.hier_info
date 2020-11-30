@@ -1,0 +1,21 @@
+|AHB_arbiter_slave_1
+hreq[0] => grant[0].DATAIN
+hreq[1] => grant[1].DATAIN
+hreq[2] => grant[2].DATAIN
+hlast[0] => ~NO_FANOUT~
+hlast[1] => ~NO_FANOUT~
+hlast[2] => ~NO_FANOUT~
+hwait => hsel.IN1
+hwait => hgrant.IN1
+hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
+hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
+hgrant[2] <= grant[2].DB_MAX_OUTPUT_PORT_TYPE
+hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
+hclk => grant[0].CLK
+hclk => grant[1].CLK
+hclk => grant[2].CLK
+hreset_n => grant[0].ACLR
+hreset_n => grant[1].ACLR
+hreset_n => grant[2].ACLR
+
+

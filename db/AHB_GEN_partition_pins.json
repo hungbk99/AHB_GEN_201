@@ -1,0 +1,49 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "hgrant[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hgrant[1]",
+					"strict" : false
+				},
+				{
+					"name" : "hgrant[2]",
+					"strict" : false
+				},
+				{
+					"name" : "hsel",
+					"strict" : false
+				},
+				{
+					"name" : "hwait",
+					"strict" : false
+				},
+				{
+					"name" : "hreq[0]",
+					"strict" : false
+				},
+				{
+					"name" : "hclk",
+					"strict" : false
+				},
+				{
+					"name" : "hreset_n",
+					"strict" : false
+				},
+				{
+					"name" : "hreq[1]",
+					"strict" : false
+				},
+				{
+					"name" : "hreq[2]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
