@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-01T09:05:59.731Z" agent="5.0 (Windows)" etag="62I9sLBKOLPCHTV2aHI_" version="13.10.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2020-12-01T09:09:51.012Z" agent="5.0 (Windows)" etag="OXMggfa7Oo5iVDJ3gBlQ" version="13.10.4" type="github" pages="5">
   <diagram id="Jh5pIuwzPusyx6YLYZbB" name="Multilayer-AHB">
     <mxGraphModel dx="1421" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -6165,8 +6165,8 @@
         <mxCell id="-kGi343jUIvXT9u4oLbU-353" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;DFSM_SLVSEL&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="1400" y="1161.5" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="-kGi343jUIvXT9u4oLbU-355" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;(SEQ || NONSEQ) &amp;amp;&amp;amp; !dec_error&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
-          <mxGeometry x="1570" y="1179.1699999999998" width="177.5" height="20" as="geometry" />
+        <mxCell id="-kGi343jUIvXT9u4oLbU-355" value="&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;((SEQ || NONSEQ) &amp;amp;&amp;amp; !dec_error) || hslv_wait_detect&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
+          <mxGeometry x="1570" y="1179.17" width="290" height="20" as="geometry" />
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-357" value="&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;default_slv_sel&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="950" y="1021.0000000000001" width="40" height="20" as="geometry" />
@@ -6175,7 +6175,7 @@
           <mxGeometry x="1385" y="993.1" width="150" height="20" as="geometry" />
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-363" value="&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;hreq&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
-          <mxGeometry x="1638.75" y="1207.58" width="40" height="20" as="geometry" />
+          <mxGeometry x="1690" y="1204.75" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-367" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;IDLE &amp;amp;&amp;amp; !hslv_wait_detect&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="1160" y="1369.17" width="160" height="20" as="geometry" />
@@ -6343,8 +6343,8 @@
         </mxCell>
         <mxCell id="78P3Lg_nNzx_Mcn1EW-E-15" value="" style="endArrow=none;html=1;fillColor=#99FFFF;" edge="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1608.75" y="1205.08" as="sourcePoint" />
-            <mxPoint x="1708.75" y="1205.08" as="targetPoint" />
+            <mxPoint x="1580" y="1202" as="sourcePoint" />
+            <mxPoint x="1860" y="1202" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
