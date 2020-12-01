@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-01T10:31:46.433Z" agent="5.0 (Windows)" etag="n6IAC7jmsE50_Bhku-Cl" version="13.10.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2020-12-01T10:32:12.708Z" agent="5.0 (Windows)" etag="Jgjj_IBL62Ke47RYwfCc" version="13.10.4" type="github" pages="5">
   <diagram id="Jh5pIuwzPusyx6YLYZbB" name="Multilayer-AHB">
     <mxGraphModel dx="1421" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -6012,7 +6012,7 @@
         <mxCell id="-kGi343jUIvXT9u4oLbU-346" value="&lt;h1&gt;&lt;font face=&quot;Times New Roman&quot;&gt;Arbiter support:&lt;br&gt;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;defined length burst:&lt;/b&gt; turn on hlast when the bus finished the current transfer.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;undefined length burst:&lt;/b&gt; turn on hlast after the current master has granted the bus for a predefined numbers of cycles&lt;br&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="-2560" y="58.170000000000016" width="320" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="-kGi343jUIvXT9u4oLbU-347" value="&lt;h1&gt;&lt;font face=&quot;Times New Roman&quot;&gt;FSM:&lt;br&gt;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;This is a mealy FSM&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
+        <mxCell id="-kGi343jUIvXT9u4oLbU-347" value="&lt;h1&gt;&lt;font face=&quot;Times New Roman&quot;&gt;SLFSM:&lt;br&gt;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;This is a mealy FSM&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="-5080" y="82.44000000000003" width="200" height="69.5" as="geometry" />
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-348" value="" style="endArrow=classic;startArrow=classic;html=1;fillColor=#99FFFF;" edge="1" parent="i4zUiEwtogDQdNd9i0cK-1">
