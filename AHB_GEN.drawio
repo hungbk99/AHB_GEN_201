@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-01T09:03:52.093Z" agent="5.0 (Windows)" etag="-Z0-lTqB66uJBmND65B9" version="13.10.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2020-12-01T09:05:59.731Z" agent="5.0 (Windows)" etag="62I9sLBKOLPCHTV2aHI_" version="13.10.4" type="github" pages="5">
   <diagram id="Jh5pIuwzPusyx6YLYZbB" name="Multilayer-AHB">
     <mxGraphModel dx="1421" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -6176,9 +6176,6 @@
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-363" value="&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;hreq&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="1638.75" y="1207.58" width="40" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="-kGi343jUIvXT9u4oLbU-365" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;NONSEQ&amp;amp;&amp;amp;hslv_wait_detect&lt;br&gt;|| SEQ&amp;amp;&amp;amp;(dec_last || hlast_detect)&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
-          <mxGeometry x="1625" y="964.8000000000001" width="225" height="30" as="geometry" />
         </mxCell>
         <mxCell id="-kGi343jUIvXT9u4oLbU-367" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;IDLE &amp;amp;&amp;amp; !hslv_wait_detect&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="1160" y="1369.17" width="160" height="20" as="geometry" />
