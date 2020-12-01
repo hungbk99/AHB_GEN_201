@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-01T06:47:19.360Z" agent="5.0 (Windows)" etag="DnaQsmBGeKNoYm_gVfG4" version="13.10.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2020-12-01T06:48:37.338Z" agent="5.0 (Windows)" etag="dQarmCPemhFFdzNaqGjV" version="13.10.4" type="github" pages="5">
   <diagram id="Jh5pIuwzPusyx6YLYZbB" name="Multilayer-AHB">
     <mxGraphModel dx="1421" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1224,7 +1224,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="KVizvASqfZzdZa6aSyjp" name="Decoder">
+  <diagram id="KVizvASqfZzdZa6aSyjp" name="Decoder ver 1.0">
     <mxGraphModel dx="2199" dy="2071" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="QrSBAP2YFK_YsplM27Xz-0" />
@@ -1963,7 +1963,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="sJODka_rDrglUwCZY80f" name="Interfaces">
-    <mxGraphModel dx="3072" dy="902" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3346" dy="1082" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="i4zUiEwtogDQdNd9i0cK-0" />
         <mxCell id="i4zUiEwtogDQdNd9i0cK-1" parent="i4zUiEwtogDQdNd9i0cK-0" />
@@ -5051,9 +5051,6 @@
             <mxPoint x="850" y="2120" as="sourcePoint" />
             <mxPoint x="920" y="2120" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="B9EHdLQ7pwDCBUCp7n80-72" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;DFSM_DECODE&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
-          <mxGeometry x="-913" y="2840" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="B9EHdLQ7pwDCBUCp7n80-73" value="&lt;h1&gt;&lt;font face=&quot;Times New Roman&quot;&gt;Arbiter support:&lt;br&gt;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;defined length burst:&lt;/b&gt; turn on hlast when the bus finished the current transfer.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* &lt;b&gt;undefined length burst:&lt;/b&gt; turn on hlast after the current master has granted the bus for a predefined numbers of cycles&lt;br&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="i4zUiEwtogDQdNd9i0cK-1">
           <mxGeometry x="-683" y="2740" width="320" height="160" as="geometry" />
