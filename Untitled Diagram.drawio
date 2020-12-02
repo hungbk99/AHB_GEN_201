@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-02T02:52:25.106Z" agent="5.0 (Windows)" etag="tYGAjaiimWGtxLa-ofN-" version="13.10.4" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2020-12-02T02:52:53.879Z" agent="5.0 (Windows)" etag="7HIq948yCcTFh8sPtu54" version="13.10.4" type="github" pages="3">
   <diagram id="cfRQvEGs_sG9bWEdkFJJ" name="Decoder_scheme_1">
     <mxGraphModel dx="6898" dy="1273" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -2298,7 +2298,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="WLZZMZXhbWHFivFcF9EO" name="Decoder_scheme_2">
-    <mxGraphModel dx="6041" dy="-482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="8392" dy="1064" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="58PSAstkkeX6amtgf26I-0" />
         <mxCell id="58PSAstkkeX6amtgf26I-1" parent="58PSAstkkeX6amtgf26I-0" />
