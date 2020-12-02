@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-02T02:48:16.212Z" agent="5.0 (Windows)" etag="S0w982y7SFY5PfaAO_1Y" version="13.10.4" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-12-02T02:51:30.678Z" agent="5.0 (Windows)" etag="mxbkgmSJw7dbL0AKBfnS" version="13.10.4" type="github" pages="3">
   <diagram id="cfRQvEGs_sG9bWEdkFJJ" name="Decoder_scheme_1">
     <mxGraphModel dx="6898" dy="1273" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -2298,7 +2298,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="WLZZMZXhbWHFivFcF9EO" name="Decoder_scheme_2">
-    <mxGraphModel dx="7036" dy="173" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="21560" dy="9720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="58PSAstkkeX6amtgf26I-0" />
         <mxCell id="58PSAstkkeX6amtgf26I-1" parent="58PSAstkkeX6amtgf26I-0" />
@@ -4462,11 +4462,25 @@
           <mxGeometry x="-2120" y="1361.8" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="FFevhUUrwWdU2IdgL_CL-12" value="&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;NFF_FSM&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="58PSAstkkeX6amtgf26I-1">
-          <mxGeometry x="-2260" y="1352.44" width="120" height="60" as="geometry" />
+          <mxGeometry x="-2270" y="1352.44" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FFevhUUrwWdU2IdgL_CL-13" value="&lt;font color=&quot;#000099&quot;&gt;&lt;span style=&quot;background-color: rgb(153 , 255 , 255)&quot;&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;OTFF DECODER&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="58PSAstkkeX6amtgf26I-1">
           <mxGeometry x="-2140" y="1147.8" width="110" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="Nn_j3NHRjqcqgSnWfG_Z-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="58PSAstkkeX6amtgf26I-1">
+          <mxGeometry x="-2160" y="1361.8" width="20" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="Nn_j3NHRjqcqgSnWfG_Z-10" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-90;" vertex="1" parent="58PSAstkkeX6amtgf26I-1">
+          <mxGeometry x="-2155.92" y="1385.93" width="13.25" height="16.6" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5CPUDtyvQ7zpna6v-mxG" name="Decoder_scheme_3">
+    <mxGraphModel dx="1646" dy="1082" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="eICur9MNTEMTDcABwaxb-0" />
+        <mxCell id="eICur9MNTEMTDcABwaxb-1" parent="eICur9MNTEMTDcABwaxb-0" />
       </root>
     </mxGraphModel>
   </diagram>
