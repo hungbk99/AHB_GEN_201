@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-12-02T04:08:19.474Z" agent="5.0 (Windows)" etag="GBYWoitmJkZTKKlwMre0" version="13.10.4" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2020-12-02T04:18:01.962Z" agent="5.0 (Windows)" etag="7rUOXs_1qxSuht-9VjhB" version="13.10.4" type="github" pages="3">
   <diagram id="cfRQvEGs_sG9bWEdkFJJ" name="Decoder_scheme_1">
-    <mxGraphModel dx="5943" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="6147" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1332,7 +1332,7 @@
         <mxCell id="dvFQtftQSCuBPZ-nTVd1-241" value="" style="endArrow=none;html=1;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-3951.3199999999997" y="1119.9799999999996" as="sourcePoint" />
-            <mxPoint x="-3801.3199999999997" y="1119.54" as="targetPoint" />
+            <mxPoint x="-3480" y="1120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="dvFQtftQSCuBPZ-nTVd1-242" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1">
@@ -1415,13 +1415,13 @@
         </mxCell>
         <mxCell id="dvFQtftQSCuBPZ-nTVd1-256" value="" style="endArrow=none;html=1;fillColor=#99FFFF;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-3791.3199999999997" y="1159.54" as="sourcePoint" />
-            <mxPoint x="-3801.3199999999997" y="1119.54" as="targetPoint" />
+            <mxPoint x="-3469.9999999999995" y="1161.17" as="sourcePoint" />
+            <mxPoint x="-3479.9999999999995" y="1121.17" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="dvFQtftQSCuBPZ-nTVd1-257" value="" style="endArrow=none;html=1;fillColor=#99FFFF;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-3791.3199999999997" y="1159.54" as="sourcePoint" />
+            <mxPoint x="-3470" y="1160" as="sourcePoint" />
             <mxPoint x="-3362" y="1160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -2245,8 +2245,8 @@
             <mxPoint x="-3192" y="78.06" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvFQtftQSCuBPZ-nTVd1-404" value="&lt;h1&gt;Why this design spend 1 delay cycle ?&lt;/h1&gt;&lt;div&gt;&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* When a master insert an IDLE burst, a delay cycle inserted will help arbiter grant another master immediately instead of waiting for another condition...&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;=&amp;gt; early terminate&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-3322.17" y="82.44" width="522.17" height="167.56" as="geometry" />
+        <mxCell id="dvFQtftQSCuBPZ-nTVd1-404" value="&lt;h1&gt;Why this design spend 1 delay cycle ?&lt;/h1&gt;&lt;div&gt;&lt;b&gt;&lt;font face=&quot;Times New Roman&quot;&gt;* When a master insert an IDLE burst, a delay cycle inserted will help arbiter grant another master immediately instead of waiting for another condition...&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-3322.17" y="82.44" width="522.17" height="87.56" as="geometry" />
         </mxCell>
         <mxCell id="dvFQtftQSCuBPZ-nTVd1-405" value="" style="endArrow=none;html=1;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
