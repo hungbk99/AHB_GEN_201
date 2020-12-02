@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// File Name: 		AHB_decoder_kemee.sv
+// File Name: 		AHB_decoder_master_3.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
 // Version    Date      Author      Description
@@ -11,14 +11,15 @@
 
 //================================================================================
 //#CONFIG_GEN#
+	`define IN_FF
 //================================================================================
 import AHB_package::*;
 
-module AHB_decoder_kemee 
+module AHB_decoder_master_3 
 #(
 //#PARAGEN#
 	parameter AHB_ADDR_WIDTH = 32,
-	parameter MASTER_X_SLAVE_NUM = 7
+	parameter MASTER_X_SLAVE_NUM = 2
 )
 (
   input [AHB_ADDR_WIDTH-1:0]      haddr,   
@@ -43,27 +44,12 @@ module AHB_decoder_kemee
 //================================================================================
 //ADDRESS MAP
 //#ADDRMAPGEN#
-//db	slave_1
-	assign low_addr[0] = 32'h0000_0000;
-	assign high_addr[0] = 32'h0000_03FF;
-//db	slave_2
-	assign low_addr[1] = 32'h0000_0400;
-	assign high_addr[1] = 32'h0000_0CF0;
-//db	slave_3
-	assign low_addr[2] = 32'h0000_1000;
-	assign high_addr[2] = 32'h0000_100F;
 //db	slave_4
-	assign low_addr[3] = 32'h0000_2000;
-	assign high_addr[3] = 32'h0000_2403;
+	assign low_addr[0] = 32'h0000_2000;
+	assign high_addr[0] = 32'h0000_2403;
 //db	slave_5
-	assign low_addr[4] = 32'h0000_2404;
-	assign high_addr[4] = 32'h0000_24FF;
-//db	slave_6
-	assign low_addr[5] = 32'h0000_4000;
-	assign high_addr[5] = 32'h0000_4FFF;
-//db	slave_7
-	assign low_addr[6] = 32'h0000_5000;
-	assign high_addr[6] = 32'h0000_5FFF;
+	assign low_addr[1] = 32'h0000_2404;
+	assign high_addr[1] = 32'h0000_24FF;
 //================================================================================
 
   `ifdef IN_FF       
@@ -123,15 +109,15 @@ module AHB_decoder_kemee
     assign hreq = hreq_buf;
   `endif    
 
-endmodule: AHB_decoder_kemee
+endmodule: AHB_decoder_master_3
 
 
-//module AHB_decoder_kemee 
+//module AHB_decoder_master_3 
 
 //#(
 ////#PARAGEN#
 	parameter AHB_ADDR_WIDTH = 32,
-	parameter MASTER_X_SLAVE_NUM = 7
+	parameter MASTER_X_SLAVE_NUM = 2
 //)
 //(
 //  input [AHB_ADDR_WIDTH-1:0]      haddr,   
@@ -185,27 +171,12 @@ endmodule: AHB_decoder_kemee
 ////================================================================================
 ////ADDRESS MAP
 ////#ADDRMAPGEN#
-//db	slave_1
-	assign low_addr[0] = 32'h0000_0000;
-	assign high_addr[0] = 32'h0000_03FF;
-//db	slave_2
-	assign low_addr[1] = 32'h0000_0400;
-	assign high_addr[1] = 32'h0000_0CF0;
-//db	slave_3
-	assign low_addr[2] = 32'h0000_1000;
-	assign high_addr[2] = 32'h0000_100F;
 //db	slave_4
-	assign low_addr[3] = 32'h0000_2000;
-	assign high_addr[3] = 32'h0000_2403;
+	assign low_addr[0] = 32'h0000_2000;
+	assign high_addr[0] = 32'h0000_2403;
 //db	slave_5
-	assign low_addr[4] = 32'h0000_2404;
-	assign high_addr[4] = 32'h0000_24FF;
-//db	slave_6
-	assign low_addr[5] = 32'h0000_4000;
-	assign high_addr[5] = 32'h0000_4FFF;
-//db	slave_7
-	assign low_addr[6] = 32'h0000_5000;
-	assign high_addr[6] = 32'h0000_5FFF;
+	assign low_addr[1] = 32'h0000_2404;
+	assign high_addr[1] = 32'h0000_24FF;
 ////================================================================================
 ////  genvar i;
 ////  generate
@@ -406,4 +377,4 @@ endmodule: AHB_decoder_kemee
 //    assign default_slv_sel = default_slv_sel_buf;
 //  `endif
 //
-//endmodule: AHB_decoder_kemee
+//endmodule: AHB_decoder_master_3

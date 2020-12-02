@@ -39,54 +39,32 @@ package AHB_package;
     INCR16
   } hburst_type;
 
-//  interface arbiter_itf (input clk)
-//    logic   [SLAVE_X_MASTER_NUM-1:0]                      hreq,
-//                                                          hlast;
-//    logic                                                 hwait;
-//    logic   [SLAVE_X_MASTER_NUM-1:0]                      hgrant;
-//    logic                                                 hsel;
-//  `ifdef  DYNAMIC_PRIORITY_ARBITER
-//    logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0] hprior;   
-//  `endif
-//    logic                                                 hclk,
-//                                                          hreset_n;
-////    modport rtl (
-////      input hreq,
-////      input hlast,
-////      input hwait,
-////      output hgrant,
-////      output hsel,
-////  `ifdef  DYNAMIC_PRIORITY_ARBITER
-////      hprior;   
-////  `endif
-////      input hclk,
-////            hreset_n
-//    );
-//
-//  endinterface: arbiter_itf 
-//
-//  interface decode_itf (input clk)
-//    logic [AHB_ADDR_WIDTH-1:0]      haddr;   
-//    logic [MASTER_X_SLAVE_NUM-1:0]  hgrant;
-//    logic                           hpreset_n;
-//    logic                           hremap;
-//    logic                           hsplit;
-//    logic                           hdef_slv_sel;
-//    logic [MASTER_X_SLAVE_NUM-1:0]  hreq;
-//    logic                           herror;
-//    logic                           hlast;
-//    
-//    modport rtl (
-//      input   haddr,
-//      input   hgrant,
-//      input   hpreset_n,
-//      input   hremap,
-//      input   hsplit,
-//      input   hdef_slv_sel,
-//      output  hreq,
-//      output  herror,
-//      output  hlast
-//    );
-//  endinterface: decode_itf
+  interface master_itf (input hclk);
+    logic [31:0] haddr;
+    logic        hwrite;
+    hsize_type   hsize;
+    hburst_type  hburst;
+    logic [3:0]  hprot;
+    htrans_type  htrans;
+    logic        hmastlock;
+    logic [31:0] hwdata;
+    logic        hready;
+    logic        hresetn;
+    logic [31:0] hrdate;
+
+    modport mas(
+      output  haddr,
+              hwrite,
+              hsize,
+              hburst,
+              hprot,
+              htrans,
+              hmastlock,
+              hwdata,
+      input   hready,
+              hresetn,
+              hrdata
+    );
+  endinterface: ahb_itf
 
 endpackage: AHB_package

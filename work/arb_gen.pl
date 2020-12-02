@@ -57,6 +57,7 @@ foreach my $i (0 .. scalar @sheet_3_data)
     {
       #db print ("db_2\n");
       $line =~ s/#NUM#/_$slave_name/;
+      $line =~ s///;
       print DEST "$line";
       if($line =~ /#CONFIG_GEN#/)
       {

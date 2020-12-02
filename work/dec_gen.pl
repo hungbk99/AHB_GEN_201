@@ -53,9 +53,11 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
   {
     my $master_name = $sheet_1_data[$i_1][1];
     $i_1++;
-    my $fsm_type = $sheet_1_data[$i_1][1];
-    $i_1++;
-    my $glitch_free  = $sheet_1_data[$i_1][1];
+    #my $fsm_type = $sheet_1_data[$i_1][1];
+    #$i_1++;
+    #my $glitch_free  = $sheet_1_data[$i_1][1];
+    #$i_1++;
+    my $in_ff  = $sheet_1_data[$i_1][1];
     $i_1++;
     my $out_ff  = $sheet_1_data[$i_1][1];
     $i_1++;
@@ -77,25 +79,30 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
     {
       #db print ("db_2\n");
       $line =~ s/#NUM#/_$master_name/;
+      $line =~ s///;
       print DEST "$line";
       if($line =~ /#CONFIG_GEN#/)
       {
         #db print ("$fsm_type\n");
         #db print ("**********************");
-        if($fsm_type eq 'DEC')  
-        {
-          print DEST "\t`define DECODE_STATE_FSM \n";    
-        }
-        else
-        {
-          print DEST "\t`define NON_DECODE_STATE_FSM \n";    
-        }
+        #if($fsm_type eq 'DEC')  
+        #{
+        #  print DEST "\t`define DECODE_STATE_FSM \n";    
+        #}
+        #else
+        #{
+        #  print DEST "\t`define NON_DECODE_STATE_FSM \n";    
+        #}
 
-        if($glitch_free eq 'YES')
+        #if($glitch_free eq 'YES')
+        #{
+        #  print DEST "\t`define GLITCH_FREE\n";
+        #}
+        if($in_ff eq 'YES')
         {
-          print DEST "\t`define GLITCH_FREE\n";
+          print DEST "\t`define IN_FF\n";
         }
-
+    
         if($out_ff eq 'YES')
         {
           print DEST "\t`define OUT_FF\n";

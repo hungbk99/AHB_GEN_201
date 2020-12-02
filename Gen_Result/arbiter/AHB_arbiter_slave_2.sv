@@ -22,7 +22,7 @@ module AHB_arbiter_slave_2
 )  
 (
   input   [SLAVE_X_MASTER_NUM-1:0]                      hreq,
-                                                        hlast,
+  input   burst_type                                    hburst,
   input                                                 hwait,
   output  logic [SLAVE_X_MASTER_NUM-1:0]                hgrant,
   output  logic                                         hsel,
@@ -33,9 +33,27 @@ module AHB_arbiter_slave_2
                                                         hreset_n
 );
   
+//================================================================================
+// Internal signals
   logic [SLAVE_X_MASTER_NUM-1:0] raw_grant;
   logic [SLAVE_X_MASTER_NUM-1:0] grant;
-
+  logic [SLAVE_X_MASTER_NUM-1:0] hlast;
+    
+  logic                          monitor_last,
+                                 count_clr,
+                                 count_ena;
+  logic [3:0]                    count,
+                                 count_limit; 
+  burst_type                     burst;  
+ 
+  enum logic {
+    IDLE,
+    MONITOR
+  } monitor_state, monitor_next_state;    
+ 
+//================================================================================
+// AHB Scheme
+//================================================================================
 `ifdef  FIXED_PRIORITY_ARBITER   
 
   Fixed_Prior_Mask 
@@ -48,7 +66,7 @@ module AHB_arbiter_slave_2
     .collect_req(hreq),
     .hsel(hsel),  
     .raw_grant(raw_grant)
-  );
+ );
   
 `elsif  DYNAMIC__PRIORITY_ARBITER
   `define PRIOR_GEN
@@ -193,5 +211,68 @@ module AHB_arbiter_slave_2
   assign hgrant = grant & ~hwait;  
   assign hsel = hwait & |grant; 
 
+//================================================================================
+// Monitor
+//================================================================================
+
+  always_comb begin
+    count_limit = '0;
+    unique case(burst)
+        WRAP4, INCR4: count_limit = 3'h3;
+        WRAP8, INCR8: count_limit = 3'h7;
+        WRAP16, INCR16: count_limit = 3'hF;
+    endcase
+  end    
+
+  always_ff @(posedge hclk, negedge hreset_n)
+  begin
+    if(!hreset_n)
+        count <= '0;      
+    else
+    begin
+        if(count_clr)
+            count <= '0;
+        else if (count_ena && !hwait)
+            count <= count + 1;
+        else
+            count <= count;
+    end    
+  end
+
+  assign monitor_last = (count == count_limit) ? 1'b1 : 1'b0;    
+  
+  always_comb begin
+    count_ena = 1'b0;
+    count_clr = 1'b0;
+    burst = IDLE;
+    unique case (monitor_state)
+      IDLE: begin
+        burst = hburst;
+        count_clr = 1'b1;
+        if(hsel)
+          monitor_next_state = MONITOR;
+        else
+          monitor_next_state = monitor_state;
+      end
+      MONITOR: begin
+        count_en = 1'b1;
+        if(monitor_last)
+          monitor_next_state = IDLE;
+        else
+          monitor_next_state = monitor_state;
+      end  
+    endcase
+  end
+  
+  always_ff @(posedge hclk, negedge hreset_n)
+  begin
+    if(!hreset_n)
+      monitor_state <= IDLE;
+    else
+      monitor_state <= monitor_next_state;
+  end  
+
+  assign hlast = grant & monitor_last;  
+          
 endmodule: AHB_arbiter_slave_2
 
