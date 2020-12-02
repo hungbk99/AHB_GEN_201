@@ -27,6 +27,17 @@ package AHB_package;
     THIRTY2WORDLINE
   } hsize_type;
 
+  typedef enum logic [2:0] 
+  {
+    SINGLE,
+    INCR,
+    WRAP4,
+    INCR4,
+    WRAP8,
+    INCR8,
+    WRAP16,
+    INCR16
+  } hburst_type;
 
 //  interface arbiter_itf (input clk)
 //    logic   [SLAVE_X_MASTER_NUM-1:0]                      hreq,
