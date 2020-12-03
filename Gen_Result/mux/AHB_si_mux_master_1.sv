@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////////
-// File Name: 		AHB_mux#NUM#.sv
+// File Name: 		AHB_mux_master_1.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
 // Version    Date      Author      Description
@@ -8,10 +8,12 @@
 
 //================================================================================
 //#CONFIG_GEN#
+	`define CHNUM 4
+	`define MAS
 //================================================================================
 
 import AHB_package::*;
-module AHB_mux#NUM#
+module AHB_mux_master_1
 #(
     parameter CHANNEL_NUM = `CHNUM,
     `ifdef MAS
@@ -35,4 +37,4 @@ module AHB_mux#NUM#
         end
     end
 
-endmodule: AHB_mux#NUM#
+endmodule: AHB_mux_master_1

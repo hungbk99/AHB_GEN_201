@@ -98,15 +98,16 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
         #{
         #  print DEST "\t`define GLITCH_FREE\n";
         #}
-        if($in_ff eq 'YES')
-        {
-          print DEST "\t`define IN_FF\n";
-        }
+        #Hung modify FF stage
+        #if($in_ff eq 'YES')
+        #{
+        #  print DEST "\t`define IN_FF\n";
+        #}
     
-        if($out_ff eq 'YES')
-        {
-          print DEST "\t`define OUT_FF\n";
-        }
+        #if($out_ff eq 'YES')
+        #{
+        #  print DEST "\t`define OUT_FF\n";
+        #}
       }
       elsif($line =~ /#PARAGEN#/)
       {

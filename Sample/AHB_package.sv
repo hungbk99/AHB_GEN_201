@@ -48,11 +48,13 @@ package AHB_package;
     htrans_type  htrans;
     logic        hmastlock;
     logic [31:0] hwdata;
+    
     logic        hready;
     logic        hresetn;
     logic [31:0] hrdate;
-
-    modport mas(
+    logic        hresp;    
+    
+    modport rtl(
       output  haddr,
               hwrite,
               hsize,
@@ -63,8 +65,42 @@ package AHB_package;
               hwdata,
       input   hready,
               hresetn,
+              hrdata,
+              hresp
+    );
+  endinterface: master_itf
+
+  
+  interface slave_itf (input hclk);
+    logic [31:0] haddr;
+    logic        hwrite;
+    hsize_type   hsize;
+    hburst_type  hburst;
+    logic [3:0]  hprot;
+    htrans_type  htrans;
+    logic        hmastlock;
+    logic        hready;
+    logic [31:0] hwdata;
+    logic        hresetn;
+    
+    logic        hreadyout;
+    logic        hresp;    
+    logic [31:0] hrdata;
+    
+    modport rtl(
+      input   haddr,
+              hwrite,
+              hsize,
+              hburst,
+              hprot,
+              htrans,
+              hmastlock,
+              hready,
+              hwdata,
+              hresetn,
+      output  hreadyout,
+              hresp,
               hrdata
     );
-  endinterface: ahb_itf
-
+  endinterface: slave_itf
 endpackage: AHB_package
