@@ -13,11 +13,11 @@
 import AHB_package::*;
 module AHB_mux#NUM#
 #(
-    parameter CHANNEL_NUM = `CHNUM,
+    parameter CHANNEL_NUM = #CHNUM#,
     `ifdef MAS
     parameter PAY_LOAD = 78 
     `elsif SLV
-    parameter PAY_LOAD = 33 
+    parameter PAY_LOAD = 34 
     `endif
 )
 (

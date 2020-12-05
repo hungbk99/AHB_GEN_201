@@ -8,18 +8,17 @@
 
 //================================================================================
 //#CONFIG_GEN#
-	`define CHNUM 2
 	`define MAS
 //================================================================================
 
 import AHB_package::*;
 module AHB_mux_master_3
 #(
-    parameter CHANNEL_NUM = `CHNUM,
+    parameter CHANNEL_NUM = 2,
     `ifdef MAS
     parameter PAY_LOAD = 78 
     `elsif SLV
-    parameter PAY_LOAD = 33 
+    parameter PAY_LOAD = 34 
     `endif
 )
 (

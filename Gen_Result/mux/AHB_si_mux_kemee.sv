@@ -8,18 +8,17 @@
 
 //================================================================================
 //#CONFIG_GEN#
-	`define CHNUM 7
 	`define MAS
 //================================================================================
 
 import AHB_package::*;
 module AHB_mux_kemee
 #(
-    parameter CHANNEL_NUM = `CHNUM,
+    parameter CHANNEL_NUM = 7,
     `ifdef MAS
     parameter PAY_LOAD = 78 
     `elsif SLV
-    parameter PAY_LOAD = 33 
+    parameter PAY_LOAD = 34 
     `endif
 )
 (

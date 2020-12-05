@@ -39,7 +39,7 @@ package AHB_package;
     INCR16
   } hburst_type;
 
-  interface master_itf (input hclk);
+  typedef struct packed {
     logic [31:0] haddr;
     logic        hwrite;
     hsize_type   hsize;
@@ -48,59 +48,76 @@ package AHB_package;
     htrans_type  htrans;
     logic        hmastlock;
     logic [31:0] hwdata;
-    
+  } mas_send_type;
+
+  typedef struct packed {
     logic        hready;
-    logic        hresetn;
     logic [31:0] hrdate;
     logic        hresp;    
-    
-    modport rtl(
-      output  haddr,
-              hwrite,
-              hsize,
-              hburst,
-              hprot,
-              htrans,
-              hmastlock,
-              hwdata,
-      input   hready,
-              hresetn,
-              hrdata,
-              hresp
-    );
-  endinterface: master_itf
+  } slv_send_type;
 
-  
-  interface slave_itf (input hclk);
-    logic [31:0] haddr;
-    logic        hwrite;
-    hsize_type   hsize;
-    hburst_type  hburst;
-    logic [3:0]  hprot;
-    htrans_type  htrans;
-    logic        hmastlock;
-    logic        hready;
-    logic [31:0] hwdata;
-    logic        hresetn;
-    
-    logic        hreadyout;
-    logic        hresp;    
-    logic [31:0] hrdata;
-    
-    modport rtl(
-      input   haddr,
-              hwrite,
-              hsize,
-              hburst,
-              hprot,
-              htrans,
-              hmastlock,
-              hready,
-              hwdata,
-              hresetn,
-      output  hreadyout,
-              hresp,
-              hrdata
-    );
-  endinterface: slave_itf
+  //interface master_itf (input hclk);
+  //  logic [31:0] haddr;
+  //  logic        hwrite;
+  //  hsize_type   hsize;
+  //  hburst_type  hburst;
+  //  logic [3:0]  hprot;
+  //  htrans_type  htrans;
+  //  logic        hmastlock;
+  //  logic [31:0] hwdata;
+  //  
+  //  logic        hready;
+  //  logic        hresetn;
+  //  logic [31:0] hrdate;
+  //  logic        hresp;    
+  //  
+  //  modport rtl(
+  //    output  haddr,
+  //            hwrite,
+  //            hsize,
+  //            hburst,
+  //            hprot,
+  //            htrans,
+  //            hmastlock,
+  //            hwdata,
+  //    input   hready,
+  //            hresetn,
+  //            hrdata,
+  //            hresp
+  //  );
+  //endinterface: master_itf
+
+  //
+  //interface slave_itf (input hclk);
+  //  logic [31:0] haddr;
+  //  logic        hwrite;
+  //  hsize_type   hsize;
+  //  hburst_type  hburst;
+  //  logic [3:0]  hprot;
+  //  htrans_type  htrans;
+  //  logic        hmastlock;
+  //  logic        hready;
+  //  logic [31:0] hwdata;
+  //  logic        hresetn;
+  //  
+  //  logic        hreadyout;
+  //  logic        hresp;    
+  //  logic [31:0] hrdata;
+  //  
+  //  modport rtl(
+  //    input   haddr,
+  //            hwrite,
+  //            hsize,
+  //            hburst,
+  //            hprot,
+  //            htrans,
+  //            hmastlock,
+  //            hready,
+  //            hwdata,
+  //            hresetn,
+  //    output  hreadyout,
+  //            hresp,
+  //            hrdata
+  //  );
+  //endinterface: slave_itf
 endpackage: AHB_package

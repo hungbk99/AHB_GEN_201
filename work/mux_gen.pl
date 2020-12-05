@@ -60,11 +60,12 @@ foreach my $i (0 .. scalar @sheet_1_data)
     {
       #db print ("db_2\n");
       $line =~ s/#NUM#/_$master_name/;
+      $line =~ s/#CHNUM#/$slave_num/;
       $line =~ s///;
       print DEST "$line";
       if($line =~ /#CONFIG_GEN#/)
       {
-        print DEST "\t`define CHNUM ${slave_num}\n";
+        #print DEST "\t`define CHNUM ${slave_num}\n";
         print DEST "\t`define MAS\n";
       }
     }
@@ -88,11 +89,12 @@ foreach my $j (0 .. scalar @sheet_3_data)
     {
       #db print ("db_2\n");
       $line =~ s/#NUM#/_$slave_name/;
+      $line =~ s/#CHNUM#/$master_num/;
       $line =~ s///;
       print DEST "$line";
       if($line =~ /#CONFIG_GEN#/)
       {
-        print DEST "\t`define CHNUM ${master_num}\n";
+        #print DEST "\t`define CHNUM ${master_num}\n";
         print DEST "\t`define SLV\n";
       }
     }
