@@ -74,6 +74,77 @@ while (my $line = <SAMPLE>)
     print DEST ("\tinput\t\t\t\t\t hclk,\n");
     print DEST ("\tinput\t\t\t\t\t hreset_n\n");
   }
+  elsif($line =~ /#SIGGEN#/) 
+  {
+    foreach my $i_1 (0 .. scalar @sheet_1_data)
+    {
+      if(($sheet_1_data[$i_1][0] eq 'DECODER_IDENTIFY') && ($sheet_1_data[$i_1][1] ne 'sample'))
+      {
+        my $master_name = $sheet_1_data[$i_1][1];
+        $i_1++;
+        $i_1++;
+        $i_1++;
+        my $slave_num = $sheet_1_data[$i_1][1];
+        print DEST ("\tlogic [${slave_num}-1:0][MI_PAYLOAD-1:0] payload_${master_name}_in;\n");
+        print DEST ("\tlogic [MI_PAYLOAD-1:0] payload_${master_name}_out;\n");
+      }
+    }
+    foreach my $i_1 (0 .. scalar @sheet_3_data)
+    {
+      if(($sheet_3_data[$i_1][0] eq 'ARBITER_IDENTIFY') && ($sheet_3_data[$i_1][1] ne 'sample'))
+      {
+        my $slave_name = $sheet_3_data[$i_1][1];
+        $i_1++;
+        $i_1++;
+        $i_1++;
+        my $master_num = $sheet_3_data[$i_1][1];
+        print DEST ("\tlogic [${master_num}-1:0][SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
+        print DEST ("\tlogic [SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
+      }
+    }
+  }
+  elsif($line =~ /#DECGEN#/)
+  {
+    foreach my $i_1 (0 .. scalar @sheet_1_data)
+    {
+      if(($sheet_1_data[$i_1][0] eq 'DECODER_IDENTIFY') && ($sheet_1_data[$i_1][1] ne 'sample'))
+      {
+        my $master_name = $sheet_1_data[$i_1][1];
+        print DEST ("\tAHB_decoder_${master_name} DEC_${master_name}");
+        print DEST ("\t(\n"); 
+        print DEST ("\t\t.haddr(haddr_${master_name}),\n");
+        print DEST ("\t\t.htrans(htrans_${master_name}),\n");
+        print DEST ("\t\t.hremap(hremap_${master_name}),\n");
+        print DEST ("\t\t.hsplit(hsplit_${master_name}),\n");
+        print DEST ("\t\t.default_slv_sel(default_slv_sel_${master_name}),\n");
+        print DEST ("\t\t.hreq(hreq_${master_name}),\n");
+        print DEST ("\t\t.*\n");
+        print DEST ("\t);\n\n\n");  
+        print DEST ("\tAHB_mux_${master_name} MUX_${master_name}\n");  
+        print DEST ("\t(\n");  
+        print DEST ("\t\t.payload_in(payload_${master_name}_in),\n");  
+        print DEST ("\t\t.payload_out(payload_${master_name}_out),\n");  
+        print DEST ("\t\t.sel(sel_${master_name})\n");  
+        print DEST ("\t);\n");  
+      }
+    }
+  }
+  elsif($line =~ /#ARBGEN#/)
+  {
+    foreach my $i_1 (0 .. scalar @sheet_3_data)
+    {
+      if(($sheet_3_data[$i_1][0] eq 'ARBITER_IDENTIFY') && ($sheet_3_data[$i_1][1] ne 'sample'))
+      {
+        my $slave_name = $sheet_3_data[$i_1][1];
+        $i_1++;
+        $i_1++;
+        $i_1++;
+        $i_1++;
+        my $prior = $sheet_3_data[$i_1][1];
+        print DEST ("\tAHB_arbiter_${slave_name } ARB_${slave_name}\n");
+      }
+    }
+  }
 }
 
 
@@ -81,26 +152,3 @@ while (my $line = <SAMPLE>)
 close(SAMPLE);
 close(DEST);
 
-#foreach my $i_1 (0 .. scalar @sheet_3_data)
-#{
-#  if(($sheet_3_data[$i_1][0] eq 'ARBITER_IDENTIFY') && ($sheet_3_data[$i_1][1] ne 'sample'))
-#  {
-#    my $slave_name = $sheet_3_data[$i_1][1];
-#
-#    open(SAMPLE, "<${sample}") or die "CAN'T open sample file"; 
-#    open(DEST, ">>${dest}");
-#
-#    while (my $line = <SAMPLE>)
-#    {
-#      #db print ("db_2\n");
-#      #$line =~ s///;
-#      print DEST "$line";
-#      if($line =~ /#MI#/)
-#      {
-#        print DEST ("\tslv_send_type  ${slave_name}_in \n");
-#      }
-#    close(SAMPLE);
-#    close(DEST);
-#    }
-#  }
-#}
