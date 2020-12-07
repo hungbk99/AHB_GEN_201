@@ -51,7 +51,7 @@ package AHB_package;
   } mas_send_type;
 
   typedef struct packed {
-    logic        hready;
+    logic        hreadyout;
     logic [31:0] hrdate;
     logic        hresp;    
   } slv_send_type;

@@ -39,15 +39,19 @@ my $sheet_3_name = say $data->[3]{A1};
 
 my @sheet_3_data = Spreadsheet::Read::rows($data->[3]);
 
+my $prior_level;
+
 foreach my $i (0 .. scalar @sheet_3_data)
 {
-  if(($sheet_3_data[$i][0] eq 'ARBITER_IDENTIFY') && ($sheet_3_data[$i][1] ne 'sample'))
+  if($sheet_3_data[$i][0] eq 'PRIOR_LEVEL')
+  {
+    $prior_level = $sheet_3_data[$i][1];
+  }
+  elsif(($sheet_3_data[$i][0] eq 'ARBITER_IDENTIFY') && ($sheet_3_data[$i][1] ne 'sample'))
   {
     my $slave_name = $sheet_3_data[$i][1];
     $i++;
     my $master_num = $sheet_3_data[$i][1];
-    $i++;
-    my $prior_level = $sheet_3_data[$i][1];
     $i++;
 
     open(SAMPLE, "<${sample}") or die "CAN'T open sample file";
@@ -61,16 +65,20 @@ foreach my $i (0 .. scalar @sheet_3_data)
       print DEST "$line";
       if($line =~ /#CONFIG_GEN#/)
       {
+        print ("$slave_name\n");
         if($sheet_3_data[$i][1] eq 'YES')
         {
+          print ("$sheet_3_data[$i][0]\n");
           print DEST ("\t`define FIX_PRIORITY_ARBITER\n");
         }
         elsif($sheet_3_data[$i+1][1] eq 'YES')
         {
+          print ("$sheet_3_data[$i+1][0]\n");
           print DEST ("\t`define DYNAMIC_PRIORITY_ARBITER\n");
         }
-        elsif($sheet_3_data[$i+1][1] eq 'YES')
+        elsif($sheet_3_data[$i+2][1] eq 'YES')
         {
+          print ("$sheet_3_data[$i+2][0]\n");
           print DEST ("\t`define ROUND_ROBIN_ARBITER\n");
         }
         else

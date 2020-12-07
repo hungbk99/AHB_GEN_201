@@ -16,7 +16,7 @@ import AHB_package::*;
 module AHB_arbiter_slave_5 
 #(
 //#PARAGEN#
-	parameter SLAVE_X_PRIOR_LEVEL = 3,
+	parameter SLAVE_X_PRIOR_LEVEL = 2,
 	parameter SLAVE_X_PRIOR_BIT = $clog2(SLAVE_X_PRIOR_LEVEL),
 	parameter SLAVE_X_MASTER_NUM = 4
 )  

@@ -5,9 +5,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+import AHB_package::*;
 //package AHB_arbiter_package;
   //////////////////////////////////////////////////////////////////////////////////
-  // File Name: 		AHB_arbiter.sv
+  // File Name: 		AHB_arbiter_package.sv
   // Project Name:	AHB_Gen
   // Module Name:   Prior_Gen
   //////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@
   endmodule: Prior_Gen
   
   //////////////////////////////////////////////////////////////////////////////////
-  // File Name: 		AHB_arbiter.sv
+  // File Name: 		AHB_arbiter_package.sv
   // Project Name:	AHB_Gen
   // Module Name:   Dynamic_Prior_Mask
   //////////////////////////////////////////////////////////////////////////////////
@@ -93,7 +94,7 @@
   endmodule: Dynamic_Prior_Mask
     
   //////////////////////////////////////////////////////////////////////////////////
-  // File Name: 		AHB_arbiter.sv
+  // File Name: 		AHB_arbiter_package.sv
   // Project Name:	AHB_Gen
   // Module Name:   Req_Collect
   //////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +120,7 @@
   endmodule: Req_Collect
   
   //////////////////////////////////////////////////////////////////////////////////
-  // File Name: 		AHB_arbiter.sv
+  // File Name: 		AHB_arbiter_package.sv
   // Project Name:	AHB_Gen
   // Module Name:   Fixed_Prior_Mask
   //////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +156,7 @@
   endmodule: Fixed_Prior_Mask
   
   //////////////////////////////////////////////////////////////////////////////////
-  // File Name: 		AHB_arbiter.sv
+  // File Name: 		AHB_arbiter_package.sv
   // Project Name:	AHB_Gen
   // Module Name:   BR_Req_Detect
   //////////////////////////////////////////////////////////////////////////////////
@@ -181,3 +182,108 @@
   endmodule: BR_Req_Detect
 
 //endpackage: AHB_arbiter_package
+  
+//  //////////////////////////////////////////////////////////////////////////////////
+//  // File Name: 		AHB_arbiter_package.sv
+//  // Project Name:	AHB_Gen
+//  // Module Name:   monitor
+//  //////////////////////////////////////////////////////////////////////////////////
+// 
+//  module monitor
+//  #(
+//    parameter UNDL_LIMIT = 4
+//  )
+//  (
+//    input             hwait,
+//    input             hsel,
+//    input hburst_type hburst,
+//    input hsize_type  hsize,
+//    input [9:0]       haddr_last,
+//    input             hclk,
+//    input             hreset_n,
+//    output            hlast
+//  );
+//   
+//    enum logic {
+//      IDLE,
+//      MONITOR
+//    } current_state, next_state;
+//   
+//    logic [3:0] count;
+//    logic       count_clr,
+//                count_en,
+//                //bdr_reach,
+//                hlast;
+//
+//    always_comb begin
+//      count_en = 1'b0;
+//      count_clr = 1'b0;
+//      unique case(current_state)
+//      IDLE: 
+//      begin
+//        count_clr = 1'b1;
+//        if(hsel == 1'b1)
+//          next_state = MONITOR;
+//        else
+//          next_state = current_state;
+//      end
+//      MONITOR: 
+//      begin 
+//        count_en = 1'b1;
+//        if(hlast == 1'b1)
+//          next_state = IDLE;
+//        else
+//          next_state = current_state;
+//      end
+//      endcase
+//    end
+//
+//    always_ff @(posedge hclk, negedge hreset_n)
+//    begin
+//      if(!hreset_n)
+//        count <= '0;
+//      else if (count_clr)
+//        count <= '0;
+//      else if (count_en && !hwait)
+//        count <= count + 1;
+//      else 
+//        count <= count;
+//      end
+//    end
+//
+////    // 1KB boundary detect
+////    always_comb begin
+////      bdr_reach = 1'b0;
+////      unique case(hsize)
+////      BYTE:             bdr_reach = (haddr[9:0] == 10'h3FF);
+////      HALFWORD:         bdr_reach = (haddr[9:0] == 10'h3FE);
+////      WORD:             bdr_reach = (haddr[9:0] == 10'h3FC);
+////      DOUBLEWORD:       bdr_reach = (haddr[9:0] == 10'h3F8);
+////      FOURWORDLINE:     bdr_reach = (haddr[9:0] == 10'h3F0);
+////      EIGHTWORDLINE:    bdr_reach = (haddr[9:0] == 10'h3E0);
+////      SIXTEENWORDLINE:  bdr_reach = (haddr[9:0] == 10'h3C0); 
+////      THIRTY2WORDLINE:  bdr_reach = (haddr[9:0] == 10'h380);
+////      endcase
+////    end
+// 
+//    // End of burst 
+//    always_comb begin
+//      burst_limit = 1'b0;
+//      unique case (hburst)
+//        SINGLE: burst_limit = '0; 
+//        INCR:   burst_limit = UNDL_LIMIT;
+//        WRAP4:  burst_limit = 3;
+//        INCR4:  burst_limit = 3;
+//        WRAP8:  burst_limit = 7;
+//        INCR8:  burst_limit = 7;
+//        WRAP16: burst_limit = 15;
+//        INCR16: burst_limit = 15;
+//      endcase
+//    end
+//
+////    assign hlast = ((burst_limit == count) || (bdr_reach)) ? 1'b1 : 1'b0;
+//    assign hlast = (burst_limit == count) ? 1'b1 : 1'b0;
+//
+//  endmodule: monitor
+  
+  
