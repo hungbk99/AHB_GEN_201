@@ -48,7 +48,8 @@ my $prior_level = $sheet_3_data[1][1];
 while (my $line = <SAMPLE>)
 {
   #db print ("db_2\n");
-  $line =~ s///;
+  $line =~ s/
+//;
   print DEST "$line";
   if($line =~ /#SI#/)
   {
@@ -104,8 +105,8 @@ while (my $line = <SAMPLE>)
       {
         my $slave_name = $sheet_3_data[$i_1][1];
         $i_1++;
-        $i_1++;
-        $i_1++;
+        #$i_1++;
+        #$i_1++;
         my $master_num = $sheet_3_data[$i_1][1];
         print DEST ("\tlogic [${master_num}-1:0][SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
         #print DEST ("\tlogic [SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
