@@ -91,7 +91,8 @@ while (my $line = <SAMPLE>)
         $i_1++;
         my $slave_num = $sheet_1_data[$i_1][1];
         print DEST ("\tlogic [${slave_num}-1:0][MI_PAYLOAD-1:0] payload_${master_name}_in;\n");
-        print DEST ("\tlogic [MI_PAYLOAD-1:0] payload_${master_name}_out;\n");
+        #print DEST ("\tlogic [MI_PAYLOAD-1:0] payload_${master_name}_out;\n");
+        print DEST ("\tlogic slv_send_type payload_${master_name}_out;\n");
         print DEST ("\tlogic default_slv_sel_${master_name};\n");
         print DEST ("\tlogic [${slave_num}-1:0] hreq_${master_name};\n");
       }
