@@ -151,7 +151,7 @@ while (my $line = <SAMPLE>)
         $i_1++;
         $i_1++;
         $i_1++;
-        $i_1++;
+        #$i_1++;
         my $prior = $sheet_3_data[$i_1][1];
         print DEST ("\tAHB_arbiter_${slave_name } ARB_${slave_name}\n");
         print DEST ("\t(\n"); 
