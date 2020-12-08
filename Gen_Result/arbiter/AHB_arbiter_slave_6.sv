@@ -8,7 +8,7 @@
 
 //================================================================================
 //#CONFIG_GEN#
-	`define DYNAMIC_PRIORITY_ARBITER
+	`define ONE_PATH
 //================================================================================
 
 import AHB_package::*;
@@ -16,8 +16,6 @@ import AHB_package::*;
 module AHB_arbiter_slave_6 
 #(
 //#PARAGEN#
-	parameter SLAVE_X_PRIOR_LEVEL = 2,
-	parameter SLAVE_X_PRIOR_BIT = $clog2(SLAVE_X_PRIOR_LEVEL),
 	parameter SLAVE_X_MASTER_NUM = 1
 )  
 (

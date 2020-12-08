@@ -17,14 +17,12 @@ import AHB_package::*;
 module AHB_decoder_master_2 
 #(
 //#PARAGEN#
-	parameter AHB_ADDR_WIDTH = 32,
-	parameter MASTER_X_SLAVE_NUM = 3
 )
 (
   input [AHB_ADDR_WIDTH-1:0]      haddr,   
-  input htrans_type               htrans,
+//  input htrans_type               htrans,
   input                           hremap,
-  input [MASTER_X_SLAVE_NUM-1:0]  hsplit,
+//  input [MASTER_X_SLAVE_NUM-1:0]  hsplit,
   output                          default_slv_sel,
   output [MASTER_X_SLAVE_NUM-1:0] hreq,
   input                           hreset_n,   
@@ -54,30 +52,30 @@ module AHB_decoder_master_2
 	assign high_addr[2] = 32'h0000_24FF;
 //================================================================================
 
-  `ifdef IN_FF       
-      always_ff @(posedge hclk, negedge hreset_n)
-      begin
-        if(!hreset_n)
-        begin
-          haddr_buf <= '0; 
-          htrans_buf <= '0; 
-          hremap_buf <= '0;
-          hsplit_buf <= '0,
-        end
-        else 
-        begin
-          haddr_buf <= haddr; 
-          hhtrans_buf <= trans; 
-          hhremap_buf <= remap;
-          hhsplit_buf <= split,
-        end
-      end
-  `else
+//  `ifdef IN_FF       
+//      always_ff @(posedge hclk, negedge hreset_n)
+//      begin
+//        if(!hreset_n)
+//        begin
+//          haddr_buf <= '0; 
+//          htrans_buf <= '0; 
+//          hremap_buf <= '0;
+//          hsplit_buf <= '0,
+//        end
+//        else 
+//        begin
+//          haddr_buf <= haddr; 
+//          hhtrans_buf <= trans; 
+//          hhremap_buf <= remap;
+//          hhsplit_buf <= split,
+//        end
+//      end
+//  `else
       assign haddr_buf = haddr; 
       assign hhtrans_buf = trans; 
       assign hhremap_buf = remap;
       assign hhsplit_buf = split,
-  `endif  
+//  `endif  
             
   genvar i;
   generate
@@ -95,21 +93,21 @@ module AHB_decoder_master_2
 
   assign  hreq_buf = (htrans_buf != IDLE) ?  slave_detect : '0;
 
-  `ifdef OUT_FF
-    always_ff @(posedge hclk, negedge hreset_n)
-    begin
-      default_slv_sel <= 1'b0;
-      hreq <= '0;
-    end
-    else 
-    begin
-      default_slv_sel <= dec_error;
-      hreq <= hreq_buf;  
-    end
-  `else
+//  `ifdef OUT_FF
+//    always_ff @(posedge hclk, negedge hreset_n)
+//    begin
+//      default_slv_sel <= 1'b0;
+//      hreq <= '0;
+//    end
+//    else 
+//    begin
+//      default_slv_sel <= dec_error;
+//      hreq <= hreq_buf;  
+//    end
+//  `else
     assign default_slv_sel = dec_error;
     assign hreq = hreq_buf;
-  `endif    
+//  `endif    
 
 endmodule: AHB_decoder_master_2
 
@@ -117,9 +115,7 @@ endmodule: AHB_decoder_master_2
 //module AHB_decoder_master_2 
 
 //#(
-////#PARAGEN#
-	parameter AHB_ADDR_WIDTH = 32,
-	parameter MASTER_X_SLAVE_NUM = 3
+////#db PARAGEN#
 //)
 //(
 //  input [AHB_ADDR_WIDTH-1:0]      haddr,   
@@ -172,16 +168,7 @@ endmodule: AHB_decoder_master_2
 //                                                     high_addr;
 ////================================================================================
 ////ADDRESS MAP
-////#ADDRMAPGEN#
-//db	slave_1
-	assign low_addr[0] = 32'h0000_0000;
-	assign high_addr[0] = 32'h0000_03FF;
-//db	slave_3
-	assign low_addr[1] = 32'h0000_1000;
-	assign high_addr[1] = 32'h0000_100F;
-//db	slave_5
-	assign low_addr[2] = 32'h0000_2404;
-	assign high_addr[2] = 32'h0000_24FF;
+////#db ADDRMAPGEN#
 ////================================================================================
 ////  genvar i;
 ////  generate

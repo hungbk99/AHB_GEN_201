@@ -43,30 +43,30 @@ module AHB_decoder#NUM#
 //#ADDRMAPGEN#
 //================================================================================
 
-  `ifdef IN_FF       
-      always_ff @(posedge hclk, negedge hreset_n)
-      begin
-        if(!hreset_n)
-        begin
-          haddr_buf <= '0; 
-          htrans_buf <= '0; 
-          hremap_buf <= '0;
-          hsplit_buf <= '0,
-        end
-        else 
-        begin
-          haddr_buf <= haddr; 
-          hhtrans_buf <= trans; 
-          hhremap_buf <= remap;
-          hhsplit_buf <= split,
-        end
-      end
-  `else
+//  `ifdef IN_FF       
+//      always_ff @(posedge hclk, negedge hreset_n)
+//      begin
+//        if(!hreset_n)
+//        begin
+//          haddr_buf <= '0; 
+//          htrans_buf <= '0; 
+//          hremap_buf <= '0;
+//          hsplit_buf <= '0,
+//        end
+//        else 
+//        begin
+//          haddr_buf <= haddr; 
+//          hhtrans_buf <= trans; 
+//          hhremap_buf <= remap;
+//          hhsplit_buf <= split,
+//        end
+//      end
+//  `else
       assign haddr_buf = haddr; 
       assign hhtrans_buf = trans; 
       assign hhremap_buf = remap;
       assign hhsplit_buf = split,
-  `endif  
+//  `endif  
             
   genvar i;
   generate
@@ -84,21 +84,21 @@ module AHB_decoder#NUM#
 
   assign  hreq_buf = (htrans_buf != IDLE) ?  slave_detect : '0;
 
-  `ifdef OUT_FF
-    always_ff @(posedge hclk, negedge hreset_n)
-    begin
-      default_slv_sel <= 1'b0;
-      hreq <= '0;
-    end
-    else 
-    begin
-      default_slv_sel <= dec_error;
-      hreq <= hreq_buf;  
-    end
-  `else
+//  `ifdef OUT_FF
+//    always_ff @(posedge hclk, negedge hreset_n)
+//    begin
+//      default_slv_sel <= 1'b0;
+//      hreq <= '0;
+//    end
+//    else 
+//    begin
+//      default_slv_sel <= dec_error;
+//      hreq <= hreq_buf;  
+//    end
+//  `else
     assign default_slv_sel = dec_error;
     assign hreq = hreq_buf;
-  `endif    
+//  `endif    
 
 endmodule: AHB_decoder#NUM#
 
@@ -106,7 +106,7 @@ endmodule: AHB_decoder#NUM#
 //module AHB_decoder#NUM# 
 
 //#(
-////#PARAGEN#
+////#db PARAGEN#
 //)
 //(
 //  input [AHB_ADDR_WIDTH-1:0]      haddr,   
@@ -159,7 +159,7 @@ endmodule: AHB_decoder#NUM#
 //                                                     high_addr;
 ////================================================================================
 ////ADDRESS MAP
-////#ADDRMAPGEN#
+////#db ADDRMAPGEN#
 ////================================================================================
 ////  genvar i;
 ////  generate

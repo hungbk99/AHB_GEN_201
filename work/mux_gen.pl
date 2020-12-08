@@ -46,8 +46,8 @@ foreach my $i (0 .. scalar @sheet_1_data)
   if(($sheet_1_data[$i][0] eq 'DECODER_IDENTIFY') && ($sheet_1_data[$i][1] ne 'sample'))
   {
     my $master_name = $sheet_1_data[$i][1];
-    $i++;
-    $i++;
+    #$i++;
+    #$i++;
     $i++;
     my $slave_num = $sheet_1_data[$i][1];
     $i++;

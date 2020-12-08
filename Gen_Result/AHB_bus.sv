@@ -15,40 +15,40 @@ module AHB_bus
 (
 //#INTERFACEGEN#
 //#SI#
-	output mas_send_type  master_1_out,
+	input  mas_send_type  master_1_in,
 	input  [$clog2(2)-1:0]  master_1_prior,
-	input  slv_send_type  master_1_in,
-	output mas_send_type  master_2_out,
+	output  slv_send_type  master_1_out,
+	input  mas_send_type  master_2_in,
 	input  [$clog2(2)-1:0]  master_2_prior,
-	input  slv_send_type  master_2_in,
-	output mas_send_type  master_3_out,
+	output  slv_send_type  master_2_out,
+	input  mas_send_type  master_3_in,
 	input  [$clog2(2)-1:0]  master_3_prior,
-	input  slv_send_type  master_3_in,
-	output mas_send_type  kemee_out,
+	output  slv_send_type  master_3_out,
+	input  mas_send_type  kemee_in,
 	input  [$clog2(2)-1:0]  kemee_prior,
-	input  slv_send_type  kemee_in,
+	output  slv_send_type  kemee_out,
 //#MI#
-	output slv_send_type  slave_1_out,
+	input  slv_send_type  slave_1_in,
 	output hsel_slave_1,
-	input  mas_send_type  slave_1_in,
-	output slv_send_type  slave_2_out,
+	output mas_send_type  slave_1_out,
+	input  slv_send_type  slave_2_in,
 	output hsel_slave_2,
-	input  mas_send_type  slave_2_in,
-	output slv_send_type  slave_3_out,
+	output mas_send_type  slave_2_out,
+	input  slv_send_type  slave_3_in,
 	output hsel_slave_3,
-	input  mas_send_type  slave_3_in,
-	output slv_send_type  slave_4_out,
+	output mas_send_type  slave_3_out,
+	input  slv_send_type  slave_4_in,
 	output hsel_slave_4,
-	input  mas_send_type  slave_4_in,
-	output slv_send_type  slave_5_out,
+	output mas_send_type  slave_4_out,
+	input  slv_send_type  slave_5_in,
 	output hsel_slave_5,
-	input  mas_send_type  slave_5_in,
-	output slv_send_type  slave_6_out,
+	output mas_send_type  slave_5_out,
+	input  slv_send_type  slave_6_in,
 	output hsel_slave_6,
-	input  mas_send_type  slave_6_in,
-	output slv_send_type  slave_7_out,
+	output mas_send_type  slave_6_out,
+	input  slv_send_type  slave_7_in,
 	output hsel_slave_7,
-	input  mas_send_type  slave_7_in,
+	output mas_send_type  slave_7_out,
 	input					 hclk,
 	input					 hreset_n
 );
@@ -57,44 +57,51 @@ module AHB_bus
   parameter MI_PAYLOAD = 34;
 //================================================================================
 //#SIGGEN# 
-	logic [4-1:0][MI_PAYLOAD-1:0] payload_master_1_in;
-	logic [MI_PAYLOAD-1:0] payload_master_1_out;
+	logic [NO-1:0][MI_PAYLOAD-1:0] payload_master_1_in;
+	slv_send_type payload_master_1_out;
 	logic default_slv_sel_master_1;
-	logic [4-1:0] hreq_master_1;
+	logic [NO-1:0] hreq_master_1;
 	logic [3-1:0][MI_PAYLOAD-1:0] payload_master_2_in;
-	logic [MI_PAYLOAD-1:0] payload_master_2_out;
+	slv_send_type payload_master_2_out;
 	logic default_slv_sel_master_2;
 	logic [3-1:0] hreq_master_2;
 	logic [2-1:0][MI_PAYLOAD-1:0] payload_master_3_in;
-	logic [MI_PAYLOAD-1:0] payload_master_3_out;
+	slv_send_type payload_master_3_out;
 	logic default_slv_sel_master_3;
 	logic [2-1:0] hreq_master_3;
 	logic [7-1:0][MI_PAYLOAD-1:0] payload_kemee_in;
-	logic [MI_PAYLOAD-1:0] payload_kemee_out;
+	slv_send_type payload_kemee_out;
 	logic default_slv_sel_kemee;
 	logic [7-1:0] hreq_kemee;
 
-	logic [NO-1:0][SI_PAYLOAD-1:0] payload_slave_1_out;
+	logic [3-1:0] hreq_slave_1
+	logic [3-1:0][SI_PAYLOAD-1:0] payload_slave_1_in;
 	mas_send_type payload_slave_1_out;
-	logic [NO-1:0] hgrant_slave_1;
-	logic [YES-1:0][SI_PAYLOAD-1:0] payload_slave_2_out;
+	logic [3-1:0] hgrant_slave_1;
+	logic [2-1:0] hreq_slave_2
+	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_2_in;
 	mas_send_type payload_slave_2_out;
-	logic [YES-1:0] hgrant_slave_2;
-	logic [NO-1:0][SI_PAYLOAD-1:0] payload_slave_3_out;
+	logic [2-1:0] hgrant_slave_2;
+	logic [2-1:0] hreq_slave_3
+	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_3_in;
 	mas_send_type payload_slave_3_out;
-	logic [NO-1:0] hgrant_slave_3;
-	logic [NO-1:0][SI_PAYLOAD-1:0] payload_slave_4_out;
+	logic [2-1:0] hgrant_slave_3;
+	logic [1-1:0] hreq_slave_4
+	logic [1-1:0][SI_PAYLOAD-1:0] payload_slave_4_in;
 	mas_send_type payload_slave_4_out;
-	logic [NO-1:0] hgrant_slave_4;
-	logic [YES-1:0][SI_PAYLOAD-1:0] payload_slave_5_out;
+	logic [1-1:0] hgrant_slave_4;
+	logic [4-1:0] hreq_slave_5
+	logic [4-1:0][SI_PAYLOAD-1:0] payload_slave_5_in;
 	mas_send_type payload_slave_5_out;
-	logic [YES-1:0] hgrant_slave_5;
-	logic [YES-1:0][SI_PAYLOAD-1:0] payload_slave_6_out;
+	logic [4-1:0] hgrant_slave_5;
+	logic [1-1:0] hreq_slave_6
+	logic [1-1:0][SI_PAYLOAD-1:0] payload_slave_6_in;
 	mas_send_type payload_slave_6_out;
-	logic [YES-1:0] hgrant_slave_6;
-	logic [NO-1:0][SI_PAYLOAD-1:0] payload_slave_7_out;
+	logic [1-1:0] hgrant_slave_6;
+	logic [2-1:0] hreq_slave_7
+	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_7_in;
 	mas_send_type payload_slave_7_out;
-	logic [NO-1:0] hgrant_slave_7;
+	logic [2-1:0] hgrant_slave_7;
 //================================================================================
 //#DECGEN# 
 	AHB_decoder_master_1 DEC_master_1	(
@@ -161,30 +168,30 @@ module AHB_bus
 //#ARBGEN#
 	AHB_arbiter_slave_1 ARB_slave_1
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_1),
 		.hburst(payload_slave_1_out.hburst),
 		.hwait(~slave_1_out.hreadyout),
 		.hgrant(hgrant_slave_1),
 		.hsel(hsel_slave_1),
-		.hprior(),
 		.*
 	);
 
 
 	AHB_arbiter_slave_2 ARB_slave_2
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_2),
 		.hburst(payload_slave_2_out.hburst),
 		.hwait(~slave_2_out.hreadyout),
 		.hgrant(hgrant_slave_2),
 		.hsel(hsel_slave_2),
+		.hprior(),
 		.*
 	);
 
 
 	AHB_arbiter_slave_3 ARB_slave_3
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_3),
 		.hburst(payload_slave_3_out.hburst),
 		.hwait(~slave_3_out.hreadyout),
 		.hgrant(hgrant_slave_3),
@@ -195,7 +202,7 @@ module AHB_bus
 
 	AHB_arbiter_slave_4 ARB_slave_4
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_4),
 		.hburst(payload_slave_4_out.hburst),
 		.hwait(~slave_4_out.hreadyout),
 		.hgrant(hgrant_slave_4),
@@ -206,18 +213,19 @@ module AHB_bus
 
 	AHB_arbiter_slave_5 ARB_slave_5
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_5),
 		.hburst(payload_slave_5_out.hburst),
 		.hwait(~slave_5_out.hreadyout),
 		.hgrant(hgrant_slave_5),
 		.hsel(hsel_slave_5),
+		.hprior(),
 		.*
 	);
 
 
 	AHB_arbiter_slave_6 ARB_slave_6
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_6),
 		.hburst(payload_slave_6_out.hburst),
 		.hwait(~slave_6_out.hreadyout),
 		.hgrant(hgrant_slave_6),
@@ -228,15 +236,89 @@ module AHB_bus
 
 	AHB_arbiter_slave_7 ARB_slave_7
 	(
-		.hreq(`{}),
+		.hreq(hreq_slave_7),
 		.hburst(payload_slave_7_out.hburst),
 		.hwait(~slave_7_out.hreadyout),
 		.hgrant(hgrant_slave_7),
 		.hsel(hsel_slave_7),
-		.hprior(),
 		.*
 	);
 
 
+//================================================================================
+//#CROSSGEN#
+
+	assign hreq_slave_1 = `{ hreq_master_1[3], hreq_master_2[2], hreq_kemee[6]};
+	assign payload_slave_1_in[2] = master_1_in;
+	assign payload_slave_1_in[1] = master_2_in;
+	assign payload_slave_1_in[0] = kemee_in;
+
+	assign hreq_slave_2 = `{ hreq_master_1[2], hreq_kemee[5]};
+	assign payload_slave_2_in[1] = master_1_in;
+	assign payload_slave_2_in[0] = kemee_in;
+
+	assign hreq_slave_3 = `{ hreq_master_2[1], hreq_kemee[4]};
+	assign payload_slave_3_in[1] = master_2_in;
+	assign payload_slave_3_in[0] = kemee_in;
+
+	assign hreq_slave_4 = `{ hreq_master_3[1] hreq_kemee[3],};
+	assign payload_slave_4_in[0] = master_3_in;
+	assign payload_slave_4_in[-1] = kemee_in;
+
+	assign hreq_slave_5 = `{ hreq_master_1[1], hreq_master_2[0], hreq_master_3[0], hreq_kemee[2]};
+	assign payload_slave_5_in[3] = master_1_in;
+	assign payload_slave_5_in[2] = master_2_in;
+	assign payload_slave_5_in[1] = master_3_in;
+	assign payload_slave_5_in[0] = kemee_in;
+
+	assign hreq_slave_6 = `{ hreq_kemee[1]};
+	assign payload_slave_6_in[0] = kemee_in;
+
+	assign hreq_slave_7 = `{ hreq_master_1[0], hreq_kemee[0]};
+	assign payload_slave_7_in[1] = master_1_in;
+	assign payload_slave_7_in[0] = kemee_in;
+
+	assign payload_master_2_in[2] = {slave_1_in.hreadyout & hgrant_slave_1, slave_1_in.hrdata, slave_1_in.hresp};
+	assign payload_master_2_in[1] = {slave_3_in.hreadyout & hgrant_slave_3, slave_3_in.hrdata, slave_3_in.hresp};
+	assign payload_master_2_in[0] = {slave_5_in.hreadyout & hgrant_slave_5, slave_5_in.hrdata, slave_5_in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_2_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[1] = {slave_4_in.hreadyout & hgrant_slave_4, slave_4_in.hrdata, slave_4_in.hresp};
+	assign payload_master_3_in[0] = {slave_5_in.hreadyout & hgrant_slave_5, slave_5_in.hrdata, slave_5_in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_master_3_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[6] = {slave_1_in.hreadyout & hgrant_slave_1, slave_1_in.hrdata, slave_1_in.hresp};
+	assign payload_kemee_in[5] = {slave_2_in.hreadyout & hgrant_slave_2, slave_2_in.hrdata, slave_2_in.hresp};
+	assign payload_kemee_in[4] = {slave_3_in.hreadyout & hgrant_slave_3, slave_3_in.hrdata, slave_3_in.hresp};
+	assign payload_kemee_in[3] = {slave_4_in.hreadyout & hgrant_slave_4, slave_4_in.hrdata, slave_4_in.hresp};
+	assign payload_kemee_in[2] = {slave_5_in.hreadyout & hgrant_slave_5, slave_5_in.hrdata, slave_5_in.hresp};
+	assign payload_kemee_in[1] = {slave_6_in.hreadyout & hgrant_slave_6, slave_6_in.hrdata, slave_6_in.hresp};
+	assign payload_kemee_in[0] = {slave_7_in.hreadyout & hgrant_slave_7, slave_7_in.hrdata, slave_7_in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
+	assign payload_kemee_in[] = {_in.hreadyout & hgrant_, _in.hrdata, _in.hresp};
 
 endmodule: AHB_bus

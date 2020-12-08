@@ -58,9 +58,9 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
     #my $glitch_free  = $sheet_1_data[$i_1][1];
     #$i_1++;
     my $in_ff  = $sheet_1_data[$i_1][1];
-    $i_1++;
-    my $out_ff  = $sheet_1_data[$i_1][1];
-    $i_1++;
+    #$i_1++;
+    #my $out_ff  = $sheet_1_data[$i_1][1];
+    #$i_1++;
     my $slave_num  = $sheet_1_data[$i_1][1];
     $i_1++;
     my @slave_name_a;
@@ -81,7 +81,8 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
       $line =~ s/#NUM#/_$master_name/;
       $line =~ s///;
       print DEST "$line";
-      if($line =~ /#CONFIG_GEN#/)
+      #if($line =~ /#CONFIG_GEN#/)
+      if($line eq '#CONFIG_GEN#')
       {
         #db print ("$fsm_type\n");
         #db print ("**********************");
@@ -109,7 +110,8 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
         #  print DEST "\t`define OUT_FF\n";
         #}
       }
-      elsif($line =~ /#PARAGEN#/)
+      #elsif($line =~ /#PARAGEN#/)
+      elsif($line eq '#PARAGEN#')
       {
         print DEST ("\tparameter AHB_ADDR_WIDTH = ${addr_width},\n");
         print DEST ("\tparameter MASTER_X_SLAVE_NUM = ${slave_num}\n");
