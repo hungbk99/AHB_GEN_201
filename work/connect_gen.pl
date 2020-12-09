@@ -243,13 +243,14 @@ while (my $line = <SAMPLE>)
         my @row = Spreadsheet::Read::row($data->[4], 3);
         for my $h (1 .. $#row) 
         {
-          my $slave_num = $sheet_1_data[$i_1][1]; 
+          #my $slave_num = $sheet_1_data[$i_1][1]; 
           if($row[$h] eq $master_name)
           {
-            foreach my $k (3 .. scalar @sheet_4_data)
+            #foreach my $k (3 .. scalar @sheet_4_data)
+            foreach my $k (($i_1 + 1) .. scalar @sheet_4_data)
             {
               my $count = 0;
-              if(($sheet_4_data[$k][$h] ne 'N') && ($count != $slave_num))
+              if(($sheet_4_data[$k][$h] ne 'N') && ($count < $slave_num))
               {
                 $count++;
                 print DEST ("\tassign payload_${master_name}_in[$sheet_4_data[$k][$h]] =".
