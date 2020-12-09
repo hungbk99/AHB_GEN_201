@@ -196,7 +196,7 @@ while (my $line = <SAMPLE>)
             print DEST ("\n");
             #db print ("db..........................\n");
             my @row = Spreadsheet::Read::row($data->[4], $k+1);
-            print DEST ("\tassign hreq_${slave_name} = `{");
+            print DEST ("\tassign hreq_${slave_name} = {");
             for my $h (1 .. $#row) {
               if($row[$h] ne 'N')
               {
