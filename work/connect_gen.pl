@@ -252,7 +252,8 @@ while (my $line = <SAMPLE>)
               if(($sheet_4_data[$k][$h] ne 'N') && ($count != $slave_num))
               {
                 $count++;
-                print DEST ("\tassign payload_${master_name}_in[$sheet_4_data[$k][$h]] = {$sheet_4_data[$k][0]_in.hreadyout & hgrant_$sheet_4_data[$k][0], $sheet_4_data[$k][0]_in.hrdata, $sheet_4_data[$k][0]_in.hresp};\n");
+                print DEST ("\tassign payload_${master_name}_in[$sheet_4_data[$k][$h]] =".
+                " {$sheet_4_data[$k][0]_in.hreadyout & hgrant_$sheet_4_data[$k][0], $sheet_4_data[$k][0]_in.hrdata, $sheet_4_data[$k][0]_in.hresp};\n");
               }                          
             }                            
           }                              
