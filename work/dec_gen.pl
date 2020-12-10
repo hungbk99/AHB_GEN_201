@@ -110,8 +110,7 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
         #  print DEST "\t`define OUT_FF\n";
         #}
       }
-      #elsif($line =~ /#PARAGEN#/)
-      elsif($line eq '#PARAGEN#')
+      elsif($line =~ /#PARAGEN#/)
       {
         print DEST ("\tparameter AHB_ADDR_WIDTH = ${addr_width},\n");
         print DEST ("\tparameter MASTER_X_SLAVE_NUM = ${slave_num}\n");

@@ -61,10 +61,10 @@ while (my $line = <SAMPLE>)
       {
         my $master_name = $sheet_1_data[$i_1][1];
         #print DEST ("\toutput mas_send_type  ${master_name}_out,\n");
-        #print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  hprior_${master_name},\n");
+        #print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  ${master_name}_prior,\n");
         #print DEST ("\tinput  slv_send_type  ${master_name}_in,\n");
         print DEST ("\tinput  mas_send_type  ${master_name}_in,\n");
-        print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  hprior_${master_name},\n");
+        print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  ${master_name}_prior,\n");
         print DEST ("\toutput  slv_send_type  ${master_name}_out,\n");
       }
     }
@@ -122,7 +122,6 @@ while (my $line = <SAMPLE>)
         #print DEST ("\tlogic [SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
         print DEST ("\tmas_send_type payload_${slave_name}_out;\n");
         print DEST ("\tlogic [${master_num}-1:0] hgrant_${slave_name};\n");
-        print DEST ("\tlogic [${master_num}-1:0][$prior_level-1:0] hprior_${slave_name};\n");
       }
     }
   }
@@ -173,7 +172,7 @@ while (my $line = <SAMPLE>)
         print DEST ("\t\t.hsel(hsel_${slave_name}),\n");
         if($prior eq 'YES')
         {
-          print DEST ("\t\t.hprior(hprior_${slave_name}),\n"); 
+          print DEST ("\t\t.hprior(),\n"); 
         }
         print DEST ("\t\t.*\n");
         print DEST ("\t);\n\n\n");  
@@ -218,30 +217,6 @@ while (my $line = <SAMPLE>)
           my $master_num = $sheet_3_data[$i_1][1]; 
           if($slave_name eq $sheet_4_data[$k][0])
           {
-            #print DEST ("\n");
-            #db print ("db..........................\n");
-            my @row = Spreadsheet::Read::row($data->[4], $k+1);
-            print DEST ("\tassign hprior_${slave_name} = {");
-            for my $h (1 .. $#row) {
-              if($row[$h] ne 'N')
-              {
-                $master_num--;
-                if($master_num != 0)
-                {
-                  print DEST (" hprior_${sheet_4_data[2][$h]},");
-                }
-                else
-                {
-                  print DEST (" hprior_${sheet_4_data[2][$h]}");
-                }
-              }
-            }
-            print DEST ("};\n");
-          }
-
-          my $master_num = $sheet_3_data[$i_1][1]; 
-          if($slave_name eq $sheet_4_data[$k][0])
-          {
             #db print ("db..........................\n");
             my @row = Spreadsheet::Read::row($data->[4], $k+1);
             for my $h (1 .. $#row) {
@@ -264,26 +239,22 @@ while (my $line = <SAMPLE>)
       {
         my $master_name = $sheet_1_data[$i_1][1];
         $i_1++;
-        my $slave_num = $sheet_1_data[$i_1][1];
-        print ("$slave_num\n");
+        my $slave_num = $sheet_1_data[$i_1][1]; 
         my @row = Spreadsheet::Read::row($data->[4], 3);
         for my $h (1 .. $#row) 
         {
           #my $slave_num = $sheet_1_data[$i_1][1]; 
           if($row[$h] eq $master_name)
           {
-            #db print ("db\n");
-            #db print ("$master_name\n");
-            print DEST ("\n");
-            my $count = 0;
             foreach my $k (3 .. scalar @sheet_4_data)
+              my $count = 0;
             #foreach my $k (($h + 1) .. scalar @sheet_4_data)
             {
               if(($sheet_4_data[$k][$h] ne 'N') && ($count < $slave_num))
               {
                 $count++;
-                #db print ("db\n");
-                #db print ("$count vs $slave_num\n");
+                #db 
+                print ("$count vs $slave_num\n");
                 print DEST ("\tassign payload_${master_name}_in[$sheet_4_data[$k][$h]] =".
                 " {$sheet_4_data[$k][0]_in.hreadyout & hgrant_$sheet_4_data[$k][0], $sheet_4_data[$k][0]_in.hrdata, $sheet_4_data[$k][0]_in.hresp};\n");
               }                          

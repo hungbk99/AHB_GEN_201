@@ -17,6 +17,8 @@ import AHB_package::*;
 module AHB_decoder_master_3 
 #(
 //#PARAGEN#
+	parameter AHB_ADDR_WIDTH = 32,
+	parameter MASTER_X_SLAVE_NUM = 2
 )
 (
   input [AHB_ADDR_WIDTH-1:0]      haddr,   

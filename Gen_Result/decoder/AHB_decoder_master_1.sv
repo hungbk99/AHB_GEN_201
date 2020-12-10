@@ -17,6 +17,8 @@ import AHB_package::*;
 module AHB_decoder_master_1 
 #(
 //#PARAGEN#
+	parameter AHB_ADDR_WIDTH = 32,
+	parameter MASTER_X_SLAVE_NUM = 4
 )
 (
   input [AHB_ADDR_WIDTH-1:0]      haddr,   
@@ -41,6 +43,18 @@ module AHB_decoder_master_1
 //================================================================================
 //ADDRESS MAP
 //#ADDRMAPGEN#
+//db	slave_1
+	assign low_addr[0] = 32'h0000_0000;
+	assign high_addr[0] = 32'h0000_03FF;
+//db	slave_2
+	assign low_addr[1] = 32'h0000_0400;
+	assign high_addr[1] = 32'h0000_0CF0;
+//db	slave_5
+	assign low_addr[2] = 32'h0000_2404;
+	assign high_addr[2] = 32'h0000_24FF;
+//db	slave_7
+	assign low_addr[3] = 32'h0000_5000;
+	assign high_addr[3] = 32'h0000_5FFF;
 //================================================================================
 
 //  `ifdef IN_FF       

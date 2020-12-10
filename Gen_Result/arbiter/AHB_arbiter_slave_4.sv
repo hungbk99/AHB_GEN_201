@@ -16,7 +16,7 @@ import AHB_package::*;
 module AHB_arbiter_slave_4 
 #(
 //#PARAGEN#
-	parameter SLAVE_X_MASTER_NUM = 1
+	parameter SLAVE_X_MASTER_NUM = 2
 )  
 (
   input   [SLAVE_X_MASTER_NUM-1:0]                      hreq,

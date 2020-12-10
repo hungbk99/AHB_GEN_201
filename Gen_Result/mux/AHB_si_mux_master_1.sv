@@ -14,7 +14,7 @@
 import AHB_package::*;
 module AHB_mux_master_1
 #(
-    parameter CHANNEL_NUM = NO,
+    parameter CHANNEL_NUM = 4,
     `ifdef MAS
     parameter PAY_LOAD = 78 
     `elsif SLV
