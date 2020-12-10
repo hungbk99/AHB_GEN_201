@@ -6,26 +6,29 @@
 // v0.0       3/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-//================================================================================
-//#CONFIG_GEN#
-//================================================================================
 
 import AHB_package::*;
 module AHB_mux#NUM#
+//================================================================================
+//#CONFIG_GEN#
+//================================================================================
 #(
     parameter CHANNEL_NUM = #CHNUM#,
-    `ifdef MAS
-    parameter PAY_LOAD = 78 
-    `elsif SLV
-    parameter PAY_LOAD = 34 
+    `ifdef MAS#NUM#
+    parameter PAYLOAD = 78 
+    `elsif SLV#NUM#
+    parameter PAYLOAD = 34 
     `endif
 )
 (
-    input  [CHANNEL_NUM-1:0][PAY_LOAD-1:0] payload_in,
+    input  [CHANNEL_NUM-1:0][PAYLOAD-1:0] payload_in,
     input  [CHANNEL_NUM-1:0]               sel,                
     output [PAYLOAD-1:0]                   payload_out   
 );
+
     
+//================================================================================
+//================================================================================
     always_comb begin
         payload_out = '0;
         for(int i = 0; i < CHANNEL_NUM; i++)

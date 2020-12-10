@@ -18,11 +18,11 @@ module AHB_arbiter#NUM#
 )  
 (
   input   [SLAVE_X_MASTER_NUM-1:0]                      hreq,
-  input   burst_type                                    hburst,
+  input   hburst_type                                    hburst,
   input                                                 hwait,
   output  logic [SLAVE_X_MASTER_NUM-1:0]                hgrant,
   output  logic                                         hsel,
-`ifdef  DYNAMIC__PRIORITY_ARBITER
+`ifdef  DYNAMIC_PRIORITY_ARBITER#NUM#
   input [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0] hprior,   
 `endif
   input                                                 hclk,
@@ -40,7 +40,7 @@ module AHB_arbiter#NUM#
                                  count_ena;
   logic [3:0]                    count,
                                  count_limit; 
-  burst_type                     burst;  
+  hburst_type                     burst;  
  
   enum logic {
     IDLE,
@@ -50,7 +50,7 @@ module AHB_arbiter#NUM#
 //================================================================================
 // AHB Scheme
 //================================================================================
-`ifdef  FIXED_PRIORITY_ARBITER   
+`ifdef  FIXED_PRIORITY_ARBITER#NUM#  
 
   Fixed_Prior_Mask 
   #(
@@ -64,7 +64,7 @@ module AHB_arbiter#NUM#
     .raw_grant(raw_grant)
  );
   
-`elsif  DYNAMIC__PRIORITY_ARBITER
+`elsif  DYNAMIC_PRIORITY_ARBITER#NUM#
   `define PRIOR_GEN
   
   Fixed_Prior_Mask  
@@ -78,8 +78,8 @@ module AHB_arbiter#NUM#
     .hsel(hsel),  
     .raw_grant(raw_grant)
   );
-`elsif  ROUND_ROBIN_ARBITER
-  `define PRIOR_GEN
+`elsif  ROUND_ROBIN_ARBITER#NUM#
+  `define PRIOR_GEN#NUM#
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0] prior_reg,
                                                         prior_cout,
                                                         hprior;
@@ -133,7 +133,7 @@ module AHB_arbiter#NUM#
   );
 `endif
 
-`ifdef  PRIOR_GEN
+`ifdef  PRIOR_GEN#NUM#
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
   logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
@@ -193,7 +193,7 @@ module AHB_arbiter#NUM#
 //  end
 //  assign hsel = |hgrant;
 
-`ifdef ONE_PATH
+`ifdef ONE_PATH#NUM#
   assign raw_grant = hreq;  
 `endif  
   always_ff @(posedge hclk, negedge hreset_n)
@@ -240,7 +240,7 @@ module AHB_arbiter#NUM#
   always_comb begin
     count_ena = 1'b0;
     count_clr = 1'b0;
-    burst = IDLE;
+    monitor_state = IDLE;
     unique case (monitor_state)
       IDLE: begin
         burst = hburst;
@@ -251,7 +251,7 @@ module AHB_arbiter#NUM#
           monitor_next_state = monitor_state;
       end
       MONITOR: begin
-        count_en = 1'b1;
+        count_ena = 1'b1;
         if(monitor_last)
           monitor_next_state = IDLE;
         else

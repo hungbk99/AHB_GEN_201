@@ -117,7 +117,7 @@ while (my $line = <SAMPLE>)
         #$i_1++;
         #$i_1++;
         my $master_num = $sheet_3_data[$i_1][1];
-        print DEST ("\tlogic [${master_num}-1:0] hreq_${slave_name}\n");
+        print DEST ("\tlogic [${master_num}-1:0] hreq_${slave_name};\n");
         print DEST ("\tlogic [${master_num}-1:0][SI_PAYLOAD-1:0] payload_${slave_name}_in;\n");
         #print DEST ("\tlogic [SI_PAYLOAD-1:0] payload_${slave_name}_out;\n");
         print DEST ("\tmas_send_type payload_${slave_name}_out;\n");
@@ -136,6 +136,7 @@ while (my $line = <SAMPLE>)
         print DEST ("\tAHB_decoder_${master_name} DEC_${master_name}");
         print DEST ("\t(\n"); 
         print DEST ("\t\t.haddr(${master_name}_in.haddr),\n");
+        print DEST ("\t\t.htrans(${master_name}_in.htrans),\n");
         #print DEST ("\t\t.htrans(htrans_${master_name}),\n");
         #print DEST ("\t\t.hremap(hremap_${master_name}),\n");
         #print DEST ("\t\t.hsplit(hsplit_${master_name}),\n");
@@ -168,7 +169,7 @@ while (my $line = <SAMPLE>)
         print DEST ("\t(\n"); 
         print DEST ("\t\t.hreq(hreq_${slave_name}),\n"); 
         print DEST ("\t\t.hburst(payload_${slave_name}_out.hburst),\n"); 
-        print DEST ("\t\t.hwait(~${slave_name}_out.hreadyout),\n"); 
+        print DEST ("\t\t.hwait(~${slave_name}_in.hreadyout),\n"); 
         print DEST ("\t\t.hgrant(hgrant_${slave_name}),\n"); 
         print DEST ("\t\t.hsel(hsel_${slave_name}),\n");
         if($prior eq 'YES')

@@ -6,27 +6,30 @@
 // v0.0       3/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-//================================================================================
-//#CONFIG_GEN#
-	`define SLV
-//================================================================================
 
 import AHB_package::*;
 module AHB_mux_slave_4
+//================================================================================
+//#CONFIG_GEN#
+	`define SLV_slave_4
+//================================================================================
 #(
     parameter CHANNEL_NUM = 2,
-    `ifdef MAS
-    parameter PAY_LOAD = 78 
-    `elsif SLV
-    parameter PAY_LOAD = 34 
+    `ifdef MAS_slave_4
+    parameter PAYLOAD = 78 
+    `elsif SLV_slave_4
+    parameter PAYLOAD = 34 
     `endif
 )
 (
-    input  [CHANNEL_NUM-1:0][PAY_LOAD-1:0] payload_in,
+    input  [CHANNEL_NUM-1:0][PAYLOAD-1:0] payload_in,
     input  [CHANNEL_NUM-1:0]               sel,                
     output [PAYLOAD-1:0]                   payload_out   
 );
+
     
+//================================================================================
+//================================================================================
     always_comb begin
         payload_out = '0;
         for(int i = 0; i < CHANNEL_NUM; i++)

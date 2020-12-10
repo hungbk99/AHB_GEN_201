@@ -66,7 +66,7 @@ foreach my $i (0 .. scalar @sheet_1_data)
       if($line =~ /#CONFIG_GEN#/)
       {
         #print DEST "\t`define CHNUM ${slave_num}\n";
-        print DEST "\t`define MAS\n";
+        print DEST "\t`define MAS_$master_name\n";
       }
     }
     close(SAMPLE);
@@ -95,7 +95,7 @@ foreach my $j (0 .. scalar @sheet_3_data)
       if($line =~ /#CONFIG_GEN#/)
       {
         #print DEST "\t`define CHNUM ${master_num}\n";
-        print DEST "\t`define SLV\n";
+        print DEST "\t`define SLV_$slave_name\n";
       }
     }
     close(SAMPLE);

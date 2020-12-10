@@ -69,21 +69,21 @@ foreach my $i (0 .. scalar @sheet_3_data)
         if($sheet_3_data[$i][1] eq 'YES')
         {
           print ("$sheet_3_data[$i][0]\n");
-          print DEST ("\t`define FIX_PRIORITY_ARBITER\n");
+          print DEST ("\t`define FIX_PRIORITY_ARBITER_$slave_name\n");
         }
         elsif($sheet_3_data[$i+1][1] eq 'YES')
         {
           print ("$sheet_3_data[$i+1][0]\n");
-          print DEST ("\t`define DYNAMIC_PRIORITY_ARBITER\n");
+          print DEST ("\t`define DYNAMIC_PRIORITY_ARBITER_$slave_name\n");
         }
         elsif($sheet_3_data[$i+2][1] eq 'YES')
         {
           print ("$sheet_3_data[$i+2][0]\n");
-          print DEST ("\t`define ROUND_ROBIN_ARBITER\n");
+          print DEST ("\t`define ROUND_ROBIN_ARBITER_$slave_name\n");
         }
         else
         {
-          print DEST ("\t`define ONE_PATH\n");
+          print DEST ("\t`define ONE_PATH_$slave_name\n");
         }
         $i++;
         $i++;

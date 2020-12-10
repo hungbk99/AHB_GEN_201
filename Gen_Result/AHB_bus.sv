@@ -74,37 +74,37 @@ module AHB_bus
 	logic default_slv_sel_kemee;
 	logic [7-1:0] hreq_kemee;
 
-	logic [3-1:0] hreq_slave_1
+	logic [3-1:0] hreq_slave_1;
 	logic [3-1:0][SI_PAYLOAD-1:0] payload_slave_1_in;
 	mas_send_type payload_slave_1_out;
 	logic [3-1:0] hgrant_slave_1;
 	logic [3-1:0][2-1:0] hprior_slave_1;
-	logic [2-1:0] hreq_slave_2
+	logic [2-1:0] hreq_slave_2;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_2_in;
 	mas_send_type payload_slave_2_out;
 	logic [2-1:0] hgrant_slave_2;
 	logic [2-1:0][2-1:0] hprior_slave_2;
-	logic [2-1:0] hreq_slave_3
+	logic [2-1:0] hreq_slave_3;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_3_in;
 	mas_send_type payload_slave_3_out;
 	logic [2-1:0] hgrant_slave_3;
 	logic [2-1:0][2-1:0] hprior_slave_3;
-	logic [2-1:0] hreq_slave_4
+	logic [2-1:0] hreq_slave_4;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_4_in;
 	mas_send_type payload_slave_4_out;
 	logic [2-1:0] hgrant_slave_4;
 	logic [2-1:0][2-1:0] hprior_slave_4;
-	logic [4-1:0] hreq_slave_5
+	logic [4-1:0] hreq_slave_5;
 	logic [4-1:0][SI_PAYLOAD-1:0] payload_slave_5_in;
 	mas_send_type payload_slave_5_out;
 	logic [4-1:0] hgrant_slave_5;
 	logic [4-1:0][2-1:0] hprior_slave_5;
-	logic [1-1:0] hreq_slave_6
+	logic [1-1:0] hreq_slave_6;
 	logic [1-1:0][SI_PAYLOAD-1:0] payload_slave_6_in;
 	mas_send_type payload_slave_6_out;
 	logic [1-1:0] hgrant_slave_6;
 	logic [1-1:0][2-1:0] hprior_slave_6;
-	logic [2-1:0] hreq_slave_7
+	logic [2-1:0] hreq_slave_7;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_7_in;
 	mas_send_type payload_slave_7_out;
 	logic [2-1:0] hgrant_slave_7;
@@ -113,6 +113,7 @@ module AHB_bus
 //#DECGEN# 
 	AHB_decoder_master_1 DEC_master_1	(
 		.haddr(master_1_in.haddr),
+		.htrans(master_1_in.htrans),
 		.default_slv_sel(default_slv_sel_master_1),
 		.hreq(hreq_master_1),
 		.*
@@ -128,6 +129,7 @@ module AHB_bus
 
 	AHB_decoder_master_2 DEC_master_2	(
 		.haddr(master_2_in.haddr),
+		.htrans(master_2_in.htrans),
 		.default_slv_sel(default_slv_sel_master_2),
 		.hreq(hreq_master_2),
 		.*
@@ -143,6 +145,7 @@ module AHB_bus
 
 	AHB_decoder_master_3 DEC_master_3	(
 		.haddr(master_3_in.haddr),
+		.htrans(master_3_in.htrans),
 		.default_slv_sel(default_slv_sel_master_3),
 		.hreq(hreq_master_3),
 		.*
@@ -158,6 +161,7 @@ module AHB_bus
 
 	AHB_decoder_kemee DEC_kemee	(
 		.haddr(kemee_in.haddr),
+		.htrans(kemee_in.htrans),
 		.default_slv_sel(default_slv_sel_kemee),
 		.hreq(hreq_kemee),
 		.*
@@ -177,7 +181,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_1),
 		.hburst(payload_slave_1_out.hburst),
-		.hwait(~slave_1_out.hreadyout),
+		.hwait(~slave_1_in.hreadyout),
 		.hgrant(hgrant_slave_1),
 		.hsel(hsel_slave_1),
 		.*
@@ -188,7 +192,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_2),
 		.hburst(payload_slave_2_out.hburst),
-		.hwait(~slave_2_out.hreadyout),
+		.hwait(~slave_2_in.hreadyout),
 		.hgrant(hgrant_slave_2),
 		.hsel(hsel_slave_2),
 		.hprior(hprior_slave_2),
@@ -200,7 +204,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_3),
 		.hburst(payload_slave_3_out.hburst),
-		.hwait(~slave_3_out.hreadyout),
+		.hwait(~slave_3_in.hreadyout),
 		.hgrant(hgrant_slave_3),
 		.hsel(hsel_slave_3),
 		.*
@@ -211,7 +215,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_4),
 		.hburst(payload_slave_4_out.hburst),
-		.hwait(~slave_4_out.hreadyout),
+		.hwait(~slave_4_in.hreadyout),
 		.hgrant(hgrant_slave_4),
 		.hsel(hsel_slave_4),
 		.*
@@ -222,7 +226,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_5),
 		.hburst(payload_slave_5_out.hburst),
-		.hwait(~slave_5_out.hreadyout),
+		.hwait(~slave_5_in.hreadyout),
 		.hgrant(hgrant_slave_5),
 		.hsel(hsel_slave_5),
 		.hprior(hprior_slave_5),
@@ -234,7 +238,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_6),
 		.hburst(payload_slave_6_out.hburst),
-		.hwait(~slave_6_out.hreadyout),
+		.hwait(~slave_6_in.hreadyout),
 		.hgrant(hgrant_slave_6),
 		.hsel(hsel_slave_6),
 		.*
@@ -245,7 +249,7 @@ module AHB_bus
 	(
 		.hreq(hreq_slave_7),
 		.hburst(payload_slave_7_out.hburst),
-		.hwait(~slave_7_out.hreadyout),
+		.hwait(~slave_7_in.hreadyout),
 		.hgrant(hgrant_slave_7),
 		.hsel(hsel_slave_7),
 		.*

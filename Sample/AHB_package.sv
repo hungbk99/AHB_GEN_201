@@ -52,7 +52,7 @@ package AHB_package;
 
   typedef struct packed {
     logic        hreadyout;
-    logic [31:0] hrdate;
+    logic [31:0] hrdata;
     logic        hresp;    
   } slv_send_type;
 
