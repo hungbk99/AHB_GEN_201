@@ -15,9 +15,9 @@ module AHB_mux_master_2
 //================================================================================
 #(
     parameter CHANNEL_NUM = 3,
-    `ifdef MAS_master_2
+    `ifdef SLV_master_2
     parameter PAYLOAD = 78 
-    `elsif SLV_master_2
+    `elsif MAS_master_2
     parameter PAYLOAD = 34 
     `endif
 )

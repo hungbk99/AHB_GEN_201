@@ -18,7 +18,7 @@ module AHB_arbiter#NUM#
 )  
 (
   input   [SLAVE_X_MASTER_NUM-1:0]                      hreq,
-  input   hburst_type                                    hburst,
+  input   hburst_type                                   hburst,
   input                                                 hwait,
   output  logic [SLAVE_X_MASTER_NUM-1:0]                hgrant,
   output  logic                                         hsel,
@@ -40,7 +40,7 @@ module AHB_arbiter#NUM#
                                  count_ena;
   logic [3:0]                    count,
                                  count_limit; 
-  hburst_type                     burst;  
+  hburst_type                    burst;  
  
   enum logic {
     IDLE,
@@ -223,9 +223,13 @@ module AHB_arbiter#NUM#
   always_ff @(posedge hclk, negedge hreset_n)
   begin
     if(!hreset_n)
-        count <= '0;      
+    begin
+        count <= '0;    
+        burst <= SINGLE;  //db
+    end
     else
     begin
+        burst <= hburst;
         if(count_clr)
             count <= '0;
         else if (count_ena && !hwait)
@@ -243,7 +247,7 @@ module AHB_arbiter#NUM#
     monitor_state = IDLE;
     unique case (monitor_state)
       IDLE: begin
-        burst = hburst;
+        //burst = hburst;
         count_clr = 1'b1;
         if(hsel)
           monitor_next_state = MONITOR;

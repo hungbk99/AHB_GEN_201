@@ -69,7 +69,7 @@ foreach my $i (0 .. scalar @sheet_3_data)
         if($sheet_3_data[$i][1] eq 'YES')
         {
           print ("$sheet_3_data[$i][0]\n");
-          print DEST ("\t`define FIX_PRIORITY_ARBITER_$slave_name\n");
+          print DEST ("\t`define FIXED_PRIORITY_ARBITER_$slave_name\n");
         }
         elsif($sheet_3_data[$i+1][1] eq 'YES')
         {

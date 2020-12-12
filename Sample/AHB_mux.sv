@@ -14,9 +14,9 @@ module AHB_mux#NUM#
 //================================================================================
 #(
     parameter CHANNEL_NUM = #CHNUM#,
-    `ifdef MAS#NUM#
+    `ifdef SLV#NUM#
     parameter PAYLOAD = 78 
-    `elsif SLV#NUM#
+    `elsif MAS#NUM#
     parameter PAYLOAD = 34 
     `endif
 )

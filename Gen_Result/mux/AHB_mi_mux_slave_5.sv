@@ -15,9 +15,9 @@ module AHB_mux_slave_5
 //================================================================================
 #(
     parameter CHANNEL_NUM = 4,
-    `ifdef MAS_slave_5
+    `ifdef SLV_slave_5
     parameter PAYLOAD = 78 
-    `elsif SLV_slave_5
+    `elsif MAS_slave_5
     parameter PAYLOAD = 34 
     `endif
 )

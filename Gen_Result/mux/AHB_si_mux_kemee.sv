@@ -15,9 +15,9 @@ module AHB_mux_kemee
 //================================================================================
 #(
     parameter CHANNEL_NUM = 7,
-    `ifdef MAS_kemee
+    `ifdef SLV_kemee
     parameter PAYLOAD = 78 
-    `elsif SLV_kemee
+    `elsif MAS_kemee
     parameter PAYLOAD = 34 
     `endif
 )

@@ -42,6 +42,7 @@ module AHB_decoder_kemee
                                                      high_addr;
 
   logic [AHB_ADDR_WIDTH-1:0]      haddr_buf;  
+  htrans_type                     htrans_buf;
 //================================================================================
 //ADDRESS MAP
 //#ADDRMAPGEN#
