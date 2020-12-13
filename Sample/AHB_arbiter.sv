@@ -66,6 +66,9 @@ module AHB_arbiter#NUM#
   
 `elsif  DYNAMIC_PRIORITY_ARBITER#NUM#
   `define PRIOR_GEN
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
+  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
   
   Fixed_Prior_Mask  
   #(
@@ -80,6 +83,9 @@ module AHB_arbiter#NUM#
   );
 `elsif  ROUND_ROBIN_ARBITER#NUM#
   `define PRIOR_GEN#NUM#
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
+  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0] prior_reg,
                                                         prior_cout,
                                                         hprior;
@@ -134,9 +140,9 @@ module AHB_arbiter#NUM#
 `endif
 
 `ifdef  PRIOR_GEN#NUM#
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
-  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
+//  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
+//  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
+//  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
 //                                  raw_grant,
 //                                  grant; 
  

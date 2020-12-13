@@ -22,14 +22,14 @@ module AHB_decoder_master_1
 	parameter MASTER_X_SLAVE_NUM = 4
 )
 (
-  input [AHB_ADDR_WIDTH-1:0]      haddr,   
-  input htrans_type               htrans,
-//  input                           hremap,
-//  input [MASTER_X_SLAVE_NUM-1:0]  hsplit,
-  output                          default_slv_sel,
-  output [MASTER_X_SLAVE_NUM-1:0] hreq,
-  input                           hreset_n,   
-  input                           hclk
+  input [AHB_ADDR_WIDTH-1:0]            haddr,   
+  input htrans_type                     htrans,
+//  input                               hremap,
+//  input [MASTER_X_SLAVE_NUM-1:0]      hsplit,
+  output logic                          default_slv_sel,
+  output logic [MASTER_X_SLAVE_NUM-1:0] hreq,
+  input                                 hreset_n,   
+  input                                 hclk
 );
 
 //================================================================================

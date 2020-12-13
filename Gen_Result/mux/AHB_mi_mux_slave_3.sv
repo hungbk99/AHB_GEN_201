@@ -23,8 +23,8 @@ module AHB_mux_slave_3
 )
 (
     input  [CHANNEL_NUM-1:0][PAYLOAD-1:0] payload_in,
-    input  [CHANNEL_NUM-1:0]               sel,                
-    output [PAYLOAD-1:0]                   payload_out   
+    input  [CHANNEL_NUM-1:0]              sel,                
+    output logic [PAYLOAD-1:0]            payload_out   
 );
 
     
