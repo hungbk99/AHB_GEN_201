@@ -51,6 +51,23 @@ module AHB_arbiter_slave_7
     MONITOR
   } monitor_state, monitor_next_state;    
  
+`ifdef  DYNAMIC_PRIORITY_ARBITER_slave_7
+  `define PRIOR_GEN
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] mask_req;
+  logic [SLAVE_X_MASTER_NUM-1:0]                          collect_req;
+`elsif  ROUND_ROBIN_ARBITER_slave_7
+  `define PRIOR_GEN_slave_7
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] mask_req;
+  logic [SLAVE_X_MASTER_NUM-1:0]                          collect_req;
+  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0]   prior_reg,
+                                                          prior_cout,
+                                                          hprior;
+  logic [SLAVE_X_PRIOR_BIT-1:0]                           current_prior;
+  logic                                                   update,
+                                                          current_hlast;
+`endif
 //================================================================================
 // AHB Scheme
 //================================================================================
@@ -69,10 +86,6 @@ module AHB_arbiter_slave_7
  );
   
 `elsif  DYNAMIC_PRIORITY_ARBITER_slave_7
-  `define PRIOR_GEN
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
-  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
   
   Fixed_Prior_Mask  
   #(
@@ -86,16 +99,6 @@ module AHB_arbiter_slave_7
     .raw_grant(raw_grant)
   );
 `elsif  ROUND_ROBIN_ARBITER_slave_7
-  `define PRIOR_GEN_slave_7
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
-  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
-  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_BIT-1:0] prior_reg,
-                                                        prior_cout,
-                                                        hprior;
-  logic [SLAVE_X_PRIOR_BIT-1:0] current_prior;
-  logic update,
-        current_hlast;
 
   always_ff @(posedge hclk, negedge hreset_n)
   begin
@@ -144,11 +147,6 @@ module AHB_arbiter_slave_7
 `endif
 
 `ifdef  PRIOR_GEN_slave_7
-//  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
-//  logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0]  mask_req;
-//  logic [SLAVE_X_MASTER_NUM-1:0]  collect_req;
-//                                  raw_grant,
-//                                  grant; 
  
   genvar i;
   generate
@@ -254,7 +252,7 @@ module AHB_arbiter_slave_7
   always_comb begin
     count_ena = 1'b0;
     count_clr = 1'b0;
-    monitor_state = IDLE;
+    monitor_next_state = IDLE;
     unique case (monitor_state)
       IDLE: begin
         //burst = hburst;
