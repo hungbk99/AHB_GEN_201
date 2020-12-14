@@ -7,37 +7,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import AHB_package::*;
-
 interface ahb_itf;
+    
+  mas_send_type    mas_out, slv_in;
+  slv_send_type    mas_in, slv_out;  
 
-  bit [31:0]   haddr;
-  bit          hwrite;
-  hsize_type   hsize;
-  hburst_type  hburst;
-  bit [3:0]    hprot;
-  htrans_type  htrans;
-  bit          hmastlock;
-  bit          hready;
-  bit [31:0]   hwdata;
-  bit          hresetn;
-  bit          hclk;
 
-  bit          hreadyout;
-  bit          hresp;    
-  bit [31:0]   hrdata;
-  
   clocking master_cb @(posedge hclk);
-    output  haddr, hwrite, hsize, hburst, hprot, htrans, hmastlock, hwdata;   
-    input   hready, hresp, hreset_n, hrdata;
+    output mas_out;  
+    input  mas_in; 
   endclocking: master
 
   clocking slave_cb @(posedge hclk);
-    input   haddr, hwrite, hsize, hburst, hprot, htrans, hmastlock, hwdata, hreset_n;   
-    output   hreadyout, hresp, hrdata;
+    input  slv_in;   
+    output slv_out;  
   endclocking: master
   
-  modport master_itf(clocking master_cb);
-  modport slave_itf(clocking slave_cb);
+  modport mas_itf(clocking master_cb);
+  modport slv_itf(clocking slave_cb);
 
 endinterface: ahb_itf
 
+typedef virtual ahb_itf vahb_itf;
+typedef virtual ahb_itf.mas_itf vmas_itf;
+typedef virtual ahb_itf.slv_itf vslv_itf;
