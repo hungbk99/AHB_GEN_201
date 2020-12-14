@@ -4230,10 +4230,12 @@ hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN0
 hwait => update.IN0
+hwait => always4.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hgrant[2] <= grant[2].DB_MAX_OUTPUT_PORT_TYPE
 hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -4266,6 +4268,7 @@ hreset_n => count[0].ACLR
 hreset_n => count[1].ACLR
 hreset_n => count[2].ACLR
 hreset_n => count[3].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|BR_Req_Detect:BRRD
@@ -4714,11 +4717,13 @@ hburst[1] => burst[1].DATAIN
 hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN1
+hwait => always2.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
 hprior[0][0] => ~NO_FANOUT~
 hprior[1][0] => ~NO_FANOUT~
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -4737,6 +4742,7 @@ hreset_n => count[2].ACLR
 hreset_n => count[3].ACLR
 hreset_n => grant[0].ACLR
 hreset_n => grant[1].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2|Fixed_Prior_Mask:FPM
@@ -5000,9 +5006,11 @@ hburst[1] => burst[1].DATAIN
 hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN1
+hwait => always2.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -5021,6 +5029,7 @@ hreset_n => count[2].ACLR
 hreset_n => count[3].ACLR
 hreset_n => grant[0].ACLR
 hreset_n => grant[1].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_3:ARB_slave_3|Fixed_Prior_Mask:FPA
@@ -5284,9 +5293,11 @@ hburst[1] => burst[1].DATAIN
 hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN1
+hwait => always2.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -5305,6 +5316,7 @@ hreset_n => count[2].ACLR
 hreset_n => count[3].ACLR
 hreset_n => grant[0].ACLR
 hreset_n => grant[1].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_4:ARB_slave_4|Fixed_Prior_Mask:FPA
@@ -5570,6 +5582,7 @@ hburst[1] => burst[1].DATAIN
 hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN1
+hwait => always2.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hgrant[2] <= grant[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -5579,6 +5592,7 @@ hprior[0][0] => ~NO_FANOUT~
 hprior[1][0] => ~NO_FANOUT~
 hprior[2][0] => ~NO_FANOUT~
 hprior[3][0] => ~NO_FANOUT~
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -5601,6 +5615,7 @@ hreset_n => grant[0].ACLR
 hreset_n => grant[1].ACLR
 hreset_n => grant[2].ACLR
 hreset_n => grant[3].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5|Fixed_Prior_Mask:FPM
@@ -6296,9 +6311,11 @@ hburst[2] => burst[2].DATAIN
 hwait => hsel.IN1
 hwait => hgrant.IN0
 hwait => update.IN0
+hwait => always4.IN1
 hgrant[0] <= hgrant.DB_MAX_OUTPUT_PORT_TYPE
 hgrant[1] <= grant[1].DB_MAX_OUTPUT_PORT_TYPE
 hsel <= hsel.DB_MAX_OUTPUT_PORT_TYPE
+hclk => monitor_state.CLK
 hclk => burst[0].CLK
 hclk => burst[1].CLK
 hclk => burst[2].CLK
@@ -6321,6 +6338,7 @@ hreset_n => grant[0].ACLR
 hreset_n => grant[1].ACLR
 hreset_n => prior_reg[1][0].PRESET
 hreset_n => prior_reg[0][0].ACLR
+hreset_n => monitor_state.ACLR
 
 
 |TOP|AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|BR_Req_Detect:BRRD

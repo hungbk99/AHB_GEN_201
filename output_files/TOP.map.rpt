@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP
-Sat Dec 12 18:04:43 2020
+Sun Dec 13 13:53:07 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -92,7 +92,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Dec 12 18:04:43 2020       ;
+; Analysis & Synthesis Status     ; Successful - Sun Dec 13 13:53:07 2020       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; TOP                                         ;
 ; Top-level Entity Name           ; TOP                                         ;
@@ -723,14 +723,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+--------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5|Fixed_Prior_Mask:FPM"                                                                                         ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port        ; Type  ; Severity ; Details                                                                                                                                             ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; hlast[3..1] ; Input ; Info     ; Stuck at GND                                                                                                                                        ;
-; collect_req ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (4 bits) it drives.  Extra input bit(s) "collect_req[3..1]" will be connected to GND. ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5|Fixed_Prior_Mask:FPM" ;
++-------------+-------+----------+-------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                     ;
++-------------+-------+----------+-------------------------------------------------------------+
+; hlast[3..1] ; Input ; Info     ; Stuck at GND                                                ;
++-------------+-------+----------+-------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------+
@@ -751,14 +750,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+----------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2|Fixed_Prior_Mask:FPM"                                                                                         ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port        ; Type  ; Severity ; Details                                                                                                                                             ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; hlast[1]    ; Input ; Info     ; Stuck at GND                                                                                                                                        ;
-; collect_req ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (2 bits) it drives.  Extra input bit(s) "collect_req[1..1]" will be connected to GND. ;
-+-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2|Fixed_Prior_Mask:FPM" ;
++----------+-------+----------+----------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                        ;
++----------+-------+----------+----------------------------------------------------------------+
+; hlast[1] ; Input ; Info     ; Stuck at GND                                                   ;
++----------+-------+----------+----------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------+
@@ -874,7 +872,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Dec 12 18:04:24 2020
+    Info: Processing started: Sun Dec 13 13:52:48 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AHB_GEN -c TOP
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -916,33 +914,31 @@ Info (12021): Found 1 design units, including 1 entities, in source file gen_res
     Info (12023): Found entity 1: AHB_decoder_master_1 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_1.sv Line: 18
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/decoder/ahb_decoder_kemee.sv
     Info (12023): Found entity 1: AHB_decoder_kemee File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_kemee.sv Line: 18
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_7.sv(223): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 223
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_7.sv(227): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 227
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_7.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_7 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_6.sv(221): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 221
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_6.sv(225): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 225
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_6.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_6 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_5.sv(223): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 223
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_5.sv(227): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 227
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_5.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_5 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_4.sv(221): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 221
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_4.sv(225): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 225
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_4.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_4 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_3.sv(221): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 221
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_3.sv(225): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 225
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_3.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_3 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_2.sv(223): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 223
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_2.sv(227): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 227
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_2.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_2 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 16
-Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_1.sv(223): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 223
+Warning (10229): Verilog HDL Expression warning at AHB_arbiter_slave_1.sv(227): truncated literal to match 3 bits File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 227
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/arbiter/ahb_arbiter_slave_1.sv
     Info (12023): Found entity 1: AHB_arbiter_slave_1 File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 16
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/top.sv
     Info (12023): Found entity 1: TOP File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/TOP.sv Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file gen_result/ahb_bus.sv
     Info (12023): Found entity 1: AHB_bus File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 14
-Warning (10236): Verilog HDL Implicit Net warning at AHB_arbiter_slave_5.sv(81): created implicit net for "collect_req" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 81
-Warning (10236): Verilog HDL Implicit Net warning at AHB_arbiter_slave_2.sv(81): created implicit net for "collect_req" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 81
 Info (12127): Elaborating entity "TOP" for the top level hierarchy
 Warning (10030): Net "master_1_in.haddr" at TOP.sv(16) has no driver or initial value, using a default initial value '0' File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/TOP.sv Line: 16
 Warning (10030): Net "master_1_in.hsize" at TOP.sv(16) has no driver or initial value, using a default initial value '0' File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/TOP.sv Line: 16
@@ -1016,56 +1012,48 @@ Info (12128): Elaborating entity "AHB_mux_master_3" for hierarchy "AHB_bus:DUT|A
 Info (12128): Elaborating entity "AHB_decoder_kemee" for hierarchy "AHB_bus:DUT|AHB_decoder_kemee:DEC_kemee" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 184
 Info (12128): Elaborating entity "AHB_mux_kemee" for hierarchy "AHB_bus:DUT|AHB_mux_kemee:MUX_kemee" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 192
 Info (12128): Elaborating entity "AHB_arbiter_slave_1" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 204
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(99): truncated value with size 32 to match size of target (2) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 99
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(121): truncated value with size 32 to match size of target (2) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 121
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_1.sv(220): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 220
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(240): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 240
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_1.sv(252): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 252
-Info (12128): Elaborating entity "BR_Req_Detect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|BR_Req_Detect:BRRD" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 137
-Info (12128): Elaborating entity "Prior_Gen" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Prior_Gen:PG_gen[0].PG" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 163
-Info (12128): Elaborating entity "Dynamic_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Dynamic_Prior_Mask:DPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 176
-Info (12128): Elaborating entity "Req_Collect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Req_Collect:RC" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 187
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(108): truncated value with size 32 to match size of target (2) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 108
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(130): truncated value with size 32 to match size of target (2) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 130
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_1.sv(224): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 224
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_1.sv(244): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 244
+Info (12128): Elaborating entity "BR_Req_Detect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|BR_Req_Detect:BRRD" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 146
+Info (12128): Elaborating entity "Prior_Gen" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Prior_Gen:PG_gen[0].PG" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 167
+Info (12128): Elaborating entity "Dynamic_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Dynamic_Prior_Mask:DPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 180
+Info (12128): Elaborating entity "Req_Collect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_1:ARB_slave_1|Req_Collect:RC" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv Line: 191
 Info (12128): Elaborating entity "AHB_mux_slave_1" for hierarchy "AHB_bus:DUT|AHB_mux_slave_1:MUX_slave_1" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 212
 Info (12128): Elaborating entity "AHB_arbiter_slave_2" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 223
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_2.sv(220): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 220
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_2.sv(240): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 240
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_2.sv(252): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 252
-Info (12128): Elaborating entity "Fixed_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2|Fixed_Prior_Mask:FPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 84
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_2.sv(224): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 224
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_2.sv(244): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 244
+Info (12128): Elaborating entity "Fixed_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_2:ARB_slave_2|Fixed_Prior_Mask:FPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv Line: 100
 Info (12128): Elaborating entity "AHB_mux_slave_2" for hierarchy "AHB_bus:DUT|AHB_mux_slave_2:MUX_slave_2" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 231
 Info (12128): Elaborating entity "AHB_arbiter_slave_3" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_3:ARB_slave_3" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 241
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_3.sv(218): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 218
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_3.sv(238): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 238
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_3.sv(250): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 250
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_3.sv(222): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 222
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_3.sv(242): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv Line: 242
 Info (12128): Elaborating entity "AHB_mux_slave_3" for hierarchy "AHB_bus:DUT|AHB_mux_slave_3:MUX_slave_3" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 249
 Info (12128): Elaborating entity "AHB_arbiter_slave_4" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_4:ARB_slave_4" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 259
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_4.sv(218): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 218
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_4.sv(238): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 238
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_4.sv(250): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 250
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_4.sv(222): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 222
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_4.sv(242): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv Line: 242
 Info (12128): Elaborating entity "AHB_mux_slave_4" for hierarchy "AHB_bus:DUT|AHB_mux_slave_4:MUX_slave_4" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 267
 Info (12128): Elaborating entity "AHB_arbiter_slave_5" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 278
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_5.sv(220): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 220
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_5.sv(240): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 240
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_5.sv(252): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 252
-Info (12128): Elaborating entity "Fixed_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5|Fixed_Prior_Mask:FPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 84
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_5.sv(224): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 224
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_5.sv(244): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 244
+Info (12128): Elaborating entity "Fixed_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_5:ARB_slave_5|Fixed_Prior_Mask:FPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv Line: 100
 Info (12128): Elaborating entity "AHB_mux_slave_5" for hierarchy "AHB_bus:DUT|AHB_mux_slave_5:MUX_slave_5" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 286
 Info (12128): Elaborating entity "AHB_arbiter_slave_6" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_6:ARB_slave_6" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 296
 Warning (10036): Verilog HDL or VHDL warning at AHB_arbiter_slave_6.sv(38): object "hlast" assigned a value but never read File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 38
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_6.sv(218): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 218
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_6.sv(238): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 238
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_6.sv(250): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 250
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_6.sv(222): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 222
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_6.sv(242): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv Line: 242
 Info (12128): Elaborating entity "AHB_mux_slave_6" for hierarchy "AHB_bus:DUT|AHB_mux_slave_6:MUX_slave_6" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 304
 Info (12128): Elaborating entity "AHB_arbiter_slave_7" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 314
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(99): truncated value with size 32 to match size of target (1) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 99
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(121): truncated value with size 32 to match size of target (1) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 121
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_7.sv(220): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 220
-Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(240): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 240
-Warning (10958): SystemVerilog warning at AHB_arbiter_slave_7.sv(252): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 252
-Info (12128): Elaborating entity "BR_Req_Detect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|BR_Req_Detect:BRRD" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 137
-Info (12128): Elaborating entity "Prior_Gen" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Prior_Gen:PG_gen[0].PG" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 163
-Info (12128): Elaborating entity "Dynamic_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Dynamic_Prior_Mask:DPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 176
-Info (12128): Elaborating entity "Req_Collect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Req_Collect:RC" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 187
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(108): truncated value with size 32 to match size of target (1) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 108
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(130): truncated value with size 32 to match size of target (1) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 130
+Warning (10958): SystemVerilog warning at AHB_arbiter_slave_7.sv(224): unique or priority keyword makes case statement complete File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 224
+Warning (10230): Verilog HDL assignment warning at AHB_arbiter_slave_7.sv(244): truncated value with size 32 to match size of target (4) File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 244
+Info (12128): Elaborating entity "BR_Req_Detect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|BR_Req_Detect:BRRD" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 146
+Info (12128): Elaborating entity "Prior_Gen" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Prior_Gen:PG_gen[0].PG" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 167
+Info (12128): Elaborating entity "Dynamic_Prior_Mask" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Dynamic_Prior_Mask:DPM" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 180
+Info (12128): Elaborating entity "Req_Collect" for hierarchy "AHB_bus:DUT|AHB_arbiter_slave_7:ARB_slave_7|Req_Collect:RC" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv Line: 191
 Info (12128): Elaborating entity "AHB_mux_slave_7" for hierarchy "AHB_bus:DUT|AHB_mux_slave_7:MUX_slave_7" File: D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv Line: 322
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (144001): Generated suppressed messages file D:/Project/AMBA_BUS/AHB_GEN_201/output_files/TOP.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -1075,9 +1063,9 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 102 warnings
-    Info: Peak virtual memory: 4816 megabytes
-    Info: Processing ended: Sat Dec 12 18:04:43 2020
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 92 warnings
+    Info: Peak virtual memory: 4821 megabytes
+    Info: Processing ended: Sun Dec 13 13:53:07 2020
     Info: Elapsed time: 00:00:19
     Info: Total CPU time (on all processors): 00:00:41
 
