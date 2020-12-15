@@ -25,6 +25,8 @@ class Mas_driver_cbs;
 
 endclass: Mas_driver_cbs  
 
+//--------------------------------------------------------------------------------
+
 class Mas_driver;
   mailbox mas_gen2drv;
   event   mas_drv2gen;
@@ -43,6 +45,8 @@ class Mas_driver;
   extern task send(input Master m);
 
 endclass: Mas_driver
+
+//--------------------------------------------------------------------------------
 
 function Mas_driver::new(
     input mailbox mas_gen2drv,
