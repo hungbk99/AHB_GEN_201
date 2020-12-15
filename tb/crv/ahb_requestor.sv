@@ -8,26 +8,30 @@
 
 
 //--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
+import ahb_package::*;
+virtual class Basereq;
+  static int count;
+  int id;
 
-class Master;
+  function new();
+    id = count++;
+  endfunction
+
+endclass: basereq
+
+class Master extends Basereq;
 
   bit [31:0] start_addr;
   bit [31:0] stop_addr;
-  bit [31:0] haddr;
 
-  rand bit [31:0] initial_haddr; 
-  rand bit        hwrite;
-  rand bit [2:0]  hsize;
-  rand bit [2:0]  hburst;
-  rand bit [3:0]  hprot;
-  bit [1:0]  htrans;
-  rand bit        hmastlock;
-  rand bit [31:0] hwdata;
-
-  //bit        hready;
-  //bit        hresp;
-  //bit [31:0] hrdata;
+  rand bit [31:0]   initial_haddr; 
+  rand bit          hwrite;
+  rand hsize_rtype  hsize;
+  rand hburst_rtype hburst;
+  rand bit [3:0]    hprot;
+  bit htrans_rtype  htrans;
+  rand bit          hmastlock;
+  rand bit [31:0]   hwdata;
   
   constraint c_hmastlock;
   {
@@ -40,8 +44,8 @@ class Master;
   
   constraint c_haddr
   {
-    haddr[1:0] == 2'b0;
-    haddr inside {[start_addr:stop_addr]};
+    initial_haddr[1:0] == 2'b0;
+    initial_haddr inside {[start_addr:stop_addr]};
   }
 
   constraint c_hsize
@@ -54,35 +58,48 @@ class Master;
     this.stop_addr = stop_addr;
   endfunction: new
 
-  function display(input string id);
+  function display();
     $write ("Config: start_addr = %0h, stop_addr = %0h", start_addr, stop_addr);
     $display();
-    $write("MAS_ID: %s", id);
+    $write("MAS_ID: %d", id);
     $display();
     $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, " \
           "htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,  \
             hprot, htrans, hmastlock, hwdata);
     $display();
-  endfunction: display
+  endfunction: display 
 
+  extern virtual function void Master copy_data(input Master copy);
+  extern virtual function Master copy (input Master to);   
 
-  extern virtual function 
 endclass: Master
 
 //--------------------------------------------------------------------------------
+
+function void Master Master::copy_data(input Master copy);
+  copy.start_addr =  this.start_addr;
+  copy.stop_addr = this.stop_addr;
+  copy.initial_haddr = this.initial_haddr; 
+  copy.hwrite = this.hwrite;
+  copy.hsize = this.hsize;
+  copy.hburst = this.hburst;
+  copy.hprot = this.prot;
+  copy.htrans = this.htrans;
+  copy.hmastlock = this.hmastlock;
+  copy.hwdata = this.hwdata;
+endfunction: copy
+
+function Master::copy(input Master to);
+  Master dst;
+  if(to == null) dst = new();
+  else           $cast(dst, to);
+  copy_data(dst);
+  return dst;
+endfunction
+
 //--------------------------------------------------------------------------------
 
 class Slave;
-  
-  //bit [31:0] haddr;
-
-  //bit        hwrite;
-  //bit [2:0]  hsize;
-  //bit [2:0]  hburst;
-  //bit [3:0]  hprot;
-  //bit [1:0]  htrans;
-  //bit        hmastlock;
-  //bit [31:0] hwdata;
 
   rand bit        hreadyout;
   rand bit        hresp;
@@ -106,4 +123,51 @@ class Slave;
     }
   }
 
+  function display(input int id);
+    $write("Config: hreadyout = %b, hresp = %b, hrdata = %h", hreadyout, hresp, hrdata);  
+    $write("SLV_ID: %d", id);
+    $display;
+  endfunction: display
+
+  extern function void Slave copy_data(input Slave copy);  
+  extern function Slave copy(input Slave to);
+
 endclass: Slave
+
+//--------------------------------------------------------------------------------
+
+function void Slave::copy_data(input Slave copy)
+  copy.hreadyout = this.hreadyout;
+  copy.hresp = this.hresp;
+  copy.hrdata = this.hrdata;
+endfunction: copy_data
+
+//--------------------------------------------------------------------------------
+
+function Slave::copy(input Slave to)
+  Slave dst;
+  if(to == null) dst = new();
+  else           $cast(dst, to);
+  copy_data(dst);
+  return(dst);
+endfunction: copy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
