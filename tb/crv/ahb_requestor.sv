@@ -58,9 +58,9 @@ class Master extends Basereq;
     this.stop_addr = stop_addr;
   endfunction: new
 
-  function display();
+  function display(input string data);
     $write ("Config: start_addr = %0h, stop_addr = %0h", start_addr, stop_addr);
-    $display();
+    $display("INFO: %s", data);
     $write("MAS_ID: %d", id);
     $display();
     $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, " \
@@ -101,32 +101,35 @@ endfunction
 
 class Slave;
 
-  rand bit        hreadyout;
-  rand bit        hresp;
+  //rand bit        hreadyout;
+  //rand bit        hresp;
   rand bit [31:0] hrdata;
 
-  constraint c_hreadyout;
-  {
-    hreadyout dist 
-    {
-      0 := 1,
-      1 := 9
-    };
-  }
+  //constraint c_hreadyout;
+  //{
+  //  hreadyout dist 
+  //  {
+  //    0 := 1,
+  //    1 := 9
+  //  };
+  //}
 
-  constraint c_hresp;
-  {
-    hresp dist
-    {
-      0 := 9,
-      1 := 1
-    }
-  }
+  //constraint c_hresp;
+  //{
+  //  hresp dist
+  //  {
+  //    0 := 9,
+  //    1 := 1
+  //  }
+  //}
 
-  function display(input int id);
-    $write("Config: hreadyout = %b, hresp = %b, hrdata = %h", hreadyout, hresp, hrdata);  
-    $write("SLV_ID: %d", id);
-    $display;
+  function display(
+                //input int id, 
+                input string data);
+    //$write("Config: hreadyout = %b, hresp = %b, hrdata = %h", hreadyout, hresp, hrdata);  
+    $write("Config: hrdata = %h", hrdata);  
+    //$write("SLV_ID: %d", id);
+    $display("INFO: %s", data);
   endfunction: display
 
   extern function void Slave copy_data(input Slave copy);  
@@ -137,8 +140,8 @@ endclass: Slave
 //--------------------------------------------------------------------------------
 
 function void Slave::copy_data(input Slave copy)
-  copy.hreadyout = this.hreadyout;
-  copy.hresp = this.hresp;
+  //copy.hreadyout = this.hreadyout;
+  //copy.hresp = this.hresp;
   copy.hrdata = this.hrdata;
 endfunction: copy_data
 
