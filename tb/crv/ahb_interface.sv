@@ -11,17 +11,18 @@ interface ahb_itf;
     
   mas_send_type    mas_out, slv_in;
   slv_send_type    mas_in, slv_out;  
-
+  logic            hsel;
 
   clocking master_cb @(posedge hclk);
     output mas_out;  
     input  mas_in; 
-  endclocking: master
+  endclocking: master_cb
 
   clocking slave_cb @(posedge hclk);
-    input  slv_in;   
+    input  slv_in;  
+    input  hsel; 
     output slv_out;  
-  endclocking: master
+  endclocking: slave_cb
   
   modport mas_itf(clocking master_cb);
   modport slv_itf(clocking slave_cb);
