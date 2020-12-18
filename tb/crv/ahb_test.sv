@@ -14,11 +14,10 @@ program automatic ahb_test
   parameter SLVNUM = 8
 )
 (
-  master_cb.mas_itf     mas[0:MasNum-1],
-  prior_itf             prio[0:MasNum-1]  
-  slave_cb.slv_itf      slv[0:SlvNum-1],
-  input                 hreset_n,
-                        hclk
+  vmas_itf    mas[0:MasNum-1],
+  vslv_itf    slv[0:SlvNum-1],
+  input       hreset_n,
+              hclk
 );
 
   initial begin
@@ -29,10 +28,10 @@ program automatic ahb_test
     $display("********************************************************************");
   end
   
-  Ahb_environment env;
+  Environment env;
 
   initial begin
-    env (mas, prio, slv, MASNUM, SLVNUM);
+    env = new(mas, slv, MASNUM, SLVNUM);
     env.gen_cfg();
     env.build();
     env.run();
