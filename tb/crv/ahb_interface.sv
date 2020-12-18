@@ -6,16 +6,18 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
+`define PRIORBIT 3
 import AHB_package::*;
-interface ahb_itf;
+interface ahb_itf(input hclk);
     
-  mas_send_type    mas_out, slv_in;
-  slv_send_type    mas_in, slv_out;  
-  logic            hsel;
+  mas_send_type            mas_out, slv_in;
+  slv_send_type            mas_in, slv_out;  
+  logic                    hsel;
+  logic [`PRIORBIT-1:0]    prio;
 
   clocking master_cb @(posedge hclk);
     output mas_out;  
-    input  mas_in; 
+    input  mas_in, prio; 
   endclocking: master_cb
 
   clocking slave_cb @(posedge hclk);
@@ -30,5 +32,5 @@ interface ahb_itf;
 endinterface: ahb_itf
 
 typedef virtual ahb_itf vahb_itf;
-typedef virtual ahb_itf.mas_itf vmas_itf;
-typedef virtual ahb_itf.slv_itf vslv_itf;
+typedef virtual ahb_itf.mas_itf.master_cb vmas_itf;
+typedef virtual ahb_itf.slv_itf.slave_cb  vslv_itf;
