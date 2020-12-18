@@ -29,39 +29,38 @@ module top;
       #`HCYCLE hclk = ~hclk; 
   end 
 
-  master_cb.mas_itf     mas[0:MasNum-1];
-  prior_itf   prio[0:MasNum-1];  
-  slave_cb.slv_itf     slv[0:SlvNum-1];
+  vmas_itf     mas(hclk)[0:MasNum-1];
+  vslv_itf      slv(hclk)[0:SlvNum-1];
 
   AHB_bus bus
   (
-    .master_1_in(mas[0].master_cb.mas_in),
-    .hprior_master_1(prio[0]),
-    .master_1_out(mas[0].master_cb.mas_out),
-    .master_2_in(mas[1].master_cb.mas_in),
-    .hprior_master_2(prio[1]),
-    .master_2_out(mas[1].master_cb.mas_out),
-    .master_3_in(mas[2].master_cb.mas_in),
-    .hprior_master_3(prio[2]),
-    .master_3_out(mas[2].master_cb.mas_out),
-    .kemee_in(mas[3].master_cb.mas_in),
-    .hprior_kemee(prio[3]),
-    .kemee_out(mas[3].master_cb.mas_out),
+    .master_1_in(mas[0].mas_in),
+    .hprior_master_1(mas[0].prio),
+    .master_1_out(mas[0].mas_out),
+    .master_2_in(mas[1].mas_in),
+    .hprior_master_2(mas[1].prio),
+    .master_2_out(mas[1].mas_out),
+    .master_3_in(mas[2].mas_in),
+    .hprior_master_3(mas[2].prio),
+    .master_3_out(mas[2].mas_out),
+    .kemee_in(mas[3].mas_in),
+    .hprior_kemee(mas[3].prio),
+    .kemee_out(mas[3].mas_out),
 //#MI
-    .slave_1_in(slv[0].slave_cb.slv_in),
-    .slave_1_out(slv[0].slave_cb.slv_out),
-    .slave_2_in(slv[1].slave_cb.slv_in),
-    .slave_2_out(slv[1].slave_cb.slv_out),
-    .slave_3_in(slv[2].slave_cb.slv_in),
-    .slave_3_out(slv[2].slave_cb.slv_out),
-    .slave_4_in(slv[3].slave_cb.slv_in),
-    .slave_4_out(slv[3].slave_cb.slv_out),
-    .slave_5_in(slv[4].slave_cb.slv_in),
-    .slave_5_out(slv[4].slave_cb.slv_out),
-    .slave_6_in(slv[5].slave_cb.slv_in),
-    .slave_6_out(slv[5].slave_cb.slv_out),
-    .slave_7_in(slv[6].slave_cb.slv_in),
-    .slave_7_out(slv[6].slave_cb.slv_out),
+    .slave_1_in(slv[0].slv_in),
+    .slave_1_out(slv[0].slv_out),
+    .slave_2_in(slv[1].slv_in),
+    .slave_2_out(slv[1].slv_out),
+    .slave_3_in(slv[2].slv_in),
+    .slave_3_out(slv[2].slv_out),
+    .slave_4_in(slv[3].slv_in),
+    .slave_4_out(slv[3].slv_out),
+    .slave_5_in(slv[4].slv_in),
+    .slave_5_out(slv[4].slv_out),
+    .slave_6_in(slv[5].slv_in),
+    .slave_6_out(slv[5].slv_out),
+    .slave_7_in(slv[6].slv_in),
+    .slave_7_out(slv[6].slv_out),
     .*
   );
 
@@ -72,7 +71,7 @@ module top;
   )
   test
   (
-    mas, prio, slv, hreset_n, hclk
+    mas, slv, hreset_n, hclk
   );
  
 
