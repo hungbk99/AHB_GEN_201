@@ -124,6 +124,8 @@ endclass: Sscb_monitor_cbs
 //================================================================================
 
 class Environment;
+//Dynamic pointer array to manage master channels
+  assert(cfg.randomize());
   Mas_generator  mgen[];
   mailbox        mgen2drv[];   
   event          mdrv2gen[];
@@ -131,6 +133,7 @@ class Environment;
   Mas_monitor    mmon[];
   Mas_scoreboard mscb[];
 
+//Dynamic pointer array to manage slave channels
   Slv_genertor   sgen[];
   mailbox        sgen2drv[];
   event          sdrv2gen[];
@@ -151,6 +154,7 @@ class Environment;
                 input vslv_itf slv[],
                 input int masnum, slvnum
                 );
+
   extern virtual function void gen_cfg();
   extern virtual function void build();
   extern virtual function void wrap_up();
@@ -159,7 +163,7 @@ class Environment;
 endclass: Ahb_env
 
 //================================================================================
-// Construct the environment instance
+e/ Construct the environment instance
 //================================================================================
 
 function Environment::new(
