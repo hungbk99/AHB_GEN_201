@@ -56,4 +56,4 @@ package ahb_package;
   //  bit          hresp;    
   //} slv_send_rtype;
 
-endpackage: AHB_package
+endpackage: ahb_package
