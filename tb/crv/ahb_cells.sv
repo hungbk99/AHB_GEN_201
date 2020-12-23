@@ -34,11 +34,11 @@ class Master extends Basetrans;
   rand hsize_rtype  hsize;
   rand hburst_rtype hburst;
   rand bit [3:0]    hprot;
-  bit htrans_rtype  htrans;
+  htrans_rtype  htrans;
   rand bit          hmastlock;
   rand bit [31:0]   hwdata;
   
-  constraint c_hmastlock;
+  constraint c_hmastlock
   {
     hmastlock dist
     {
