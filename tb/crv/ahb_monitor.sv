@@ -6,24 +6,24 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-typedef class Ahb_mmonitor;
+typedef class Mas_monitor;
 //--------------------------------------------------------------------------------
  
-class Ahb_mmonitor_cbs;
-  virtual task pre_tx( input Ahb_monitor mmon,
+class Mas_monitor_cbs;
+  virtual task pre_tx( input Mas_monitor mmon,
                        input Slave       s);
   endtask: pre_tx
 
-  virtual task post_tx( input Ahb_monitor mmon,
+  virtual task post_tx( input Mas_monitor mmon,
                         input Slave      s);
   endtask: post_tx
-endclass: Ahb_mmonitor_cbs
+endclass: Mas_monitor_cbs
 
 //--------------------------------------------------------------------------------
  
-class Ahb_mmonitor;
+class Mas_monitor;
   vmas_itf         mas;
-  Ahb_mmonitor_cbs cbsq[$];
+  Mas_monitor_cbs cbsq[$];
   int              portID;
 
   extern function new( input vmas_itf mas,
@@ -32,11 +32,11 @@ class Ahb_mmonitor;
   extern task run();
   extern task receive(output Slave s);
 
-endclass: Ahb_mmonitor
+endclass: Mas_monitor
 
 //--------------------------------------------------------------------------------
 
-function Ahb_mmonitor::new(
+function Mas_monitor::new(
                        input vmas_itf mas, 
                        input int      portID); 
   this.mas = mas;
@@ -45,7 +45,7 @@ endfunction
 
 //--------------------------------------------------------------------------------
 
-task Ahb_mmonitor::run();
+task Mas_monitor::run();
   Slave s;
 
   forever begin
@@ -58,7 +58,7 @@ endtask: run
 
 //--------------------------------------------------------------------------------
 
-task  Ahb_mmonitor::receive(output Slave s)
+task  Mas_monitor::receive(output Slave s)
    s = new();
 
    @(mas.master_cb.mas_in.hreadyout); 
@@ -71,24 +71,24 @@ endtask: receive
 
 //--------------------------------------------------------------------------------
 
-typedef class Ahb_smonitor;
+typedef class Slv_monitor;
 
-class Ahb_smonitor_cbs;
-  virtual task pre_rx( input Ahb_smonitor smon,
+class Slv_monitor_cbs;
+  virtual task pre_rx( input Slv_monitor smon,
                        input Master       m);
   endtask: pre_rx
 
-  virtual task post_rx( input Ahb_smonitor smon,
+  virtual task post_rx( input Slv_monitor smon,
                         input Master       m);  
   endtask: post_rx
 
-endclass: Ahb_smonitor_cbs
+endclass: Slv_monitor_cbs
 
 //--------------------------------------------------------------------------------
 
-class Ahb_smonitor;
+class Slv_monitor;
   vslv_itf         slv;
-  Ahb_smonitor_cbs cbsq[$];
+  Slv_monitor_cbs cbsq[$];
   int              portID;
 
   extern function new( input vslv_itf slv,
@@ -97,11 +97,11 @@ class Ahb_smonitor;
   extern task run();
   exterm task receive(Master m);
 
-endclass: Ahb_smonitor
+endclass: Slv_monitor
 
 //--------------------------------------------------------------------------------
 
-function Ahb_smonitor::new(
+function Slv_monitor::new(
                     input vslv_itf slv,
                     input int      portID);
   this.slv = slv; 
@@ -110,10 +110,11 @@ endfunction: new
 
 //--------------------------------------------------------------------------------
 
-task Ahb_smonitor::run();
+task Slv_monitor::run();
   Master m;
 
   forever begin
+    receive(m);
     foreach(cbsq[i])
       cbsq[i].post_rx(this, m);
   end
@@ -121,7 +122,7 @@ endtask: run
 
 //--------------------------------------------------------------------------------
 
-task Ahb_smonitor::receive(Master m);
+task Slv_monitor::receive(Master m);
   m = new();
   
   @(slv.slave_cb.slv_in.hsel); 
