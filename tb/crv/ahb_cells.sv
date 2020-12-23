@@ -68,7 +68,7 @@ endclass: Master
 
 //--------------------------------------------------------------------------------
 
-function Master::new (input bit [31:0] start_addr, stop_addr; );
+function Master::new (input bit [31:0] start_addr, stop_addr);
   this.start_addr = start_addr;
   this.stop_addr = stop_addr;
 endfunction: new
@@ -80,9 +80,7 @@ function Master::display(input string data="");
   $display("INFO: %s", data);
   $write("CELL_ID: %d", id);
   $display();
-  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, " \
-        "htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,  \
-          hprot, htrans, hmastlock, hwdata);
+  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst, hprot, htrans, hmastlock, hwdata);
   $display();
 endfunction: display 
 
@@ -141,13 +139,13 @@ class Slave;
   //  };
   //}
 
-  constraint c_hresp;
+  constraint c_hresp
   {
     hresp dist
     {
       0 := 9,
       1 := 1
-    }
+    };
   }
 
   extern function compare(input Slave to);
@@ -168,7 +166,7 @@ endfunction: compare
 
 //--------------------------------------------------------------------------------
 
-function void Slave::copy_data(input Slave copy)
+function void Slave::copy_data(input Slave copy);
   //copy.hreadyout = this.hreadyout;
   copy.hresp = this.hresp;
   copy.hrdata = this.hrdata;
@@ -176,7 +174,7 @@ endfunction: copy_data
 
 //--------------------------------------------------------------------------------
 
-function Slave::copy(input Slave to)
+function Slave::copy(input Slave to);
   Slave dst;
   if(to == null) dst = new();
   else           $cast(dst, to);
