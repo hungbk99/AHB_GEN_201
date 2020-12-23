@@ -94,7 +94,7 @@ function void Ahb_config::display(input string prefix="");
   foreach (mas_in_use[i])
   begin
     if(mas_in_use[i])
-      $write("mas_in_use = %0d, cells = %0d", mas_in_use[i], n_cells_mas[i] || );
+      $write("mas_in_use = %0d, cells = %0d", mas_in_use[i], n_cells_mas[i]);
   end  
   $display(); 
 endfunction: display
