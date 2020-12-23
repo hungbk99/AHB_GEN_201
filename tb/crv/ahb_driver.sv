@@ -63,6 +63,7 @@ endfunction: new
 //--------------------------------------------------------------------------------
 
 task Mas_driver::run();
+  import ahb_package::*;
   Master m;
 
   //Initial 
@@ -102,6 +103,7 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task Mas_driver::send(input Master m);
+  import ahb_package::*;
   //Master package;
   Master fix;
   int num;
