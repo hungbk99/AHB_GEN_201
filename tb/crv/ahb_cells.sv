@@ -44,7 +44,7 @@ class Master extends Basetrans;
     {
       0 := 9,
       1 := 1
-    }
+    };
   }
   
   constraint c_haddr
@@ -61,7 +61,7 @@ class Master extends Basetrans;
   extern function new(input bit [31:0] start_addr, stop_addr); 
   extern function void display(input string data=""); 
   extern function compare(input Master to);
-  extern virtual function void Master copy_data(input Master copy);
+  extern virtual function void copy_data(input Master copy);
   extern virtual function Master copy (input Master to);   
 
 endclass: Master
@@ -101,7 +101,7 @@ endfunction: compare
 
 //--------------------------------------------------------------------------------
 
-function void Master Master::copy_data(input Master copy);
+function void Master::copy_data(input Master copy);
   copy.start_addr =  this.start_addr;
   copy.stop_addr = this.stop_addr;
   copy.initial_haddr = this.initial_haddr; 
@@ -152,7 +152,7 @@ class Slave;
 
   extern function compare(input Slave to);
   extern function void display(input string data="");
-  extern function void Slave copy_data(input Slave copy);  
+  extern function void copy_data(input Slave copy);  
   extern function Slave copy(input Slave to);
 
 endclass: Slave
