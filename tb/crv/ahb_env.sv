@@ -18,9 +18,9 @@ class Mscb_driver_cbs extends Mas_driver_cbs;
 
   virtual task post_tx(
                 input Mas_driver drv,
-                input Slave      s
+                input Master     m
                 );
-    scb.save_expected(s);
+    scb.save_expected(m);
   endtask: post_tx
 
 endclass: Mscb_driver_cbs
@@ -37,9 +37,9 @@ class Sscb_driver_cbs extends Slv_driver_cbs;
 
   virtual task post_tx(
                 input Slv_driver drv,
-                input Master     m
+                input Slave      s
                 );
-    scb.save_expected(m);
+    scb.save_expected(s);
   endtask: post_tx
 
 endclass: Sscb_driver_cbs
@@ -55,11 +55,11 @@ class Mscb_monitor_cbs extends Mas_monitor_cbs;
   endfunction
 
   virtual task post_rx(
-                input Mas_monitor mon,
-                input Slave       s
+                input Slv_monitor smon,
+                input Master      m
                 );
   // Check the reponse data and the Channel ID to ensure the correctness of transactions
-    scb.check_actual(s, mon.portID); 
+    scb.check_actual(m, smon.portID); 
   endtask: post_rx
 
 endclass: Mscb_monitor_cbs
@@ -68,17 +68,17 @@ endclass: Mscb_monitor_cbs
 // Call Scoreboard from Slave Monitor
 //================================================================================
 class Sscb_monitor_cbs extends Slv_monitor_cbs;
-  Slv_scoreboard scb;
+  Mas_scoreboard scb;
 
-  function new(Ahb_mscoreboard scb);
+  function new(Mas_scoreboard scb);
     this.scb = scb;
   endfunction
 
   virtual task post_rx(
-                input Ahb_mmonitor mon,
+                input Ahb_mmonitor mmon,
                 input Mas_cell     m
                 );
-    scb.check_actual(m, mon.portID);
+    scb.check_actual(m, mmon.portID);
   endtask: post_rx
 
 endclass: Sscb_monitor_cbs
@@ -131,7 +131,7 @@ class Environment;
   event          mdrv2gen[];
   Mas_driver     mdrv[];
   Mas_monitor    mmon[];
-  Mas_scoreboard mscb[];
+  Mas_scoreboard mscb;
 
 //Dynamic pointer array to manage slave channels
   Slv_genertor   sgen[];
@@ -139,7 +139,7 @@ class Environment;
   event          sdrv2gen[];
   Slv_driver     sdrv[];
   Slv_monitor    smon[];
-  Slv_scoreboard sscb[];
+  Slv_scoreboard sscb;
   
   Config         cfg[];
 //cvr  Coverage   cov[];
