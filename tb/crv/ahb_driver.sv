@@ -60,6 +60,8 @@ function Mas_driver::new(
     this.portID = portID;
 endfunction: new
 
+//--------------------------------------------------------------------------------
+
 task Mas_driver::run();
   Master m;
 
@@ -85,8 +87,8 @@ task Mas_driver::run();
       m.display($sformatf("%t: %0d"), $time, portID);
       send(m);
   
-      foreach (cbsq[i]) begin
-        cbsq[i].post_tx(this, m);
+      //foreach (cbsq[i]) 
+      //  cbsq[i].post_tx(this, m);
     end
 
     mas_gen2drv.get(m);
@@ -95,13 +97,19 @@ task Mas_driver::run();
 
 endtask: run
 
+//--------------------------------------------------------------------------------
+// hwdata is portID: this help to do the check_actual in monitor
+//--------------------------------------------------------------------------------
+
 task Mas_driver::send(input Master m);
   //Master package;
+  Master fix;
   int num;
   bit [31:0] wrap_addr, limit_addr;
   $display("Master sendinggg.....");
   mas.master_cb.mas_out.haddr <= m.initial_haddr;
-  mas.master_cb.mas_out.hwdata <= m.hwdata;
+  //mas.master_cb.mas_out.hwdata <= m.hwdata;
+  mas.master_cb.mas_out.hwdata <= portID;
   case(m.hburst)
     SINGLE, INCR: num = 1;
     WRAP4, INCR4:
@@ -124,6 +132,9 @@ task Mas_driver::send(input Master m);
     end
   endcase
 
+  fix = new();
+  fix = m;
+  fix.hwdata = portID;
   for(int i = 0, i < num, i++)  i
   begin
     if(i == 0) begin
@@ -139,7 +150,12 @@ task Mas_driver::send(input Master m);
     else
         mas.master_cb.mas_out.haddr <= mas.master_cb.mas_out.haddr + 2**(m.hsize);
     
-    mas.master_cb.mas_out.hwdata <= mas.master_cb.mas_out.hwdata + 1;
+    //mas.master_cb.mas_out.hwdata <= mas.master_cb.mas_out.hwdata + 1;
+    
+    //put data in Mas_scoreboard
+    foreach (cbsq[i]) begin
+      cbsq[i].post_tx(this, fix);
+    end
   end
  
 endtask: send
@@ -197,6 +213,7 @@ function Slv_driver::new(
   this.portID      = portID;
 endfunction: new
 
+//--------------------------------------------------------------------------------
 task Slv_driver::run();
   Slave s;
 
@@ -226,9 +243,15 @@ task Slv_driver::run();
 
 endtask: run
 
+//--------------------------------------------------------------------------------
+// hrdata is portID: this help to do the check_actual in monitor
+//--------------------------------------------------------------------------------
+
 task Slv_driver::send(input Slave s);
   //Slave package;
   int num;
+  Slave fix;
+  fix = new();
 
   case(m.hburst)
     SINGLE, INCR: num = 1;
@@ -236,14 +259,21 @@ task Slv_driver::send(input Slave s);
     WRAP8, INCR8: num = 8;
     WRAP16, INCR16: num = 16;
   endcase
-  slv.slave_cb.slv_out.hrdata = s.hrdata;
-    
+  slv.slave_cb.slv_out.hrdata = portID;
+  fix.hrdata = portID;
+  
   for(int i = 0; i < num, i++)
   begin
     @(slv.slave_cb.hsel)
     slv.slave_cb.slv_out.hreadyout <= 1;
     slv.slave_cb.slv_out.hresp <= 0;
-    slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
+    //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
+    //Put data in Slv_scoreboard 
+    fix.hreadyout <= 1;
+    fix.hresp <= 1;
+    foreach(cbsq[i]) begin
+      cbsq[i].post_rx(this, fix);
+    end
   end  
 
 endtask: send 
