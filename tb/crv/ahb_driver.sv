@@ -6,7 +6,7 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-
+import ahb_package::*;
 //--------------------------------------------------------------------------------
 typedef class Mas_driver;
 
@@ -135,7 +135,7 @@ task Mas_driver::send(input Master m);
   fix = new();
   fix = m;
   fix.hwdata = portID;
-  for(int i = 0, i < num, i++)  i
+  for(int i = 0; i < num; i++)  
   begin
     if(i == 0) begin
       mas.master_cb.mas_out.htrans <= NONSEQ; 
