@@ -60,7 +60,7 @@ class Master extends Basetrans;
 
   extern function new(input bit [31:0] start_addr, stop_addr); 
   extern function void display(input string data=""); 
-//compare  extern function compare(input Basetrans to);
+  extern function compare(input Master to);
   extern virtual function void Master copy_data(input Master copy);
   extern virtual function Master copy (input Master to);   
 
@@ -88,9 +88,16 @@ endfunction: display
 
 //--------------------------------------------------------------------------------
 
-//compare function Master::compare(input Basetrans to);
-//compare 
-//compare endfunction: compare
+function Master::compare(input Master to);
+  if(this.hwrite    != to.hwrite)    return 0;
+  if(this.hsize     != to.hsize)     return 0;
+  if(this.hburst    != to.hburst)    return 0;
+  if(this.hprot     != to.hprot)     return 0;
+  if(this.htrans    != to.htrans)    return 0;
+  if(this.hmastlock != to.hmastlock) return 0;
+  if(this.hwdata    != to.hwdata)    return 0;
+  return 1;
+endfunction: compare
 
 //--------------------------------------------------------------------------------
 
@@ -143,11 +150,21 @@ class Slave;
     }
   }
 
+  extern function compare(input Slave to);
   extern function void display(input string data="");
   extern function void Slave copy_data(input Slave copy);  
   extern function Slave copy(input Slave to);
 
 endclass: Slave
+
+//--------------------------------------------------------------------------------
+
+function Slave::compare(input Slave to);
+  if(this.hresp  != to.hresp) return 0;
+  if(this.hrdata != to.hrdata) return 0; 
+  return 1;
+endfunction: compare
+
 
 //--------------------------------------------------------------------------------
 
