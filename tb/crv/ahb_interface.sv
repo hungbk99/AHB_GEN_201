@@ -32,5 +32,5 @@ interface ahb_itf(input hclk);
 endinterface: ahb_itf
 
 typedef virtual ahb_itf vahb_itf;
-typedef virtual ahb_itf.mas_itf.master_cb vmas_itf;
-typedef virtual ahb_itf.slv_itf.slave_cb  vslv_itf;
+typedef virtual ahb_itf.mas_itf vmas_itf;
+typedef virtual ahb_itf.slv_itf vslv_itf;
