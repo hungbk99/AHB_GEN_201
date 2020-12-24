@@ -10,13 +10,13 @@ typedef class Mas_monitor;
 //--------------------------------------------------------------------------------
  
 class Mas_monitor_cbs;
-  virtual task pre_tx( input Mas_monitor mmon,
+  virtual task pre_rx( input Mas_monitor mmon,
                        input Slave       s);
-  endtask: pre_tx
+  endtask: pre_rx
 
-  virtual task post_tx( input Mas_monitor mmon,
+  virtual task post_rx( input Mas_monitor mmon,
                         input Slave      s);
-  endtask: post_tx
+  endtask: post_rx
 endclass: Mas_monitor_cbs
 
 //--------------------------------------------------------------------------------
@@ -51,14 +51,14 @@ task Mas_monitor::run();
   forever begin
     receive(s);
     foreach(cbsq[i])
-      cbsq[i].post_tx(this, s)
+      cbsq[i].post_rx(this, s);
   end   
   
 endtask: run
 
 //--------------------------------------------------------------------------------
 
-task  Mas_monitor::receive(output Slave s)
+task  Mas_monitor::receive(output Slave s);
    s = new();
 
    @(mas.master_cb.mas_in.hreadyout); 
@@ -88,14 +88,14 @@ endclass: Slv_monitor_cbs
 
 class Slv_monitor;
   vslv_itf         slv;
-  Slv_monitor_cbs cbsq[$];
+  Slv_monitor_cbs  cbsq[$];
   int              portID;
 
   extern function new( input vslv_itf slv,
                        input int      portID);
  
   extern task run();
-  exterm task receive(Master m);
+  extern task receive(output Master m);
 
 endclass: Slv_monitor
 
@@ -122,7 +122,7 @@ endtask: run
 
 //--------------------------------------------------------------------------------
 
-task Slv_monitor::receive(Master m);
+task Slv_monitor::receive(output Master m);
   m = new();
   
   @(slv.slave_cb.slv_in.hsel); 
