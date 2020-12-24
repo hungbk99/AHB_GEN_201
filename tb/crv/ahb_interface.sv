@@ -7,8 +7,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 `define PRIORBIT 3
-import AHB_package::*;
 interface ahb_itf(input hclk);
+  import AHB_package::*;
     
   mas_send_type            mas_out, slv_in;
   slv_send_type            mas_in, slv_out;  
