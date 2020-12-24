@@ -6,9 +6,8 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-import ahb_package::*;
 //--------------------------------------------------------------------------------
-typedef class Mas_driver;
+typedef class  Mas_driver;
 
 class Mas_driver_cbs;
   virtual task pre_tx(
@@ -49,8 +48,8 @@ endclass: Mas_driver
 //--------------------------------------------------------------------------------
 
 function Mas_driver::new(
-    input mailbox mas_gen2drv,
-    input event   mas_drv2gen,
+    input mailbox  mas_gen2drv,
+    input event    mas_drv2gen,
     input vmas_itf mas,
     input int portID
   );
@@ -164,36 +163,36 @@ endtask: send
 
 
 //--------------------------------------------------------------------------------
-//typedef class Slv_driver;
-//
-//class Slv_driver_cbs;
-//  virtual task pre_rx(
-//    input Slv_driver drv,
-//    input Slave      s 
-//  );
-//  endtask
-//
-//  virtual task post_rx(
-//    input Slv_driver drv,
-//    input Slave      s
-//  );
-//  endtask
-//
-//endclass: Slv_driver_cbs
+typedef class Slv_driver;
+
+class Slv_driver_cbs;
+  virtual task pre_rx(
+    input Slv_driver drv,
+    input Slave      s 
+  );
+  endtask
+
+  virtual task post_rx(
+    input Slv_driver drv,
+    input Slave      s
+  );
+  endtask
+
+endclass: Slv_driver_cbs
 
 //--------------------------------------------------------------------------------
 
 class Slv_driver;
   mailbox         slv_gen2drv;
   event           slv_drv2gen;  
-  slave_itf       slv;
-  //Slv_driver_cbs  cbsq[$];
+  vslv_itf         slv;
+  Slv_driver_cbs  cbsq[$];
   int             portID;
 
   extern function new (
     input mailbox   slv_gen2drv,
     input event     slv_drv2gen,
-    input slave_itf slv,
+    input vslv_itf  slv,
     input int       portID
   );
 
@@ -206,7 +205,7 @@ endclass: Slv_driver
 function Slv_driver::new(
                 input mailbox    slv_gen2drv,
                 input event      slv_drv2gen,
-                input slv_itf    slv,
+                input vslv_itf   slv,
                 input int        portID
                 );
   this.slv_gen2drv = slv_gen2drv;
@@ -250,6 +249,7 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task Slv_driver::send(input Slave s);
+  import ahb_package::*;
   //Slave package;
   int num;
   Slave fix;
@@ -264,7 +264,7 @@ task Slv_driver::send(input Slave s);
   slv.slave_cb.slv_out.hrdata = portID;
   fix.hrdata = portID;
   
-  for(int i = 0; i < num, i++)
+  for(int i = 0; i < num; i++)
   begin
     @(slv.slave_cb.hsel)
     slv.slave_cb.slv_out.hreadyout <= 1;
