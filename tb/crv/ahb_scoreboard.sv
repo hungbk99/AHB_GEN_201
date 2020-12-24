@@ -51,7 +51,7 @@ function void Mas_scoreboard::save_expected(Master m);
   expect_cells[m.hwdata].mq.push_back(m);
   expect_cells[m.hwdata].iexpect++;
   iexpect++;
-  m.display($sformatf("%t: Mas scoreboard Saved:" $time); 
+  m.display($sformatf("%t: Mas scoreboard Saved:", $time)); 
 endfunction: save_expected
 
 //--------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ function void Slv_scoreboard::save_expected(Slave s);
   expect_cells[s.hrdata].sq.push_back(s);
   expect_cells[s.hrdata].iexpect++;
   iexpect++;
-  s.display($sformatf("%t: Slv scoreboard Saved:" $time); 
+  s.display($sformatf("%t: Slv scoreboard Saved:", $time)); 
 endfunction: save_expected
 
 //--------------------------------------------------------------------------------
