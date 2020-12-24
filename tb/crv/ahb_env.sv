@@ -1,5 +1,5 @@
 /*********************************************************************************
- * File Name: 		ahb_env.sv
+ * File Name: 		Environment.sv
  * Project Name:	AHB_Gen
  * Email:         quanghungbk1999@gmail.com
  * Version    Date      Author      Description
@@ -52,14 +52,14 @@ class Mscb_monitor_cbs extends Mas_monitor_cbs;
 
   function new(Slv_scoreboard scb);
     this.scb = scb;
-  endfunction
+  endfunction: new
 
   virtual task post_rx(
-                input Slv_monitor smon,
-                input Master      m
+                input Mas_monitor mmon,
+                input Slave       s
                 );
   // Check the reponse data and the Channel ID to ensure the correctness of transactions
-    scb.check_actual(m, smon.portID); 
+    scb.check_actual(s, mmon.portID); 
   endtask: post_rx
 
 endclass: Mscb_monitor_cbs
@@ -75,9 +75,8 @@ class Sscb_monitor_cbs extends Slv_monitor_cbs;
   endfunction
 
   virtual task post_rx(
-                input Ahb_mmonitor mmon,
-                input Mas_cell     m
-                );
+                input Slv_monitor smon,
+                input Master      m);
     scb.check_actual(m, mmon.portID);
   endtask: post_rx
 
@@ -125,7 +124,6 @@ endclass: Sscb_monitor_cbs
 
 class Environment;
 //Dynamic pointer array to manage master channels
-  assert(cfg.randomize());
   Mas_generator  mgen[];
   mailbox        mgen2drv[];   
   event          mdrv2gen[];
@@ -134,7 +132,7 @@ class Environment;
   Mas_scoreboard mscb;
 
 //Dynamic pointer array to manage slave channels
-  Slv_genertor   sgen[];
+  Slv_generator  sgen[];
   mailbox        sgen2drv[];
   event          sdrv2gen[];
   Slv_driver     sdrv[];
@@ -160,10 +158,10 @@ class Environment;
   extern virtual function void wrap_up();
   extern virtual task run();
 
-endclass: Ahb_env
+endclass: Environment
 
 //================================================================================
-e/ Construct the environment instance
+// Construct the environment instance
 //================================================================================
 
 function Environment::new(
@@ -182,9 +180,11 @@ function Environment::new(
   cfg = new(masnum, slvnum);
 
   if($test$plusargs("Random_seed"))
+  begin
     int seed;
     $value$plusargs("Random_seed=%0d", seed);
     $display("Simulation run with random seed = %d", seed);
+  end
   else
     $display("Simulation run with default random seed");
 
@@ -248,8 +248,8 @@ function void Environment::build();
     Mscb_driver_cbs  msdc = new(mscb); // Add Scoreboard to every Drivers
     foreach (mdrv[i]) 
       mdrv[i].cbsq.push_back(msdc);
-   
-    Mscb_monitor_cbs msmc = new(mscb); // Add Scoreboard to every Monitors
+
+    Mscb_monitor_cbs msmc = new(sscb); // Add Scoreboard to every Monitors
     foreach (mmon[i])
       mmon[i].cbsq.push_back(msmc);
   end
@@ -259,7 +259,7 @@ function void Environment::build();
     foreach (sdrv[i]) 
       sdrv[i].cbsq.push_back(ssdc);
     
-    Sscb_monitor_cbs ssmc = new(sscb);
+    Sscb_monitor_cbs ssmc = new(mscb);
     foreach (mmon[i])
       mmon[i].cbsq.push_back(ssmc);
   end
