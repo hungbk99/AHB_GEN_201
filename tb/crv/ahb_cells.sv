@@ -68,7 +68,7 @@ endclass: Master
 
 //--------------------------------------------------------------------------------
 
-function Master::new (input bit [31:0] start_addr, stop_addr);
+function Master::new (input bit [31:0] start_addr, stop_addr );
   this.start_addr = start_addr;
   this.stop_addr = stop_addr;
 endfunction: new
@@ -80,7 +80,7 @@ function Master::display(input string data="");
   $display("INFO: %s", data);
   $write("CELL_ID: %d", id);
   $display();
-  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst, hprot, htrans, hmastlock, hwdata);
+  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,hprot, htrans, hmastlock, hwdata);
   $display();
 endfunction: display 
 
@@ -106,11 +106,11 @@ function void Master::copy_data(input Master copy);
   copy.hwrite = this.hwrite;
   copy.hsize = this.hsize;
   copy.hburst = this.hburst;
-  copy.hprot = this.prot;
+  copy.hprot = this.hprot;
   copy.htrans = this.htrans;
   copy.hmastlock = this.hmastlock;
   copy.hwdata = this.hwdata;
-endfunction: copy
+endfunction: copy_data
 
 //--------------------------------------------------------------------------------
 
