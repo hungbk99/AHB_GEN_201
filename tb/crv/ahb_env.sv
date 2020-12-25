@@ -247,7 +247,9 @@ function void Environment::build();
   begin
     Mscb_driver_cbs  msdc = new(mscb); // Add Scoreboard to every Drivers
     foreach (mdrv[i]) mdrv[i].cbsq.push_back(msdc);
-
+  end
+  
+  begin
     Mscb_monitor_cbs msmc = new(sscb); // Add Scoreboard to every Monitors
     foreach (mmon[i]) mmon[i].cbsq.push_back(msmc);
   end
@@ -256,7 +258,9 @@ function void Environment::build();
     Sscb_driver_cbs  ssdc = new(sscb);
     foreach (sdrv[i]) 
       sdrv[i].cbsq.push_back(ssdc);
-    
+  end
+  
+  begin 
     Sscb_monitor_cbs ssmc = new(mscb);
     foreach (mmon[i])
       mmon[i].cbsq.push_back(ssmc);
