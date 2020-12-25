@@ -1,5 +1,5 @@
 /*********************************************************************************
- * File Name: 		Config.sv
+ * File Name: 		config.sv
  * Project Name:	AHB_Gen
  * Email:         quanghungbk1999@gmail.com
  * Version    Date      Author      Description
@@ -8,25 +8,18 @@
 
 class Config;
   int n_errors;
-  bit [7:0] masnum, slvnum;
-  rand bit [31:0] n_cells;  //Number of cells to transmit
-  rand bit mas_in_use[];    //Master enable     
-  rand bit n_cells_mas[];   //Number of cells to transmit each master
+  bit [7:0]                masnum,                //Master num 
+                           slvnum;                //Slave num
+  rand bit                 mas_in_use[];    //Master enable --- which master can send data?    
+  rand bit [1:0]           n_cells_mas[];   //Number of cells to transmit-each master
+  bit      [1:0]           n_cells = 3;
+  rand bit [`PRIORBIT-1:0] prior[];
 
-  constraint c_n_cells
-  {
-    n_cells inside {[1:4]};
-  }
  
-  constraint c_nummasslv
+  constraint c_numitf
   {
     masnum inside {[1:$]};
     slvnum inside {[1:$]};
-  }  
-
-  constraint c_in_use
-  {
-    mas_in_use > 0;
   }  
 
   constraint c_cell_per_mas
@@ -44,57 +37,22 @@ class Config;
   extern function new(input bit [7:0] masnum, slvnum);
   extern virtual function void display(input string prefix="");
 
-  //bit [31:0] start_addr;
-  //bit [31:0] stop_addr;
-
-  //rand bit [31:0] haddr; 
-  //rand bit        hwrite;
-  //rand bit [2:0]  hsize;
-  //rand bit [2:0]  hburst;
-  //rand bit [3:0]  hprot;
-  //rand bit [1:0]  htrans;
-  //rand bit        hmastlock;
-  //rand bit [31:0] hwdata;
-
-  //rand bit        hreadyout;
-  //rand bit [31:0] hrdata;
-
-  //constraint c_haddr
-  //{
-  //  haddr[1:0] == 2'b0;
-  //  haddr inside {[start_addr:stop_addr]};
-  //}
-
-  //constraint c_hsize
-  //{
-  //  hsize inside {[0:2]};
-  //}
-
-  //function new (input bit [31:0] start_addr, stop_addr; );
-  //  this.start_addr = start_addr;
-  //  this.stop_addr = stop_addr;
-  //endfunction: new
-
-  //function display();
-  //  $write ("Config: start_addr = %0h, stop_addr = %0h", start_addr, stop_addr);
-  //  $display();
-  //endfunction: display
-
 endclass: Config
 
 function Config::new(input bit [7:0] masnum, slvnum);
   this.masnum = masnum;
+  this.prior = new[masnum];
   mas_in_use = new[masnum];
-  this.slvnum = svlnum;
+  this.slvnum = slvnum;
   n_cells_mas = new[masnum];
 endfunction: new
 
 function void Config::display(input string prefix="");
-  $display("%sConfig: %0d masters, %0d slaves, %0d cells", prefix, masnum, slvnum, n_cells);
+  $display("%s:Config: %0d masters, %0d slaves", prefix, masnum, slvnum);
   foreach (mas_in_use[i])
   begin
     if(mas_in_use[i])
-      $write("mas_in_use = %0d, cells = %0d", mas_in_use[i], n_cells_mas[i]);
+      $write("mas_in_use = %0d, cells = %0d, prio = %d", mas_in_use[i], n_cells_mas[i], prior[i]);
   end  
   $display(); 
 endfunction: display
