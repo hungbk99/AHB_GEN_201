@@ -246,12 +246,10 @@ function void Environment::build();
   //Connect scoreboard with callbacks	
   begin
     Mscb_driver_cbs  msdc = new(mscb); // Add Scoreboard to every Drivers
-    foreach (mdrv[i]) 
-      mdrv[i].cbsq.push_back(msdc);
+    foreach (mdrv[i]) mdrv[i].cbsq.push_back(msdc);
 
     Mscb_monitor_cbs msmc = new(sscb); // Add Scoreboard to every Monitors
-    foreach (mmon[i])
-      mmon[i].cbsq.push_back(msmc);
+    foreach (mmon[i]) mmon[i].cbsq.push_back(msmc);
   end
  
   begin
@@ -326,12 +324,12 @@ task Environment::run();
     wait(running == 0);
 
     begin
-      repeat(1000000) @mas[0].master_cb);
+      repeat(1000000) @(mas[0].master_cb);
         $display("%t: ERRORRR: Timeout while waiting for master transactors", $time);
         cfg.n_errors++;
     end  
   join_any
-  disable timeout
+  disable timeout;
 
 endtask: run
 
