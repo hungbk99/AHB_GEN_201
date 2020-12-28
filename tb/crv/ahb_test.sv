@@ -6,6 +6,15 @@
  * v0.0       2/10/2020 Quang Hung  First Creation
  *********************************************************************************/
 
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_driver.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_env.sv"
+
 //--------------------------------------------------------------------------------
 
 program automatic ahb_test
@@ -14,10 +23,10 @@ program automatic ahb_test
   parameter SLVNUM = 8
 )
 (
-  vmas_itf    mas[0:MASNUM-1],
-  vslv_itf    slv[0:SLVNUM-1],
-  input       hreset_n,
-              hclk
+  input vmas_itf    mas[0:MASNUM-1],
+  input vslv_itf    slv[0:SLVNUM-1],
+  input             hreset_n,
+                    hclk
 );
 
   initial begin

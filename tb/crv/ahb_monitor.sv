@@ -6,6 +6,10 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
+
 typedef class Mas_monitor;
 //--------------------------------------------------------------------------------
  
@@ -61,9 +65,9 @@ endtask: run
 task  Mas_monitor::receive(output Slave s);
    s = new();
 
-   @(mas.master_cb.mas_in.hreadyout); 
-     s.hresp <= mas.master_cb.mas_in.hresp;
-     s.hrdata <= mas.master_cb.mas_in.hrdata; 
+   @(mas.master_cb.mas_out.hreadyout); 
+     s.hresp <= mas.master_cb.mas_out.hresp;
+     s.hrdata <= mas.master_cb.mas_out.hrdata; 
 
    s.display($sformatf("%t Master_Monitor %d", $time, portID)); 
 
@@ -123,17 +127,17 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task Slv_monitor::receive(output Master m);
-  m = new();
+  m = new(32'h0, 32'hFFFF_FFFF);
   
-  @(slv.slave_cb.slv_in.hsel); 
-    m.initial_haddr <= slv.slave_cb.slv_in.haddr; 
-    m.hwrite <= slv.slave_cb.slv_in.hwrite;
-    m.hsize <= slv.slave_cb.slv_in.hsize;
-    m.hburst <= slv.slave_cb.slv_in.hburst;
-    m.hprot <= slv.slave_cb.slv_in.hprot;
-    m.htrans <= slv.slave_cb.slv_in.htrans;
-    m.hmastlock <= slv.slave_cb.slv_in.hmastlock;
-    m.hwdata <= slv.slave_cb.slv_in.hwdata;
+  @(slv.slave_cb.hsel); 
+    m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
+    m.hwrite <= slv.slave_cb.slv_out.hwrite;
+    m.hsize <= slv.slave_cb.slv_out.hsize;
+    m.hburst <= slv.slave_cb.slv_out.hburst;
+    m.hprot <= slv.slave_cb.slv_out.hprot;
+    m.htrans <= slv.slave_cb.slv_out.htrans;
+    m.hmastlock <= slv.slave_cb.slv_out.hmastlock;
+    m.hwdata <= slv.slave_cb.slv_out.hwdata;
 
  m.display($sformatf("%t: Slave_Monitor %0d", $time, portID));
 

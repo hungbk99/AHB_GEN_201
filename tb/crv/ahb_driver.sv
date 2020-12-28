@@ -6,6 +6,10 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
+
 //--------------------------------------------------------------------------------
 typedef class  Mas_driver;
 
@@ -62,18 +66,19 @@ endfunction: new
 //--------------------------------------------------------------------------------
 
 task Mas_driver::run();
-  import ahb_package::*;
+  //import ahb_package::*;
+  import AHB_package::*;
   Master m;
 
   //Initial 
-  mas.master_cb.mas_out.haddr <= '0;
-  mas.master_cb.mas_out.hwrite <= '0;
-  mas.master_cb.mas_out.hsize <= WORD;
-  mas.master_cb.mas_out.hburst <= SINGLE;
-  mas.master_cb.mas_out.hprot <= '0;
-  mas.master_cb.mas_out.htrans <= IDLE;
-  mas.master_cb.mas_out.hmastlock <= '0;
-  mas.master_cb.mas_out.hwdata <= '0;
+  mas.master_cb.mas_in.haddr <= '0;
+  mas.master_cb.mas_in.hwrite <= '0;
+  mas.master_cb.mas_in.hsize <= WORD;
+  mas.master_cb.mas_in.hburst <= SINGLE;
+  mas.master_cb.mas_in.hprot <= '0;
+  mas.master_cb.mas_in.htrans <= IDLE;
+  mas.master_cb.mas_in.hmastlock <= '0;
+  mas.master_cb.mas_in.hwdata <= '0;
 
   forever begin
     //Read from mailbox
@@ -84,7 +89,7 @@ task Mas_driver::run();
         //if(m.hmastlock) disable mas_tx;
       end
       
-      m.display($sformatf("%t: %0d"), $time, portID);
+      m.display($sformatf("%t: %0d", $time, portID));
       send(m);
   
       //foreach (cbsq[i]) 
@@ -102,15 +107,16 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task Mas_driver::send(input Master m);
-  import ahb_package::*;
+  //import ahb_package::*;
+  import AHB_package::*;
   //Master package;
   Master fix;
   int num;
   bit [31:0] wrap_addr, limit_addr;
   $display("Master sendinggg.....");
-  mas.master_cb.mas_out.haddr <= m.initial_haddr;
+  mas.master_cb.mas_in.haddr <= m.initial_haddr;
   //mas.master_cb.mas_out.hwdata <= m.hwdata;
-  mas.master_cb.mas_out.hwdata <= portID;
+  mas.master_cb.mas_in.hwdata <= portID;
   case(m.hburst)
     SINGLE, INCR: num = 1;
     WRAP4, INCR4:
@@ -133,23 +139,23 @@ task Mas_driver::send(input Master m);
     end
   endcase
 
-  fix = new();
+  //fix = new();
   fix = m;
   fix.hwdata = portID;
   for(int i = 0; i < num; i++)  
   begin
     if(i == 0) begin
-      mas.master_cb.mas_out.htrans <= NONSEQ; 
+      mas.master_cb.mas_in.htrans <= NONSEQ; 
     end
     else begin
-      @(mas.master_cb.mas_in.hreadyout);
-        mas.master_cb.mas_out.htrans <= SEQ; 
+      @(mas.master_cb.mas_out.hreadyout);
+        mas.master_cb.mas_in.htrans <= SEQ; 
     end 
 
-    if((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16) && (mas.master_cb.mas_out.haddr == limit_addr))
-      mas.master_cb.mas_out.haddr <= wrap_addr;
+    if((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16) && (mas.master_cb.mas_in.haddr == limit_addr))
+      mas.master_cb.mas_in.haddr <= wrap_addr;
     else
-        mas.master_cb.mas_out.haddr <= mas.master_cb.mas_out.haddr + 2**(m.hsize);
+        mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
     
     //mas.master_cb.mas_out.hwdata <= mas.master_cb.mas_out.hwdata + 1;
     
@@ -185,7 +191,7 @@ endclass: Slv_driver_cbs
 class Slv_driver;
   mailbox         slv_gen2drv;
   event           slv_drv2gen;  
-  vslv_itf         slv;
+  vslv_itf        slv;
   Slv_driver_cbs  cbsq[$];
   int             portID;
 
@@ -219,9 +225,9 @@ task Slv_driver::run();
   Slave s;
 
   //Initial 
-  slv.slave_cb.slv_out.hreadyout = 0;
-  slv.slave_cb.slv_out.hresp = 0;
-  slv.slave_cb.slv_out.hrdata = '0;
+  slv.slave_cb.slv_in.hreadyout = 0;
+  slv.slave_cb.slv_in.hresp = 0;
+  slv.slave_cb.slv_in.hrdata = '0;
 
   forever begin
     //Read from mailbox
@@ -230,7 +236,7 @@ task Slv_driver::run();
     //  cbsq[i].pre_rx(this, s);
     //end
 
-    s.display($sformatf("%t: %0d"), $time, portID);
+    s.display($sformatf("%t: %0d", $time, portID));
 
     send(s);
 
@@ -253,30 +259,31 @@ task Slv_driver::send(input Slave s);
   //Slave package;
   int num;
   Slave fix;
-  fix = new();
+  //fix = new();
+  fix = s;
 
-  case(m.hburst)
-    SINGLE, INCR: num = 1;
-    WRAP4, INCR4: num = 4;
-    WRAP8, INCR8: num = 8;
-    WRAP16, INCR16: num = 16;
-  endcase
-  slv.slave_cb.slv_out.hrdata = portID;
+  //case(m.hburst)
+  //  SINGLE, INCR: num = 1;
+  //  WRAP4, INCR4: num = 4;
+  //  WRAP8, INCR8: num = 8;
+  //  WRAP16, INCR16: num = 16;
+  //endcase
+  slv.slave_cb.slv_in.hrdata = portID;
   fix.hrdata = portID;
+  fix.hreadyout = 1;
+  fix.hresp = 1;
   
-  for(int i = 0; i < num; i++)
-  begin
+  //for(int i = 0; i < num; i++)
+  //begin
     @(slv.slave_cb.hsel)
-    slv.slave_cb.slv_out.hreadyout <= 1;
-    slv.slave_cb.slv_out.hresp <= 0;
+    slv.slave_cb.slv_in.hreadyout <= 1;
+    slv.slave_cb.slv_in.hresp <= 0;
     //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
     //Put data in Slv_scoreboard 
-    fix.hreadyout <= 1;
-    fix.hresp <= 1;
     foreach(cbsq[i]) begin
       cbsq[i].post_rx(this, fix);
     end
-  end  
+  //end  
 
 endtask: send 
 

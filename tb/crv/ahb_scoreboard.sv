@@ -6,6 +6,9 @@
  * v0.0       2/10/2020 Quang Hung  First Creation
  *********************************************************************************/
 
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+
 //--------------------------------------------------------------------------------
 
 class Mas_expected_cells;
@@ -59,7 +62,7 @@ endfunction: save_expected
 // check
 //--------------------------------------------------------------------------------
 
-function void Mas_scoreboard::check_actual(input Master m, input portID);
+function void Mas_scoreboard::check_actual(input Master m, input int portID);
   m.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[m.hwdata].mq.size() == 0) begin
@@ -75,7 +78,7 @@ function void Mas_scoreboard::check_actual(input Master m, input portID);
     end
     else begin
       $display("%t: ERROR: Master Cells Miss............");
-      cfg.n_errros++;
+      cfg.n_errors++;
     end
   end
  
@@ -161,11 +164,11 @@ endfunction: save_expected
 // check
 //--------------------------------------------------------------------------------
 
-function void Slv_scoreboard::check_actual(input Slave s, input portID);
-  m.display($sformatf("%t: Scoreboard Check.......", $time));
+function void Slv_scoreboard::check_actual(input Slave s, input int portID);
+  s.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[s.hrdata].sq.size() == 0) begin
-    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", m.hwdata);
+    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", s.hrdata);
   end
 
   expect_cells[s.hrdata].iactual++;
@@ -177,7 +180,7 @@ function void Slv_scoreboard::check_actual(input Slave s, input portID);
     end
     else begin
       $display("%t: ERROR: Master Cells Miss............");
-      cfg.n_errros++;
+      cfg.n_errors++;
     end
   end
  

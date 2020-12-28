@@ -59,10 +59,10 @@ class Master extends Basetrans;
   }
 
   extern function new(input bit [31:0] start_addr, stop_addr); 
-  extern function void display(input string data=""); 
+  extern function void display(input string prefix=""); 
   extern function compare(input Master to);
-  extern virtual function void copy_data(input Master copy);
-  extern virtual function Master copy (input Master to);   
+  extern virtual function void copy_data(output Master copy);
+  extern virtual function Basetrans copy (input Basetrans to=null);   
 
 endclass: Master
 
@@ -75,9 +75,9 @@ endfunction: new
 
 //--------------------------------------------------------------------------------
 
-function Master::display(input string data="");
+function void Master::display(input string prefix="");
   $write ("Config: start_addr = %0h, stop_addr = %0h", start_addr, stop_addr);
-  $display("INFO: %s", data);
+  $display("INFO: %s", prefix);
   $write("CELL_ID: %d", id);
   $display();
   $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,hprot, htrans, hmastlock, hwdata);
@@ -99,7 +99,7 @@ endfunction: compare
 
 //--------------------------------------------------------------------------------
 
-function void Master::copy_data(input Master copy);
+function void Master::copy_data(output Master copy);
   copy.start_addr =  this.start_addr;
   copy.stop_addr = this.stop_addr;
   copy.initial_haddr = this.initial_haddr; 
@@ -114,9 +114,9 @@ endfunction: copy_data
 
 //--------------------------------------------------------------------------------
 
-function Master::copy(input Master to);
+function Basetrans Master::copy(input Basetrans to=null);
   Master dst;
-  if(to == null) dst = new();
+  if(to == null) dst = new(this.start_addr, this.stop_addr);
   else           $cast(dst, to);
   copy_data(dst);
   return dst;
@@ -126,7 +126,7 @@ endfunction
 
 class Slave;
 
-  //rand bit        hreadyout;
+  bit             hreadyout;
   rand bit        hresp;
   rand bit [31:0] hrdata;
 
@@ -149,9 +149,9 @@ class Slave;
   }
 
   extern function compare(input Slave to);
-  extern function void display(input string data="");
-  extern function void copy_data(input Slave copy);  
-  extern function Slave copy(input Slave to);
+  extern function void display(input string prefix="");
+  extern function void copy_data(output Slave copy);  
+  extern function Slave copy(input Slave to=null);
 
 endclass: Slave
 
@@ -166,7 +166,7 @@ endfunction: compare
 
 //--------------------------------------------------------------------------------
 
-function void Slave::copy_data(input Slave copy);
+function void Slave::copy_data(output Slave copy);
   //copy.hreadyout = this.hreadyout;
   copy.hresp = this.hresp;
   copy.hrdata = this.hrdata;
@@ -174,23 +174,23 @@ endfunction: copy_data
 
 //--------------------------------------------------------------------------------
 
-function Slave::copy(input Slave to);
+function Slave Slave::copy(input Slave to=null);
   Slave dst;
   if(to == null) dst = new();
   else           $cast(dst, to);
   copy_data(dst);
-  return(dst);
+  return dst;
 endfunction: copy
 
 //--------------------------------------------------------------------------------
 
 function void Slave::display(
               //input int id, 
-              input string data);
+              input string prefix="");
   //$write("Config: hreadyout = %b, hresp = %b, hrdata = %h", hreadyout, hresp, hrdata);  
   $write("Config: hrdata = %h, hresp = %b", hrdata, hresp);  
   //$write("SLV_ID: %d", id);
-  $display("INFO: %s", data);
+  $display("INFO: %s", prefix);
 endfunction: display
 
 

@@ -6,6 +6,7 @@
  * v0.0       2/10/2020 Quang Hung  First Creation
  *********************************************************************************/
 
+`define PRIORBIT 2
 class Config;
   int n_errors;
   bit [7:0]                masnum,                //Master num 

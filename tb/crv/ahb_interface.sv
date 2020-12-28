@@ -6,12 +6,12 @@
 // v0.0       2/10/2020 Quang Hung  First Creation
 //////////////////////////////////////////////////////////////////////////////////
 
-`define PRIORBIT 3
+`define PRIORBIT 2
 interface ahb_itf(input hclk);
   import AHB_package::*;
     
-  mas_send_type            mas_out, slv_in;
-  slv_send_type            mas_in, slv_out;  
+  mas_send_type            mas_in, slv_out;
+  slv_send_type            mas_out, slv_in;  
   logic                    hsel;
   logic [`PRIORBIT-1:0]    prio;
 

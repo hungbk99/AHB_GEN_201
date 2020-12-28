@@ -6,6 +6,13 @@
  * v0.0       2/10/2020 Quang Hung  First Creation
  *********************************************************************************/
 
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_driver.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
 //================================================================================
 // Call Scoreboard from Master Driver
 //================================================================================
@@ -77,7 +84,7 @@ class Sscb_monitor_cbs extends Slv_monitor_cbs;
   virtual task post_rx(
                 input Slv_monitor smon,
                 input Master      m);
-    scb.check_actual(m, mmon.portID);
+    scb.check_actual(m, smon.portID);
   endtask: post_rx
 
 endclass: Sscb_monitor_cbs
@@ -139,7 +146,7 @@ class Environment;
   Slv_monitor    smon[];
   Slv_scoreboard sscb;
   
-  Config         cfg[];
+  Config         cfg;
 //cvr  Coverage   cov[];
 
   vmas_itf       mas[];
@@ -218,10 +225,10 @@ function void Environment::build();
   sgen2drv = new[slvnum];
   sdrv2gen = new[slvnum];
  
-  mscb = new(masnum); 
-  sscb = new(slvnum); 
-  mcov = new();
-  scov = new();
+  mscb = new(cfg); 
+  sscb = new(cfg); 
+  //mcov = new();
+  //scov = new();
 
   //Connect DUT with Drivers, Drivers with Generators
   foreach(mgen[i]) begin
