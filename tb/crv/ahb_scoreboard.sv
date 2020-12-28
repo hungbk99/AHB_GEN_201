@@ -66,18 +66,18 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
   m.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[m.hwdata].mq.size() == 0) begin
-    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", m.hwdata);
+    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", $time, m.hwdata);
   end
 
   expect_cells[m.hwdata].iactual++;
   iactual++; 
   foreach(expect_cells[m.hwdata].mq[i]) begin 
     if(expect_cells[m.hwdata].mq[i].compare(m)) begin
-      $display("%t: Master Cells Match............");
+      $display("%t: Master Cells Match............", $time);
       expect_cells[m.hwdata].mq.delete(i);  
     end
     else begin
-      $display("%t: ERROR: Master Cells Miss............");
+      $display("%t: ERROR: Master Cells Miss............", $time);
       cfg.n_errors++;
     end
   end
@@ -87,7 +87,7 @@ endfunction: check_actual
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::display(input string prefix="");
-  $display("%t: Total expected cells sent %d, Total actual cells received %d", iexpect, iactual);
+  $display("%t: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     $display("Master: %d, expected: %d, actual: %d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
     foreach (expect_cells[i].mq[j])
@@ -99,7 +99,7 @@ endfunction: display
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::wrap_up();
-  $display("%t: WRAP: Total expected cells sent %d, Total actual cells received %d", iexpect, iactual);
+  $display("%t: WRAP: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     if(expect_cells[i].mq.size()) begin
       $display("%t: ERROR:WRAP: cells remaining in Master[%d] scoreboard at the end of the test", $time, i);
@@ -168,18 +168,18 @@ function void Slv_scoreboard::check_actual(input Slave s, input int portID);
   s.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[s.hrdata].sq.size() == 0) begin
-    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", s.hrdata);
+    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", $time, s.hrdata);
   end
 
   expect_cells[s.hrdata].iactual++;
   iactual++; 
   foreach(expect_cells[s.hrdata].sq[i]) begin 
     if(expect_cells[s.hrdata].sq[i].compare(s)) begin
-      $display("%t: Slave Cells Match............");
+      $display("%t: Slave Cells Match............", $time);
       expect_cells[s.hrdata].sq.delete(i);  
     end
     else begin
-      $display("%t: ERROR: Master Cells Miss............");
+      $display("%t: ERROR: Master Cells Miss............", $time);
       cfg.n_errors++;
     end
   end
@@ -189,7 +189,7 @@ endfunction: check_actual
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::display(input string prefix="");
-  $display("%t: Total expected cells sent %d, Total actual cells received %d", iexpect, iactual);
+  $display("%t: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     $display("Slave: %d, expected: %d, actual: %d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
     foreach (expect_cells[i].sq[j])
@@ -201,7 +201,7 @@ endfunction: display
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::wrap_up();
-  $display("%t: WRAP: Total expected cells sent %d, Total actual cells received %d", iexpect, iactual);
+  $display("%t: WRAP: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     if(expect_cells[i].sq.size()) begin
       $display("%t: ERROR:WRAP: cells remaining in Slave[%d] scoreboard at the end of the test", $time, i);

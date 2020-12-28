@@ -15,16 +15,36 @@ interface ahb_itf(input hclk);
   logic                    hsel;
   logic [`PRIORBIT-1:0]    prio;
 
+  modport master_dut(  
+    output mas_out, 
+    input  mas_in, prio); 
+
+  modport slave_dut(  
+    input  slv_in,  
+    output hsel,
+    output slv_out);  
+  
   clocking master_cb @(posedge hclk);
-    output mas_out;  
-    input  mas_in, prio; 
+    input  mas_out;  
+    output mas_in, prio; 
   endclocking: master_cb
 
   clocking slave_cb @(posedge hclk);
-    input  slv_in;  
+    output slv_in;  
     input  hsel; 
-    output slv_out;  
+    input  slv_out;  
   endclocking: slave_cb
+  
+  //clocking master_cb @(posedge hclk);
+  //  output mas_out;  
+  //  input  mas_in, prio; 
+  //endclocking: master_cb
+
+  //clocking slave_cb @(posedge hclk);
+  //  input  slv_in;  
+  //  output hsel; 
+  //  output slv_out;  
+  //endclocking: slave_cb
   
   modport mas_itf(clocking master_cb);
   modport slv_itf(clocking slave_cb);
