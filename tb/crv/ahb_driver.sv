@@ -71,14 +71,15 @@ task Mas_driver::run();
   Master m;
 
   //Initial 
-  mas.master_cb.mas_in.haddr <= '0;
-  mas.master_cb.mas_in.hwrite <= '0;
-  mas.master_cb.mas_in.hsize <= WORD;
-  mas.master_cb.mas_in.hburst <= SINGLE;
-  mas.master_cb.mas_in.hprot <= '0;
-  mas.master_cb.mas_in.htrans <= IDLE;
-  mas.master_cb.mas_in.hmastlock <= '0;
-  mas.master_cb.mas_in.hwdata <= '0;
+  mas.master_cb.mas_in <= '0;
+  //mas.master_cb.mas_in.haddr <= '0;
+  //mas.master_cb.mas_in.hwrite <= '0;
+  //mas.master_cb.mas_in.hsize <= WORD;
+  //mas.master_cb.mas_in.hburst <= SINGLE;
+  //mas.master_cb.mas_in.hprot <= '0;
+  //mas.master_cb.mas_in.htrans <= IDLE;
+  //mas.master_cb.mas_in.hmastlock <= '0;
+  //mas.master_cb.mas_in.hwdata <= '0;
 
   forever begin
     //Read from mailbox

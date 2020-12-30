@@ -23,10 +23,12 @@ program automatic ahb_test
   parameter SLVNUM = 8
 )
 (
-  input vmas_itf    mas[0:MASNUM-1],
-  input vslv_itf    slv[0:SLVNUM-1],
-  input             hreset_n,
-                    hclk
+  //input vmas_itf    mas[0:MASNUM-1],
+  //input vslv_itf    slv[0:SLVNUM-1],
+  ahb_itf.mas_itf   mas[0:MASNUM-1],
+  ahb_itf.slv_itf   slv[0:SLVNUM-1],
+  input                   hreset_n,
+                          hclk
 );
 
   initial begin

@@ -50,11 +50,14 @@ class Mas_generator;
 
   task run();
     Master m;
+      $display("Master Generator on .....");
     repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(m, blueprint.copy()); // m is not a handle of blueprint
       mas_gen2drv.put(m); // wait until driver receive the data
+      $display("Master cells on .....");
       @mas_drv2gen;
+      $display("Master Driver receive ...");
     end
   endtask
 

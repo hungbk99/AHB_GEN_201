@@ -149,8 +149,10 @@ class Environment;
   Config         cfg;
 //cvr  Coverage   cov[];
 
-  vmas_itf       mas[];
-  vslv_itf       slv[];  
+  virtual  ahb_itf.mas_itf   mas[];
+  virtual  ahb_itf.slv_itf   slv[];
+  //vmas_itf       mas[];
+  //vslv_itf       slv[];  
   
   int masnum, slvnum;
 
@@ -177,10 +179,19 @@ function Environment::new(
                 input int masnum, slvnum
                 );
   this.mas = new[mas.size()];
-  foreach (mas[i])
+  this.slv = new[slv.size()];
+  foreach (mas[i]) begin
+    $display("db master virtual interface ......... %d", i);
     this.mas[i] = mas[i];
-  foreach (slv[i])
+  end
+
+  $display();
+
+  foreach (slv[i]) begin
+    $display("db slave virtual interface .......... %d", i);
     this.slv[i] = slv[i];
+  end
+
   this.masnum = masnum;
   this.slvnum = slvnum;
  
@@ -213,6 +224,7 @@ endfunction: gen_cfg
 //================================================================================
 
 function void Environment::build();
+  $display("%t: Build.............", $time);
   mgen = new[masnum];
   mdrv = new[masnum];
   mmon = new[masnum];
@@ -232,33 +244,57 @@ function void Environment::build();
 
   //Connect DUT with Drivers, Drivers with Generators
   foreach(mgen[i]) begin
+      $display("db master generator +++++++++++++ %d", i);
+      $display("db master driver    +++++++++++++ %d", i);
     mgen2drv[i] = new();
     mgen[i] = new(mgen2drv[i], mdrv2gen[i], cfg.mas_in_use[i], i); 
     mdrv[i] = new(mgen2drv[i], mdrv2gen[i], mas[i], i);            
   end 
 
+  $display("======================================================");
+
   foreach(sgen[i]) begin
+      $display("db slave generator +++++++++++++ %d", i);
+      $display("db slave driver    +++++++++++++ %d", i);
     sgen2drv[i] = new();
     sgen[i] = new(sgen2drv[i], mdrv2gen[i], i);
     sdrv[i] = new(mgen2drv[i], mdrv2gen[i], slv[i], i);
   end
 
-  //Connect DUT with Monitors
-  foreach(mmon[i])
-    mmon[i] = new(mas[i], i);
+  $display("======================================================");
 
-  foreach(smon[i])
+  //Connect DUT with Monitors
+  foreach(mmon[i]) begin
+      $display("db master monitor+++++++++++++ %d", i);
+    mmon[i] = new(mas[i], i);
+  end
+
+  $display("======================================================");
+  
+  foreach(smon[i]) begin
+      $display("db slave monitor++++++++++++++ %d", i);
     smon[i] = new(slv[i], i);
-   
+  end
+
+  $display("======================================================");
+  
   //Connect scoreboard with callbacks	
   begin
     Mscb_driver_cbs  msdc = new(mscb); // Add Scoreboard to every Drivers
-    foreach (mdrv[i]) mdrv[i].cbsq.push_back(msdc);
+    foreach (mdrv[i]) begin
+      mdrv[i].cbsq.push_back(msdc);
+      $display("db master driver connect scoreboard+++++++++++++ %d", i);
+    end
   end
+  
+  $display("======================================================");
   
   begin
     Mscb_monitor_cbs msmc = new(sscb); // Add Scoreboard to every Monitors
-    foreach (mmon[i]) mmon[i].cbsq.push_back(msmc);
+    foreach (mmon[i]) begin
+      mmon[i].cbsq.push_back(msmc);
+      $display("db master driver connect scoreboard+++++++++++++ %d", i);
+    end
   end
  
   begin
@@ -270,7 +306,7 @@ function void Environment::build();
   begin 
     Sscb_monitor_cbs ssmc = new(mscb);
     foreach (mmon[i])
-      mmon[i].cbsq.push_back(ssmc);
+      smon[i].cbsq.push_back(ssmc);
   end
 
 //cov  // connect coverage wth callbacks
@@ -295,16 +331,27 @@ task Environment::run();
   int running;
   running = masnum;  
 
+  $display("%t: Runnnn.............", $time);
   // Start in_use Master channels
   foreach(mgen[i]) begin
     int j=i;
+      $display("db +++++++++++++ %d", j);
     fork
+      $display("db +++++++++++++ %d", j);
+
+      //Hung mod +++ 30_12_2020
       if(cfg.mas_in_use[j])
       begin 
         mgen[j].run();
+      end   
+      
+      if(cfg.mas_in_use[j])
+      begin 
         mdrv[j].run();
       end   
-    join_none
+    //join_none
+    //join_any
+    join
     running--;    
   end   
  

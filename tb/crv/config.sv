@@ -53,7 +53,8 @@ function void Config::display(input string prefix="");
   foreach (mas_in_use[i])
   begin
     if(mas_in_use[i])
-      $write("mas_in_use = %0d, cells = %0d, prio = %d", mas_in_use[i], n_cells_mas[i], prior[i]);
+      $write("mas_in_use = %0d, cells = %0d, prio = %d", i, n_cells_mas[i], prior[i]);
+    $display(); 
   end  
   $display(); 
 endfunction: display
