@@ -46,27 +46,27 @@ module AHB_decoder_kemee
 //================================================================================
 //ADDRESS MAP
 //#ADDRMAPGEN#
-//db	slave_1
-	assign low_addr[0] = 32'h0000_0000;
-	assign high_addr[0] = 32'h0000_03FF;
-//db	slave_2
-	assign low_addr[1] = 32'h0000_0400;
-	assign high_addr[1] = 32'h0000_0CF0;
-//db	slave_3
-	assign low_addr[2] = 32'h0000_1000;
-	assign high_addr[2] = 32'h0000_100F;
+//db	slave_7
+	assign low_addr[0] = 32'h0000_5000;
+	assign high_addr[0] = 32'h0000_5FFF;
+//db	slave_6
+	assign low_addr[1] = 32'h0000_4000;
+	assign high_addr[1] = 32'h0000_4FFF;
+//db	slave_5
+	assign low_addr[2] = 32'h0000_2404;
+	assign high_addr[2] = 32'h0000_24FF;
 //db	slave_4
 	assign low_addr[3] = 32'h0000_2000;
 	assign high_addr[3] = 32'h0000_2403;
-//db	slave_5
-	assign low_addr[4] = 32'h0000_2404;
-	assign high_addr[4] = 32'h0000_24FF;
-//db	slave_6
-	assign low_addr[5] = 32'h0000_4000;
-	assign high_addr[5] = 32'h0000_4FFF;
-//db	slave_7
-	assign low_addr[6] = 32'h0000_5000;
-	assign high_addr[6] = 32'h0000_5FFF;
+//db	slave_3
+	assign low_addr[4] = 32'h0000_1000;
+	assign high_addr[4] = 32'h0000_100F;
+//db	slave_2
+	assign low_addr[5] = 32'h0000_0400;
+	assign high_addr[5] = 32'h0000_0CF0;
+//db	slave_1
+	assign low_addr[6] = 32'h0000_0000;
+	assign high_addr[6] = 32'h0000_03FF;
 //================================================================================
   assign haddr_buf = haddr; 
   assign htrans_buf = htrans; 
@@ -77,7 +77,8 @@ module AHB_decoder_kemee
     begin: req_gen
       always_comb begin
         slave_detect[i] = 1'b0;
-        if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        //Hung db 2_1_2020 if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        if((haddr_buf > low_addr[i])&&(haddr_buf < high_addr[i]))
           slave_detect[i] = 1'b1;  
       end
     end

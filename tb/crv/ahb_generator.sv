@@ -88,11 +88,14 @@ class Slv_generator;
 
   task run();
     Slave s;
+      $display("Slave Generator on .....");
     //repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(s, blueprint.copy());
       slv_gen2drv.put(s);
+      $display("Slave cells on .....");
       @slv_drv2gen;
+      $display("Master Driver receive ...");
     //end
   endtask
 

@@ -213,7 +213,8 @@ module AHB_arbiter_slave_1
   end
 
   assign hgrant = grant & ~hwait;  
-  assign hsel = hwait & |grant; 
+  //Hung db 2_1_2020 assign hsel = hwait & |grant; 
+  assign hsel = |hgrant;
 
 //================================================================================
 // Monitor

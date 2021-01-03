@@ -54,7 +54,8 @@ module AHB_decoder#NUM#
     begin: req_gen
       always_comb begin
         slave_detect[i] = 1'b0;
-        if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        //Hung db 2_1_2020 if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        if((haddr_buf > low_addr[i])&&(haddr_buf < high_addr[i]))
           slave_detect[i] = 1'b1;  
       end
     end

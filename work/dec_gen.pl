@@ -119,7 +119,9 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
       {
         #db print ("db_3\n");
         print ("$slave_num");
-        for(my $g = 0; $g < $slave_num; $g++) 
+        #for(my $g = 0; $g < $slave_num; $g++) 
+        my $k = 0;
+        for(my $g = $slave_num-1; $g >= 0 ;$g--) 
         {
           #db print ("@slave_name_a[$g]\n");
           my $cr_sl_name = @slave_name_a[$g];
@@ -131,10 +133,11 @@ foreach my $i_1 (0 .. scalar @sheet_1_data)
             if($sheet_2_data[${slave}][0] eq $cr_sl_name)
             {
               print DEST ("\//db\t${cr_sl_name}\n");
-              print DEST "\tassign low_addr[${g}] = ${addr_width}'h$sheet_2_data[${slave}][1];\n";
-              print DEST "\tassign high_addr[${g}] = ${addr_width}'h$sheet_2_data[${slave}][2];\n";
+              print DEST "\tassign low_addr[${k}] = ${addr_width}'h$sheet_2_data[${slave}][1];\n";
+              print DEST "\tassign high_addr[${k}] = ${addr_width}'h$sheet_2_data[${slave}][2];\n";
             }
           }
+          $k++;
         }
       }
     }

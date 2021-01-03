@@ -46,12 +46,12 @@ module AHB_decoder_master_3
 //================================================================================
 //ADDRESS MAP
 //#ADDRMAPGEN#
-//db	slave_4
-	assign low_addr[0] = 32'h0000_2000;
-	assign high_addr[0] = 32'h0000_2403;
 //db	slave_5
-	assign low_addr[1] = 32'h0000_2404;
-	assign high_addr[1] = 32'h0000_24FF;
+	assign low_addr[0] = 32'h0000_2404;
+	assign high_addr[0] = 32'h0000_24FF;
+//db	slave_4
+	assign low_addr[1] = 32'h0000_2000;
+	assign high_addr[1] = 32'h0000_2403;
 //================================================================================
   assign haddr_buf = haddr; 
   assign htrans_buf = htrans; 
@@ -62,7 +62,8 @@ module AHB_decoder_master_3
     begin: req_gen
       always_comb begin
         slave_detect[i] = 1'b0;
-        if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        //Hung db 2_1_2020 if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
+        if((haddr_buf > low_addr[i])&&(haddr_buf < high_addr[i]))
           slave_detect[i] = 1'b1;  
       end
     end

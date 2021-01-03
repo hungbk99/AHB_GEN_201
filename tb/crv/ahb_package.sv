@@ -13,7 +13,7 @@ package ahb_package;
     BUSY = 2'b01,
     NONSEQ = 2'b10,
     SEQ = 2'b11
-  } htrans_rtype;
+  } htrans_type;
 
   typedef enum bit [2:0]
   {
@@ -25,7 +25,7 @@ package ahb_package;
     EIGHTWORDLINE,
     SIXTEENWORDLINE,
     THIRTY2WORDLINE
-  } hsize_rtype;
+  } hsize_type;
 
   typedef enum bit [2:0] 
   {
@@ -37,7 +37,7 @@ package ahb_package;
     INCR8,
     WRAP16,
     INCR16
-  } hburst_rtype;
+  } hburst_type;
 
   //typedef struct packed {
   //  bit [31:0]   haddr;

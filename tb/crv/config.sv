@@ -14,8 +14,8 @@ class Config;
   rand bit                 mas_in_use[];    //Master enable --- which master can send data?    
   rand bit [1:0]           n_cells_mas[];   //Number of cells to transmit-each master
   bit      [1:0]           n_cells = 3;
+  //Hung mod 2_1_2020 rand bit [`PRIORBIT-1:0] prior[];
   rand bit [`PRIORBIT-1:0] prior[];
-
  
   constraint c_numitf
   {
@@ -53,7 +53,7 @@ function void Config::display(input string prefix="");
   foreach (mas_in_use[i])
   begin
     if(mas_in_use[i])
-      $write("mas_in_use = %0d, cells = %0d, prio = %d", i, n_cells_mas[i], prior[i]);
+      $write("master in used = %0d, cells = %0d, prio = %0d", i, n_cells_mas[i], prior[i]);
     $display(); 
   end  
   $display(); 

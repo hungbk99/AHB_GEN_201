@@ -125,6 +125,22 @@ endclass: Sscb_monitor_cbs
 //cov
 //covendclass: Cov_smonitor_cbs
 
+
+////================================================================================
+//// Hung mod 2_2_2020
+////================================================================================
+//class Mas_driver_prio extends Mas_driver;
+//  
+//  extern virtual function new(
+//    input mailbox mas_gen2drv,
+//    input event   mas_drv2gen,
+//    input vmas_itf mas,
+//    input int portID
+//    input Config  cfg;
+//  );
+//
+//endclass: Mas_driver_prio
+
 //================================================================================
 // Environment
 //================================================================================
@@ -149,10 +165,10 @@ class Environment;
   Config         cfg;
 //cvr  Coverage   cov[];
 
-  virtual  ahb_itf.mas_itf   mas[];
-  virtual  ahb_itf.slv_itf   slv[];
-  //vmas_itf       mas[];
-  //vslv_itf       slv[];  
+  //virtual  ahb_itf.mas_itf   mas[];
+  //virtual  ahb_itf.slv_itf   slv[];
+  vmas_itf       mas[];
+  vslv_itf       slv[];  
   
   int masnum, slvnum;
 
@@ -247,8 +263,9 @@ function void Environment::build();
       $display("db master generator +++++++++++++ %d", i);
       $display("db master driver    +++++++++++++ %d", i);
     mgen2drv[i] = new();
-    mgen[i] = new(mgen2drv[i], mdrv2gen[i], cfg.mas_in_use[i], i); 
-    mdrv[i] = new(mgen2drv[i], mdrv2gen[i], mas[i], i);            
+    //mgen[i] = new(mgen2drv[i], mdrv2gen[i], cfg.mas_in_use[i], i); 
+    mgen[i] = new(mgen2drv[i], mdrv2gen[i], cfg.n_cells_mas[i], i); 
+    mdrv[i] = new(mgen2drv[i], mdrv2gen[i], mas[i], cfg, i);            
   end 
 
   $display("======================================================");
@@ -257,8 +274,8 @@ function void Environment::build();
       $display("db slave generator +++++++++++++ %d", i);
       $display("db slave driver    +++++++++++++ %d", i);
     sgen2drv[i] = new();
-    sgen[i] = new(sgen2drv[i], mdrv2gen[i], i);
-    sdrv[i] = new(mgen2drv[i], mdrv2gen[i], slv[i], i);
+    sgen[i] = new(sgen2drv[i], sdrv2gen[i], i);
+    sdrv[i] = new(sgen2drv[i], sdrv2gen[i], slv[i], i);
   end
 
   $display("======================================================");
@@ -305,7 +322,7 @@ function void Environment::build();
   
   begin 
     Sscb_monitor_cbs ssmc = new(mscb);
-    foreach (mmon[i])
+    foreach (smon[i])
       smon[i].cbsq.push_back(ssmc);
   end
 
@@ -333,62 +350,79 @@ task Environment::run();
 
   $display("%t: Runnnn.............", $time);
   // Start in_use Master channels
-  foreach(mgen[i]) begin
-    int j=i;
-      $display("db +++++++++++++ %d", j);
-    fork
-      $display("db +++++++++++++ %d", j);
+  // Hung mod 31_12_2020
+  fork 
+    foreach(mgen[i]) begin
+      //int j=i;
+      //  $display("db +++++++++++++ %d", j);
+      fork
+        int j=i;
+        $display("########################################################################");
+        $display("db +++++++++++++ %d", j);
+        $display("db mgen + mdrv+++++++++++++ %d", j);
 
-      //Hung mod +++ 30_12_2020
-      if(cfg.mas_in_use[j])
-      begin 
-        mgen[j].run();
-      end   
-      
-      if(cfg.mas_in_use[j])
-      begin 
-        mdrv[j].run();
-      end   
-    //join_none
-    //join_any
-    join
-    running--;    
-  end   
+        //Hung mod +++ 30_12_2020
+        if(cfg.mas_in_use[j])
+        begin 
+          $display("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+          $display("Generate...");
+          $display("master in used: %d", j);
+          $display("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+          mgen[j].run();
+        end   
+        
+        if(cfg.mas_in_use[j])
+        begin 
+          $display("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+          $display("Drive...");
+          $display("master in used: %d", j);
+          $display("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+          //$display("master in used: %d", j);
+          mdrv[j].run();
+        end   
+      //join_none
+      //join_any
+      join
+      running--;    
+    end   
  
-  // Start all Slave channels 
-  foreach(smon[i]) begin
-    int j=i;
-    fork
-      smon[j].run();
-    join_none
-  end
+    // Start all Slave channels 
+    foreach(smon[i]) begin
+      int j=i;
+        $display("db smon+++++++++++++ %d", j);
+      fork
+        smon[j].run();
+      join_none
+    end
 
-  foreach(sgen[i]) begin
-    int j=i;
-    fork
-      sgen[j].run();
-      sdrv[j].run();
-    join_none
-  end
+    foreach(sgen[i]) begin
+      int j=i;
+        $display("db sgen + sdrv+++++++++++++ %d", j);
+      fork
+        sgen[j].run();
+        sdrv[j].run();
+      join_none
+    end
 
-  foreach(mmon[i]) begin
-    int j=i;
-    fork
-      mmon[j].run();
-    join_none
-  end
+    foreach(mmon[i]) begin
+      int j=i;
+        $display("db mmon+++++++++++++ %d", j);
+      fork
+        mmon[j].run();
+      join_none
+    end
 
-  fork: timeout
-    wait(running == 0);
+    fork: timeout
+      wait(running == 0)
+        disable timeout;
 
-    begin
-      repeat(1000000) @(mas[0].master_cb);
-        $display("%t: ERRORRR: Timeout while waiting for master transactors", $time);
-        cfg.n_errors++;
-    end  
-  join_any
-  disable timeout;
-
+      begin
+        repeat(1000000) @(mas[0].master_cb);
+          $display("%t: ERRORRR: Timeout while waiting for master transactors", $time);
+          cfg.n_errors++;
+      end  
+    join_any
+  join
 endtask: run
 
 function void Environment::wrap_up();

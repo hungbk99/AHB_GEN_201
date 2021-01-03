@@ -52,6 +52,9 @@ endfunction
 task Mas_monitor::run();
   Slave s;
 
+  //Hung db 2_1_2020
+  //s = new();
+  
   forever begin
     receive(s);
     foreach(cbsq[i])
@@ -63,11 +66,17 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task  Mas_monitor::receive(output Slave s);
+  //Hung db 2_1_2020
    s = new();
 
-   @(mas.master_cb.mas_out.hreadyout); 
-     s.hresp <= mas.master_cb.mas_out.hresp;
-     s.hrdata <= mas.master_cb.mas_out.hrdata; 
+   @(mas.master_cb.mas_out.hreadyout);
+   wait(mas.master_cb.mas_out.hreadyout);
+     //s.hreadyout <= 1'b1; 
+     //s.hresp <= mas.master_cb.mas_out.hresp;
+     //s.hrdata <= mas.master_cb.mas_out.hrdata; 
+     s.hreadyout = 1'b1; 
+     s.hresp = mas.master_cb.mas_out.hresp;
+     s.hrdata = mas.master_cb.mas_out.hrdata; 
 
    s.display($sformatf("%t Master_Monitor %d", $time, portID)); 
 
@@ -116,6 +125,8 @@ endfunction: new
 
 task Slv_monitor::run();
   Master m;
+  //Hung db 2_1_2020
+  //m = new(32'h0, 32'hFFFF_FFFF);
 
   forever begin
     receive(m);
@@ -127,9 +138,11 @@ endtask: run
 //--------------------------------------------------------------------------------
 
 task Slv_monitor::receive(output Master m);
+  //Hung db 2_1_2020
   m = new(32'h0, 32'hFFFF_FFFF);
   
   @(slv.slave_cb.hsel); 
+  wait(slv.slave_cb.hsel); 
     m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
     m.hwrite <= slv.slave_cb.slv_out.hwrite;
     m.hsize <= slv.slave_cb.slv_out.hsize;

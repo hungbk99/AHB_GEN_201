@@ -10,7 +10,7 @@ module dut
   input                hclk
 );
   
-  //`include"AHB_bus.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/AHB_bus.sv"
   AHB_bus bus
   (
     .master_1_in(mas[0].mas_in),
@@ -47,7 +47,9 @@ module dut
     .slave_7_in(slv[6].slv_in),
     .hsel_slave_7(slv[6].hsel),
     .slave_7_out(slv[6].slv_out),
-    .*
+    .hclk(hclk),
+    .hreset_n(hreset_n)
+    //.*
   );
 
 endmodule: dut

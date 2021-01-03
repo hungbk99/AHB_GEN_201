@@ -25,7 +25,7 @@ class Mas_scoreboard;
   //Master mq[$];
   int iexpect, iactual;                //Global counter
   
-  extern function new(input Config cfg);
+  extern function new(Config cfg);
   extern virtual function void wrap_up();
   extern function void save_expected(Master m);  
   extern function void check_actual(input Master m, input int portID);
@@ -35,7 +35,9 @@ endclass: Mas_scoreboard
 
 //--------------------------------------------------------------------------------
 
-function Mas_scoreboard::new(input Config cfg);
+function Mas_scoreboard::new(Config cfg);
+    //Hung mod 1_1_2020 
+    this.cfg = cfg;
   expect_cells = new[cfg.masnum];
   foreach(expect_cells[i])
     expect_cells[i] = new();
@@ -78,6 +80,7 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
     end
     else begin
       $display("%t: ERROR: Master Cells Miss............", $time);
+      //Hung mod 1_1_2020 
       cfg.n_errors++;
     end
   end
@@ -138,6 +141,8 @@ endclass: Slv_scoreboard
 //--------------------------------------------------------------------------------
 
 function Slv_scoreboard::new(input Config cfg);
+    //Hung mod 1_1_2020 
+    this.cfg = cfg;
   expect_cells = new[cfg.masnum];
   foreach(expect_cells[i])
     expect_cells[i] = new();
@@ -168,9 +173,10 @@ function void Slv_scoreboard::check_actual(input Slave s, input int portID);
   s.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[s.hrdata].sq.size() == 0) begin
-    $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", $time, s.hrdata);
+    $display("%t: ERROR: Cell not found because the scoreboard for Master %0d empty", $time, s.hrdata);
   end
 
+  //Hung db 2_1_2020 expect_cells[s.hrdata].iactual++;
   expect_cells[s.hrdata].iactual++;
   iactual++; 
   foreach(expect_cells[s.hrdata].sq[i]) begin 
@@ -189,11 +195,11 @@ endfunction: check_actual
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::display(input string prefix="");
-  $display("%t: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
+  $display("%t: Total expected cells sent %d, Total actual cells received %0d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
-    $display("Slave: %d, expected: %d, actual: %d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
+    $display("Slave: %0d, expected: %d, actual: %0d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
     foreach (expect_cells[i].sq[j])
-      expect_cells[i].sq[j].display($sformatf("%s Scoreboard: Slave %d", prefix, i));
+      expect_cells[i].sq[j].display($sformatf("%s Scoreboard: Slave %0d", prefix, i));
   end
 
 endfunction: display

@@ -16,16 +16,16 @@ module AHB_bus
 //#INTERFACEGEN#
 //#SI#
 	input  mas_send_type  master_1_in,
-	input  [$clog2(2)-1:0]  hprior_master_1,
+	input  [$clog2(4)-1:0]  hprior_master_1,
 	output  slv_send_type  master_1_out,
 	input  mas_send_type  master_2_in,
-	input  [$clog2(2)-1:0]  hprior_master_2,
+	input  [$clog2(4)-1:0]  hprior_master_2,
 	output  slv_send_type  master_2_out,
 	input  mas_send_type  master_3_in,
-	input  [$clog2(2)-1:0]  hprior_master_3,
+	input  [$clog2(4)-1:0]  hprior_master_3,
 	output  slv_send_type  master_3_out,
 	input  mas_send_type  kemee_in,
-	input  [$clog2(2)-1:0]  hprior_kemee,
+	input  [$clog2(4)-1:0]  hprior_kemee,
 	output  slv_send_type  kemee_out,
 //#MI#
 	input  slv_send_type  slave_1_in,
@@ -125,6 +125,30 @@ module AHB_bus
 	logic [2-1:0][$clog2(2)-1:0] hprior_slave_7;
 	logic hgrant_slave_7_master_1;
 	logic hgrant_slave_7_kemee;
+//================================================================================
+//Simulate
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_1.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_2.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_3.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_kemee.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_1.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_2.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_3.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_kemee.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_1.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_2.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_3.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_4.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_5.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_6.sv"
+  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_7.sv"
 //================================================================================
 //#DECGEN# 
 	AHB_decoder_master_1 DEC_master_1	(

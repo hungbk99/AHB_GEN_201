@@ -8,13 +8,15 @@
 
 
 //--------------------------------------------------------------------------------
-import ahb_package::*;
+//import ahb_package::*;
+import AHB_package::*;
 virtual class Basetrans;
-  static int count;        // Number of instances created
+  static int count = 0;        // Number of instances created
   int id;                  // Unique transaction id  
 
   function new();
     id = count++;
+    $display("%t: id debug ......... %0d", $time, count);
   endfunction
 //pure: no implementaion needed in base class
 //      must be overridden in derived class
@@ -31,10 +33,10 @@ class Master extends Basetrans;
 
   rand bit [31:0]   initial_haddr; 
   rand bit          hwrite;
-  rand hsize_rtype  hsize;
-  rand hburst_rtype hburst;
+  rand hsize_type   hsize;
+  rand hburst_type  hburst;
   rand bit [3:0]    hprot;
-  htrans_rtype  htrans;
+  rand htrans_type  htrans;
   rand bit          hmastlock;
   rand bit [31:0]   hwdata;
   
@@ -77,10 +79,11 @@ endfunction: new
 
 function void Master::display(input string prefix="");
   $write ("Config: start_addr = %0h, stop_addr = %0h", start_addr, stop_addr);
+  $display();
   $display("INFO: %s", prefix);
   $write("CELL_ID: %d", id);
   $display();
-  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0h, hburst = %0h, hprot = %0h, htrans = %0h, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,hprot, htrans, hmastlock, hwdata);
+  $write ("Rand: initial_addr = %0h, hwrite = %0b, hsize = %0s, hburst = %0s, hprot = %0h, htrans = %0s, hmastlock = %b, hwdata = %0h", initial_haddr, hwrite, hsize, hburst,hprot, htrans, hmastlock, hwdata);
   $display();
 endfunction: display 
 
@@ -189,6 +192,7 @@ function void Slave::display(
               input string prefix="");
   //$write("Config: hreadyout = %b, hresp = %b, hrdata = %h", hreadyout, hresp, hrdata);  
   $write("Config: hrdata = %h, hresp = %b", hrdata, hresp);  
+  $display();
   //$write("SLV_ID: %d", id);
   $display("INFO: %s", prefix);
 endfunction: display

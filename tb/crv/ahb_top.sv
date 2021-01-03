@@ -15,7 +15,7 @@
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_env.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_test.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
 
 //--------------------------------------------------------------------------------
 
@@ -31,9 +31,9 @@ module top;
   logic hreset_n, hclk;
 
   initial begin
-    hreset_n = 1;
+    hreset_n = 0;
     hclk = 0;
-    #`HCYCLE hreset_n = 0;
+    #`HCYCLE hreset_n = 1;
     #`HCYCLE hclk = 1;
     #`HCYCLE hreset_n = 1; hclk = 0;
     forever 
@@ -45,6 +45,7 @@ module top;
   ahb_itf   mas[0:MasNum-1] (hclk);  
   ahb_itf   slv[0:SlvNum-1] (hclk);  
 
+  `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
   dut 
   #(
     .MasNum(MasNum),

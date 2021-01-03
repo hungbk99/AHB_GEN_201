@@ -26,7 +26,8 @@ interface ahb_itf(input hclk);
   
   clocking master_cb @(posedge hclk);
     input  mas_out;  
-    output mas_in, prio; 
+    output mas_in;
+    output prio; 
   endclocking: master_cb
 
   clocking slave_cb @(posedge hclk);
