@@ -64,7 +64,8 @@ while (my $line = <SAMPLE>)
         #print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  hprior_${master_name},\n");
         #print DEST ("\tinput  slv_send_type  ${master_name}_in,\n");
         print DEST ("\tinput  mas_send_type  ${master_name}_in,\n");
-        print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  hprior_${master_name},\n");
+        #print DEST ("\tinput  [\$clog2(${prior_level})-1:0]  hprior_${master_name},\n");
+        print DEST ("\tinput  [${prior_level}-1:0]  hprior_${master_name},\n");
         #print DEST ("\tinput  [${prior_level}-1:0]  hprior_${master_name},\n");
         print DEST ("\toutput  slv_send_type  ${master_name}_out,\n");
       }
@@ -124,7 +125,8 @@ while (my $line = <SAMPLE>)
         print DEST ("\tmas_send_type payload_${slave_name}_out;\n");
         print DEST ("\tlogic [${master_num}-1:0] hgrant_${slave_name};\n");
         #Hung mod 28_12
-        print DEST ("\tlogic [${master_num}-1:0][\$clog2($prior_level)-1:0] hprior_${slave_name};\n");
+        #Hung mod 4_2_2020 print DEST ("\tlogic [${master_num}-1:0][\$clog2($prior_level)-1:0] hprior_${slave_name};\n");
+        print DEST ("\tlogic [${master_num}-1:0][$prior_level-1:0] hprior_${slave_name};\n");
           # Hung add 12/12
           #my $master_num = $sheet_3_data[$i_1][1]; 
         foreach my $k (0 .. scalar @sheet_4_data)
@@ -202,7 +204,10 @@ while (my $line = <SAMPLE>)
         print DEST ("\t(\n");  
         print DEST ("\t\t.payload_in(payload_${slave_name}_in),\n");  
         print DEST ("\t\t.payload_out(payload_${slave_name}_out),\n");  
+        #Hung db 4_2_2021 
         print DEST ("\t\t.sel(hgrant_${slave_name})\n");  
+        #print DEST ("\t\t.sel(hsel_${slave_name})\n");  
+        #print DEST ("\t\t.sel(hreq_${slave_name})\n");  
         print DEST ("\t);\n\n");  
       }
     }

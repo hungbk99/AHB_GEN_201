@@ -16,16 +16,16 @@ module AHB_bus
 //#INTERFACEGEN#
 //#SI#
 	input  mas_send_type  master_1_in,
-	input  [$clog2(4)-1:0]  hprior_master_1,
+	input  [2-1:0]  hprior_master_1,
 	output  slv_send_type  master_1_out,
 	input  mas_send_type  master_2_in,
-	input  [$clog2(4)-1:0]  hprior_master_2,
+	input  [2-1:0]  hprior_master_2,
 	output  slv_send_type  master_2_out,
 	input  mas_send_type  master_3_in,
-	input  [$clog2(4)-1:0]  hprior_master_3,
+	input  [2-1:0]  hprior_master_3,
 	output  slv_send_type  master_3_out,
 	input  mas_send_type  kemee_in,
-	input  [$clog2(4)-1:0]  hprior_kemee,
+	input  [2-1:0]  hprior_kemee,
 	output  slv_send_type  kemee_out,
 //#MI#
 	input  slv_send_type  slave_1_in,
@@ -78,7 +78,7 @@ module AHB_bus
 	logic [3-1:0][SI_PAYLOAD-1:0] payload_slave_1_in;
 	mas_send_type payload_slave_1_out;
 	logic [3-1:0] hgrant_slave_1;
-	logic [3-1:0][$clog2(2)-1:0] hprior_slave_1;
+	logic [3-1:0][2-1:0] hprior_slave_1;
 	logic hgrant_slave_1_master_1;
 	logic hgrant_slave_1_master_2;
 	logic hgrant_slave_1_kemee;
@@ -86,28 +86,28 @@ module AHB_bus
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_2_in;
 	mas_send_type payload_slave_2_out;
 	logic [2-1:0] hgrant_slave_2;
-	logic [2-1:0][$clog2(2)-1:0] hprior_slave_2;
+	logic [2-1:0][2-1:0] hprior_slave_2;
 	logic hgrant_slave_2_master_1;
 	logic hgrant_slave_2_kemee;
 	logic [2-1:0] hreq_slave_3;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_3_in;
 	mas_send_type payload_slave_3_out;
 	logic [2-1:0] hgrant_slave_3;
-	logic [2-1:0][$clog2(2)-1:0] hprior_slave_3;
+	logic [2-1:0][2-1:0] hprior_slave_3;
 	logic hgrant_slave_3_master_2;
 	logic hgrant_slave_3_kemee;
 	logic [2-1:0] hreq_slave_4;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_4_in;
 	mas_send_type payload_slave_4_out;
 	logic [2-1:0] hgrant_slave_4;
-	logic [2-1:0][$clog2(2)-1:0] hprior_slave_4;
+	logic [2-1:0][2-1:0] hprior_slave_4;
 	logic hgrant_slave_4_master_3;
 	logic hgrant_slave_4_kemee;
 	logic [4-1:0] hreq_slave_5;
 	logic [4-1:0][SI_PAYLOAD-1:0] payload_slave_5_in;
 	mas_send_type payload_slave_5_out;
 	logic [4-1:0] hgrant_slave_5;
-	logic [4-1:0][$clog2(2)-1:0] hprior_slave_5;
+	logic [4-1:0][2-1:0] hprior_slave_5;
 	logic hgrant_slave_5_master_1;
 	logic hgrant_slave_5_master_2;
 	logic hgrant_slave_5_master_3;
@@ -116,39 +116,15 @@ module AHB_bus
 	logic [1-1:0][SI_PAYLOAD-1:0] payload_slave_6_in;
 	mas_send_type payload_slave_6_out;
 	logic [1-1:0] hgrant_slave_6;
-	logic [1-1:0][$clog2(2)-1:0] hprior_slave_6;
+	logic [1-1:0][2-1:0] hprior_slave_6;
 	logic hgrant_slave_6_kemee;
 	logic [2-1:0] hreq_slave_7;
 	logic [2-1:0][SI_PAYLOAD-1:0] payload_slave_7_in;
 	mas_send_type payload_slave_7_out;
 	logic [2-1:0] hgrant_slave_7;
-	logic [2-1:0][$clog2(2)-1:0] hprior_slave_7;
+	logic [2-1:0][2-1:0] hprior_slave_7;
 	logic hgrant_slave_7_master_1;
 	logic hgrant_slave_7_kemee;
-//================================================================================
-//Simulate
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_1.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_2.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_master_3.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/decoder/AHB_decoder_kemee.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_1.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_2.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_3.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_4.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_5.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_6.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/arbiter/AHB_arbiter_slave_7.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_1.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_2.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_master_3.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_si_mux_kemee.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_1.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_2.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_3.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_4.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_5.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_6.sv"
-  `include"D:/Project/AMBA_BUS/AHB_GEN_201/Gen_Result/mux/AHB_mi_mux_slave_7.sv"
 //================================================================================
 //#DECGEN# 
 	AHB_decoder_master_1 DEC_master_1	(

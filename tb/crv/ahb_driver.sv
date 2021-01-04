@@ -157,19 +157,19 @@ task Mas_driver::send(input Master m);
     WRAP4, INCR4:
     begin 
       num = 4;
-      wrap_addr = m.initial_haddr & (32'hF << (m.hsize + 2));
+      wrap_addr = m.initial_haddr & ('1 << (m.hsize + 2));
       limit_addr = wrap_addr + 2**(m.hsize)*3; 
     end
     WRAP8, INCR8: 
     begin
       num = 8;
-      wrap_addr = m.initial_haddr & (32'hF << (m.hsize + 3)); 
+      wrap_addr = m.initial_haddr & ('1 << (m.hsize + 3)); 
       limit_addr = wrap_addr + 2**(m.hsize)*7; 
     end
     WRAP16, INCR16:
     begin
       num = 16;
-      wrap_addr = m.initial_haddr & (32'hF << (m.hsize + 4)); 
+      wrap_addr = m.initial_haddr & ('1 << (m.hsize + 4)); 
       limit_addr = wrap_addr + 2**(m.hsize)*15; 
     end
   endcase
@@ -246,7 +246,7 @@ task Mas_driver::send(input Master m);
     //put data in Mas_scoreboard
     foreach (cbsq[i]) begin
       cbsq[i].post_tx(this, fix);
-    $display("%t: Driver debug ...... cbsq_size=%0d", $time, cbsq.size());
+    $display("%t: Driver debug ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
     end
     $display("%t: Driver debug ......", $time);
       
@@ -391,7 +391,9 @@ task Slv_driver::send(input Slave s);
   
   //for(int i = 0; i < num; i++)
   //begin
-    @(slv.slave_cb.hsel)
+    //Hung db 4_1_2020 @(slv.slave_cb.hsel)
+    @(slv.slave_cb)
+    wait(slv.slave_cb.hsel)
     $display("============================================================================================================");
     $display("Response....");
     slv.slave_cb.slv_in.hreadyout <= 1;

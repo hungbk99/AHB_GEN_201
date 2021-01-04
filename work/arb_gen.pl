@@ -93,7 +93,8 @@ foreach my $i (0 .. scalar @sheet_3_data)
         if($sheet_3_data[$i-1][1] eq 'YES')
         {
           print DEST ("\tparameter SLAVE_X_PRIOR_LEVEL = ${prior_level},\n");
-          print DEST ("\tparameter SLAVE_X_PRIOR_BIT = \$clog2(SLAVE_X_PRIOR_LEVEL),\n");
+          #Hung db 4_2_2020 print DEST ("\tparameter SLAVE_X_PRIOR_BIT = \$clog2(SLAVE_X_PRIOR_LEVEL),\n");
+          print DEST ("\tparameter SLAVE_X_PRIOR_BIT = SLAVE_X_PRIOR_LEVEL,\n");
         }
 
         if($sheet_3_data[$i][1] eq 'YES')

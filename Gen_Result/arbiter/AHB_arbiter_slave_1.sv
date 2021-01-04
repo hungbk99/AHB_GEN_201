@@ -213,8 +213,8 @@ module AHB_arbiter_slave_1
   end
 
   assign hgrant = grant & ~hwait;  
-  //Hung db 2_1_2020 assign hsel = hwait & |grant; 
-  assign hsel = |hgrant;
+  //Hung mod 4_1_2020 assign hsel = hwait & |grant; 
+  assign hsel = |grant; 
 
 //================================================================================
 // Monitor
@@ -234,11 +234,11 @@ module AHB_arbiter_slave_1
     if(!hreset_n)
     begin
         count <= '0;    
-        burst <= SINGLE;  //db
+        //Hung db 4_2_2020 burst <= SINGLE;  //db
     end
     else
     begin
-        burst <= hburst;
+        //Hung db 4_2_2020 burst <= hburst;
         if(count_clr)
             count <= '0;
         else if (count_ena && !hwait)
@@ -247,7 +247,9 @@ module AHB_arbiter_slave_1
             count <= count;
     end    
   end
-
+  
+  //Hung db 4_2_2020 
+  assign burst = hburst;
   assign monitor_last = (count == count_limit) ? 1'b1 : 1'b0;    
   
   always_comb begin
@@ -281,7 +283,8 @@ module AHB_arbiter_slave_1
       monitor_state <= monitor_next_state;
   end  
 
-  assign hlast = grant & monitor_last;  
+  //Hung mod 4_2_2020 assign hlast = grant & monitor_last;  
+  assign hlast = (monitor_state == MONITOR) ? (grant & monitor_last) : 1'b0;  
           
 endmodule: AHB_arbiter_slave_1
 
