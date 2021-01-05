@@ -52,11 +52,13 @@ endfunction: new
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::save_expected(Master m);
+  $display("============================================================================================================");
   $display("%t: Master_Scb Saved", $time);
   expect_cells[m.hwdata].mq.push_back(m);
   expect_cells[m.hwdata].iexpect++;
   iexpect++;
   m.display($sformatf("%t: Mas scoreboard Saved:", $time)); 
+  $display("============================================================================================================");
 endfunction: save_expected
 
 //--------------------------------------------------------------------------------
@@ -65,6 +67,7 @@ endfunction: save_expected
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::check_actual(input Master m, input int portID);
+  $display("============================================================================================================");
   m.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[m.hwdata].mq.size() == 0) begin
@@ -83,6 +86,7 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
       //Hung mod 1_1_2020 
       cfg.n_errors++;
     end
+  $display("============================================================================================================");
   end
  
 endfunction: check_actual
@@ -157,11 +161,13 @@ endfunction: new
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::save_expected(Slave s);
+  $display("============================================================================================================");
   $display("%t: Slave_Scb Saved", $time);
   expect_cells[s.hrdata].sq.push_back(s);
   expect_cells[s.hrdata].iexpect++;
   iexpect++;
   s.display($sformatf("%t: Slv scoreboard Saved:", $time)); 
+  $display("============================================================================================================");
 endfunction: save_expected
 
 //--------------------------------------------------------------------------------
@@ -170,6 +176,7 @@ endfunction: save_expected
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::check_actual(input Slave s, input int portID);
+  $display("============================================================================================================");
   s.display($sformatf("%t: Scoreboard Check.......", $time));
    
   if(expect_cells[s.hrdata].sq.size() == 0) begin
@@ -189,6 +196,7 @@ function void Slv_scoreboard::check_actual(input Slave s, input int portID);
       cfg.n_errors++;
     end
   end
+  $display("============================================================================================================");
  
 endfunction: check_actual
 

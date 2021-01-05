@@ -214,7 +214,8 @@ module AHB_arbiter_slave_5
 
   assign hgrant = grant & ~hwait;  
   //Hung mod 4_1_2020 assign hsel = hwait & |grant; 
-  assign hsel = |grant; 
+  //Hung mod 5-1_2020 assign hsel = |grant; 
+  assign hsel = (|grant) ? 1'b1 : 1'b0; 
 
 //================================================================================
 // Monitor

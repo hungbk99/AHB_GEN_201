@@ -246,9 +246,9 @@ task Mas_driver::send(input Master m);
     //put data in Mas_scoreboard
     foreach (cbsq[i]) begin
       cbsq[i].post_tx(this, fix);
-    $display("%t: Driver debug ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+    $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
     end
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
       
     @(mas.master_cb);
     wait(mas.master_cb.mas_out.hreadyout);
@@ -270,7 +270,7 @@ task Mas_driver::send(input Master m);
     $display("%t: Doneeeee ......", $time);
   end
  
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
 endtask: send
 
 
@@ -331,23 +331,23 @@ task Slv_driver::run();
   Slave s;
   
   $display("***************************************");
-    $display("%t: Driver debug ......", $time);
+   // $display("%t: Driver debug ......", $time);
   //Initial 
   slv.slave_cb.slv_in.hreadyout = 0;
   slv.slave_cb.slv_in.hresp = 0;
   slv.slave_cb.slv_in.hrdata = '0;
 
-    $display("%t: Driver debug ......", $time);
+   // $display("%t: Driver debug ......", $time);
   forever begin
     //Read from mailbox
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
     slv_gen2drv.peek(s);
     begin: slv_tx
       //foreach(cbsq[i]) begin
       //  cbsq[i].pre_rx(this, s);
       //end
       
-      $display("%t: Driver debug ......", $time);
+     // $display("%t: Driver debug ......", $time);
 
       s.display($sformatf("%t: %0d", $time, portID));
 
@@ -402,7 +402,7 @@ task Slv_driver::send(input Slave s);
     //Put data in Slv_scoreboard 
     foreach(cbsq[i]) begin
       cbsq[i].post_rx(this, fix);
-    $display("%t: Driver debug ...... cbsq_size=%0d", $time, cbsq.size());
+    $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
     end
   //end  
 

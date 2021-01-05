@@ -141,17 +141,25 @@ task Slv_monitor::receive(output Master m);
   //Hung db 2_1_2020
   m = new(32'h0, 32'hFFFF_FFFF);
   
-  @(slv.slave_cb.hsel); 
+  @(slv.slave_cb); 
   wait(slv.slave_cb.hsel); 
-    m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
-    m.hwrite <= slv.slave_cb.slv_out.hwrite;
-    m.hsize <= slv.slave_cb.slv_out.hsize;
-    m.hburst <= slv.slave_cb.slv_out.hburst;
-    m.hprot <= slv.slave_cb.slv_out.hprot;
-    m.htrans <= slv.slave_cb.slv_out.htrans;
-    m.hmastlock <= slv.slave_cb.slv_out.hmastlock;
-    m.hwdata <= slv.slave_cb.slv_out.hwdata;
+   //Hung 5_1_2020 m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
+   //Hung 5_1_2020 m.hwrite <= slv.slave_cb.slv_out.hwrite;
+   //Hung 5_1_2020 m.hsize <= slv.slave_cb.slv_out.hsize;
+   //Hung 5_1_2020 m.hburst <= slv.slave_cb.slv_out.hburst;
+   //Hung 5_1_2020 m.hprot <= slv.slave_cb.slv_out.hprot;
+   //Hung 5_1_2020 m.htrans <= slv.slave_cb.slv_out.htrans;
+   //Hung 5_1_2020 m.hmastlock <= slv.slave_cb.slv_out.hmastlock;
+   //Hung 5_1_2020 m.hwdata <= slv.slave_cb.slv_out.hwdata;
 
+   m.initial_haddr = slv.slave_cb.slv_out.haddr; 
+   m.hwrite = slv.slave_cb.slv_out.hwrite;
+   m.hsize = slv.slave_cb.slv_out.hsize;
+   m.hburst = slv.slave_cb.slv_out.hburst;
+   m.hprot = slv.slave_cb.slv_out.hprot;
+   m.htrans = slv.slave_cb.slv_out.htrans;
+   m.hmastlock = slv.slave_cb.slv_out.hmastlock;
+   m.hwdata = slv.slave_cb.slv_out.hwdata;
  m.display($sformatf("%t: Slave_Monitor %0d", $time, portID));
 
 endtask: receive
