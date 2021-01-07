@@ -6,16 +6,16 @@
  * v0.0       2/10/2020 Quang Hung  First Creation
  *********************************************************************************/
 
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_driver.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_env.sv"
-`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_test.sv"
-//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_driver.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_env.sv"
+//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_test.sv"
+////`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
 
 //--------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ module top;
   ahb_itf   mas[0:MasNum-1] (hclk);  
   ahb_itf   slv[0:SlvNum-1] (hclk);  
 
-  `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
+  //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"
   dut 
   #(
     .MasNum(MasNum),
@@ -68,5 +68,12 @@ module top;
   (
     mas, slv, hreset_n, hclk
   );
- 
+
+  initial begin
+    $dumpfile("waveforms.vcd");
+    $dumpvars();
+    $vcdpluson();
+    //$dumpvars(0,top);
+  end 
+
 endmodule: top
