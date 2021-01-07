@@ -47,6 +47,42 @@ function Mas_monitor::new(
   this.portID = portID;
 endfunction
 
+//Hung mod 6_1_2021//--------------------------------------------------------------------------------
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021task Mas_monitor::run();
+//Hung mod 6_1_2021  Slave s;
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021  //Hung db 2_1_2020
+//Hung mod 6_1_2021  //s = new();
+//Hung mod 6_1_2021  
+//Hung mod 6_1_2021  forever begin
+//Hung mod 6_1_2021    receive(s);
+//Hung mod 6_1_2021    foreach(cbsq[i])
+//Hung mod 6_1_2021      cbsq[i].post_rx(this, s);
+//Hung mod 6_1_2021  end   
+//Hung mod 6_1_2021  
+//Hung mod 6_1_2021endtask: run
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021//--------------------------------------------------------------------------------
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021task  Mas_monitor::receive(output Slave s);
+//Hung mod 6_1_2021  //Hung db 2_1_2020
+//Hung mod 6_1_2021   s = new();
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021   @(mas.master_cb.mas_out.hreadyout);
+//Hung mod 6_1_2021   wait(mas.master_cb.mas_out.hreadyout);
+//Hung mod 6_1_2021     //s.hreadyout <= 1'b1; 
+//Hung mod 6_1_2021     //s.hresp <= mas.master_cb.mas_out.hresp;
+//Hung mod 6_1_2021     //s.hrdata <= mas.master_cb.mas_out.hrdata; 
+//Hung mod 6_1_2021     s.hreadyout = 1'b1; 
+//Hung mod 6_1_2021     s.hresp = mas.master_cb.mas_out.hresp;
+//Hung mod 6_1_2021     s.hrdata = mas.master_cb.mas_out.hrdata; 
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021   s.display($sformatf("%t Master_Monitor (%0d) Receive", $time, portID)); 
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021endtask: receive
+
+
 //--------------------------------------------------------------------------------
 
 task Mas_monitor::run();
@@ -57,8 +93,6 @@ task Mas_monitor::run();
   
   forever begin
     receive(s);
-    foreach(cbsq[i])
-      cbsq[i].post_rx(this, s);
   end   
   
 endtask: run
@@ -70,7 +104,7 @@ task  Mas_monitor::receive(output Slave s);
    s = new();
 
    @(mas.master_cb.mas_out.hreadyout);
-   wait(mas.master_cb.mas_out.hreadyout);
+   if(mas.master_cb.mas_out.hreadyout == 1'b1) begin
      //s.hreadyout <= 1'b1; 
      //s.hresp <= mas.master_cb.mas_out.hresp;
      //s.hrdata <= mas.master_cb.mas_out.hrdata; 
@@ -78,8 +112,11 @@ task  Mas_monitor::receive(output Slave s);
      s.hresp = mas.master_cb.mas_out.hresp;
      s.hrdata = mas.master_cb.mas_out.hrdata; 
 
-   s.display($sformatf("%t Master_Monitor %d", $time, portID)); 
-
+     s.display($sformatf("%t Master_Monitor (%0d) Receive", $time, portID)); 
+    
+    foreach(cbsq[i])
+      cbsq[i].post_rx(this, s);
+   end
 endtask: receive
 
 //--------------------------------------------------------------------------------
@@ -121,6 +158,49 @@ function Slv_monitor::new(
   this.portID = portID;
 endfunction: new
 
+//Hung mod 6_1_2021//--------------------------------------------------------------------------------
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021task Slv_monitor::run();
+//Hung mod 6_1_2021  Master m;
+//Hung mod 6_1_2021  //Hung db 2_1_2020
+//Hung mod 6_1_2021  //m = new(32'h0, 32'hFFFF_FFFF);
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021  forever begin
+//Hung mod 6_1_2021    receive(m);
+//Hung mod 6_1_2021    foreach(cbsq[i])
+//Hung mod 6_1_2021      cbsq[i].post_rx(this, m);
+//Hung mod 6_1_2021  end
+//Hung mod 6_1_2021endtask: run
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021//--------------------------------------------------------------------------------
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021task Slv_monitor::receive(output Master m);
+//Hung mod 6_1_2021  //Hung db 2_1_2020
+//Hung mod 6_1_2021  m = new(32'h0, 32'hFFFF_FFFF);
+//Hung mod 6_1_2021  
+//Hung mod 6_1_2021  @(slv.slave_cb); 
+//Hung mod 6_1_2021  wait(slv.slave_cb.hsel); 
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hwrite <= slv.slave_cb.slv_out.hwrite;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hsize <= slv.slave_cb.slv_out.hsize;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hburst <= slv.slave_cb.slv_out.hburst;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hprot <= slv.slave_cb.slv_out.hprot;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.htrans <= slv.slave_cb.slv_out.htrans;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hmastlock <= slv.slave_cb.slv_out.hmastlock;
+//Hung mod 6_1_2021   //Hung 5_1_2020 m.hwdata <= slv.slave_cb.slv_out.hwdata;
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021   m.initial_haddr = slv.slave_cb.slv_out.haddr; 
+//Hung mod 6_1_2021   m.hwrite = slv.slave_cb.slv_out.hwrite;
+//Hung mod 6_1_2021   m.hsize = slv.slave_cb.slv_out.hsize;
+//Hung mod 6_1_2021   m.hburst = slv.slave_cb.slv_out.hburst;
+//Hung mod 6_1_2021   m.hprot = slv.slave_cb.slv_out.hprot;
+//Hung mod 6_1_2021   m.htrans = slv.slave_cb.slv_out.htrans;
+//Hung mod 6_1_2021   m.hmastlock = slv.slave_cb.slv_out.hmastlock;
+//Hung mod 6_1_2021   m.hwdata = slv.slave_cb.slv_out.hwdata;
+//Hung mod 6_1_2021   m.display($sformatf("%t: Slave_Monitor (%0d) Receive", $time, portID));
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021endtask: receive
+
 //--------------------------------------------------------------------------------
 
 task Slv_monitor::run();
@@ -130,8 +210,8 @@ task Slv_monitor::run();
 
   forever begin
     receive(m);
-    foreach(cbsq[i])
-      cbsq[i].post_rx(this, m);
+    //foreach(cbsq[i])
+    //  cbsq[i].post_rx(this, m);
   end
 endtask: run
 
@@ -139,27 +219,21 @@ endtask: run
 
 task Slv_monitor::receive(output Master m);
   //Hung db 2_1_2020
-  m = new(32'h0, 32'hFFFF_FFFF);
   
   @(slv.slave_cb); 
-  wait(slv.slave_cb.hsel); 
-   //Hung 5_1_2020 m.initial_haddr <= slv.slave_cb.slv_out.haddr; 
-   //Hung 5_1_2020 m.hwrite <= slv.slave_cb.slv_out.hwrite;
-   //Hung 5_1_2020 m.hsize <= slv.slave_cb.slv_out.hsize;
-   //Hung 5_1_2020 m.hburst <= slv.slave_cb.slv_out.hburst;
-   //Hung 5_1_2020 m.hprot <= slv.slave_cb.slv_out.hprot;
-   //Hung 5_1_2020 m.htrans <= slv.slave_cb.slv_out.htrans;
-   //Hung 5_1_2020 m.hmastlock <= slv.slave_cb.slv_out.hmastlock;
-   //Hung 5_1_2020 m.hwdata <= slv.slave_cb.slv_out.hwdata;
-
-   m.initial_haddr = slv.slave_cb.slv_out.haddr; 
-   m.hwrite = slv.slave_cb.slv_out.hwrite;
-   m.hsize = slv.slave_cb.slv_out.hsize;
-   m.hburst = slv.slave_cb.slv_out.hburst;
-   m.hprot = slv.slave_cb.slv_out.hprot;
-   m.htrans = slv.slave_cb.slv_out.htrans;
-   m.hmastlock = slv.slave_cb.slv_out.hmastlock;
-   m.hwdata = slv.slave_cb.slv_out.hwdata;
- m.display($sformatf("%t: Slave_Monitor %0d", $time, portID));
-
+  if(slv.slave_cb.hsel === 1'b1) begin
+    m = new(32'h0, 32'hFFFF_FFFF);
+    m.initial_haddr = slv.slave_cb.slv_out.haddr; 
+    m.hwrite = slv.slave_cb.slv_out.hwrite;
+    m.hsize = slv.slave_cb.slv_out.hsize;
+    m.hburst = slv.slave_cb.slv_out.hburst;
+    m.hprot = slv.slave_cb.slv_out.hprot;
+    m.htrans = slv.slave_cb.slv_out.htrans;
+    m.hmastlock = slv.slave_cb.slv_out.hmastlock;
+    m.hwdata = slv.slave_cb.slv_out.hwdata;
+    m.display($sformatf("%t: Slave_Monitor (%0d) Receive", $time, portID));
+    
+    foreach(cbsq[i])
+      cbsq[i].post_rx(this, m);
+  end  
 endtask: receive
