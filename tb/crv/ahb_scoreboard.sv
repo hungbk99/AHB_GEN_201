@@ -53,7 +53,7 @@ endfunction: new
 
 function void Mas_scoreboard::save_expected(Master m);
   $display("============================================================================================================");
-  $display("%t: Master_Scb Saved", $time);
+  $display("%t: Master Scoreboard Saved", $time);
   expect_cells[m.hwdata].mq.push_back(m);
   expect_cells[m.hwdata].iexpect++;
   iexpect++;
@@ -68,7 +68,8 @@ endfunction: save_expected
 
 function void Mas_scoreboard::check_actual(input Master m, input int portID);
   $display("============================================================================================================");
-  m.display($sformatf("%t: Scoreboard Check.......", $time));
+  m.display($sformatf("%t:Master Scoreboard Check.......", $time));
+  $display("Slave: %0d", portID); 
    
   if(expect_cells[m.hwdata].mq.size() == 0) begin
     $display("%t: ERROR: Cell not found because the scoreboard for Master %d empty", $time, m.hwdata);
@@ -77,8 +78,11 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
   expect_cells[m.hwdata].iactual++;
   iactual++; 
   foreach(expect_cells[m.hwdata].mq[i]) begin 
+    //Hung mod 6_1_2021
+    expect_cells[m.hwdata].mq[i].display($sformatf("INFO: mq[%0d]", i));
+    m.display();
     if(expect_cells[m.hwdata].mq[i].compare(m)) begin
-      $display("%t: Master Cells Match............", $time);
+      $display("%t: PASS:: Master Cells Match............", $time);
       expect_cells[m.hwdata].mq.delete(i);  
     end
     else begin
@@ -86,8 +90,8 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
       //Hung mod 1_1_2020 
       cfg.n_errors++;
     end
-  $display("============================================================================================================");
   end
+  $display("============================================================================================================");
  
 endfunction: check_actual
 
@@ -162,7 +166,7 @@ endfunction: new
 
 function void Slv_scoreboard::save_expected(Slave s);
   $display("============================================================================================================");
-  $display("%t: Slave_Scb Saved", $time);
+  $display("%t: Slave Scoreboard Saved", $time);
   expect_cells[s.hrdata].sq.push_back(s);
   expect_cells[s.hrdata].iexpect++;
   iexpect++;
@@ -177,18 +181,21 @@ endfunction: save_expected
 
 function void Slv_scoreboard::check_actual(input Slave s, input int portID);
   $display("============================================================================================================");
-  s.display($sformatf("%t: Scoreboard Check.......", $time));
-   
+  s.display($sformatf("%t: Slave Scoreboard Check.......", $time));
+  $display("Master: %0d", portID); 
   if(expect_cells[s.hrdata].sq.size() == 0) begin
-    $display("%t: ERROR: Cell not found because the scoreboard for Master %0d empty", $time, s.hrdata);
+    $display("%t: ERROR: Cell not found because the scoreboard for Slave %0d empty", $time, s.hrdata);
   end
 
   //Hung db 2_1_2020 expect_cells[s.hrdata].iactual++;
   expect_cells[s.hrdata].iactual++;
   iactual++; 
   foreach(expect_cells[s.hrdata].sq[i]) begin 
+    //Hung mod 6_1_2021
+    expect_cells[s.hrdata].sq[i].display($sformatf("INFO: mq[%0d]", i));
+    s.display();
     if(expect_cells[s.hrdata].sq[i].compare(s)) begin
-      $display("%t: Slave Cells Match............", $time);
+      $display("%t: PASS:: Master Cells Match............", $time);
       expect_cells[s.hrdata].sq.delete(i);  
     end
     else begin
