@@ -94,18 +94,18 @@ task Mas_driver::run();
   //dbx mas.master_cb.mas_in.hmastlock = '0;
   //dbx mas.master_cb.mas_in.hwdata = '0;
   mas.master_cb.prio <= cfg.prior[portID];
-  $display("***************************************************");
-  $display("Initial value");
-  $display("haddr:%h", mas.master_cb.mas_in.haddr);
-  $display("hwrite:%h", mas.master_cb.mas_in.hwrite);
-  $display("hsize:%s", mas.master_cb.mas_in.hsize);
-  $display("hburst:%s", mas.master_cb.mas_in.hburst);
-  $display("hprot:%h", mas.master_cb.mas_in.hprot);
-  $display("htrans:%s", mas.master_cb.mas_in.htrans);
-  $display("hmastlock:%h", mas.master_cb.mas_in.hmastlock);
-  $display("hwdata:%h", mas.master_cb.mas_in.hwdata);
-  $display("prior:%h", mas.master_cb.prio);
-  $display("***************************************************");
+  //Hung db 6_1_2021 $display("***************************************************");
+  //Hung db 6_1_2021 $display("Initial value");
+  //Hung db 6_1_2021 $display("haddr:%h", mas.master_cb.mas_in.haddr);
+  //Hung db 6_1_2021 $display("hwrite:%h", mas.master_cb.mas_in.hwrite);
+  //Hung db 6_1_2021 $display("hsize:%s", mas.master_cb.mas_in.hsize);
+  //Hung db 6_1_2021 $display("hburst:%s", mas.master_cb.mas_in.hburst);
+  //Hung db 6_1_2021 $display("hprot:%h", mas.master_cb.mas_in.hprot);
+  //Hung db 6_1_2021 $display("htrans:%s", mas.master_cb.mas_in.htrans);
+  //Hung db 6_1_2021 $display("hmastlock:%h", mas.master_cb.mas_in.hmastlock);
+  //Hung db 6_1_2021 $display("hwdata:%h", mas.master_cb.mas_in.hwdata);
+  //Hung db 6_1_2021 $display("prior:%h", mas.master_cb.prio);
+  //Hung db 6_1_2021 $display("***************************************************");
   
   forever begin
     //Read from mailbox
@@ -196,11 +196,112 @@ task Mas_driver::send(input Master m);
   //dbx //mas.master_cb.mas_in.htrans <= fix.htrans;
   //dbx mas.master_cb.mas_in.hmastlock = fix.hmastlock;
   //dbx mas.master_cb.mas_in.hwdata = fix.hwdata;
+   
+//Hung mod 6_1_2021  //Hung mod 6_1_2021   
+//Hung mod 6_1_2021  @(mas.master_cb);
+//Hung mod 6_1_2021  
+//Hung mod 6_1_2021  for(int i = 0; i < num; i++)  
+//Hung mod 6_1_2021  begin
+//Hung mod 6_1_2021    //$display("============================================================================================================");
+//Hung mod 6_1_2021    //$display("Transfer.... [%0d]", i);
+//Hung mod 6_1_2021    if(i == 0) begin
+//Hung mod 6_1_2021      mas.master_cb.mas_in.htrans <= NONSEQ; 
+//Hung mod 6_1_2021      //dbx mas.master_cb.mas_in.htrans = NONSEQ; 
+//Hung mod 6_1_2021      fix.htrans = NONSEQ;
+//Hung mod 6_1_2021      //dbx mas.master_cb.mas_in.haddr = fix.initial_haddr;
+//Hung mod 6_1_2021      mas.master_cb.mas_in.haddr <= fix.initial_haddr;
+//Hung mod 6_1_2021      $display("DBBBBB.... [%0d]", i);
+//Hung mod 6_1_2021    end
+//Hung mod 6_1_2021    else begin
+//Hung mod 6_1_2021      //@(mas.master_cb.mas_out.hreadyout);
+//Hung mod 6_1_2021        mas.master_cb.mas_in.htrans <= SEQ; 
+//Hung mod 6_1_2021        //dbx mas.master_cb.mas_in.htrans = SEQ; 
+//Hung mod 6_1_2021        fix.htrans = SEQ;
+//Hung mod 6_1_2021      //Hung mod 31_12_2020
+//Hung mod 6_1_2021      //Hung mod 6_1_2021 if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (mas.master_cb.mas_in.haddr == limit_addr))
+//Hung mod 6_1_2021      //Sampling of clocking block output is not allowed
+//Hung mod 6_1_2021      if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (fix.initial_haddr == limit_addr))
+//Hung mod 6_1_2021      begin
+//Hung mod 6_1_2021        //dbx mas.master_cb.mas_in.haddr = wrap_addr;
+//Hung mod 6_1_2021        mas.master_cb.mas_in.haddr <= wrap_addr;
+//Hung mod 6_1_2021        fix.initial_haddr = wrap_addr;
+//Hung mod 6_1_2021      end
+//Hung mod 6_1_2021      else begin
+//Hung mod 6_1_2021        //Hung mod 6_1_2021 mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
+//Hung mod 6_1_2021        mas.master_cb.mas_in.haddr <= fix.initial_haddr + 2**(m.hsize);
+//Hung mod 6_1_2021        //dbx mas.master_cb.mas_in.haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
+//Hung mod 6_1_2021        //Hung mod 6_1_2021 fix.initial_haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
+//Hung mod 6_1_2021        fix.initial_haddr = fix.initial_haddr + 2**(m.hsize);
+//Hung mod 6_1_2021      end    
+//Hung mod 6_1_2021      $display("DBBBBB.... [%0d]", i);
+//Hung mod 6_1_2021    end 
+//Hung mod 6_1_2021  
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021    //if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (mas.master_cb.mas_in.haddr == limit_addr))
+//Hung mod 6_1_2021    //begin
+//Hung mod 6_1_2021    //  mas.master_cb.mas_in.haddr <= wrap_addr;
+//Hung mod 6_1_2021    //  fix.initial_haddr = wrap_addr;
+//Hung mod 6_1_2021    //end
+//Hung mod 6_1_2021    //else begin
+//Hung mod 6_1_2021    //  mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
+//Hung mod 6_1_2021    //  fix.initial_haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
+//Hung mod 6_1_2021    //end    
+//Hung mod 6_1_2021    //mas.master_cb.mas_out.hwdata <= mas.master_cb.mas_out.hwdata + 1;
+//Hung mod 6_1_2021    
+//Hung mod 6_1_2021    //fix.initial_haddr = mas.master_cb.mas_in.haddr;
+//Hung mod 6_1_2021
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 //put data in Mas_scoreboard
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 foreach (cbsq[i]) begin
+//Hung mod 6_1_2021    //Hung mod 6_1_2021   cbsq[i].post_tx(this, fix);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 end
+//Hung mod 6_1_2021    //$display("%t: Driver debug ......", $time);
+//Hung mod 6_1_2021      
+//Hung mod 6_1_2021    @(mas.master_cb);
+//Hung mod 6_1_2021    wait(mas.master_cb.mas_out.hreadyout);
+//Hung mod 6_1_2021    $display("============================================================================================================");
+//Hung mod 6_1_2021    $display("Transfer.... [%0d]", i);
+//Hung mod 6_1_2021    $display("***************************************************");
+//Hung mod 6_1_2021    //$display("%0d transfer.... [%0d]", i);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("Send value");
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("haddr:%h", mas.master_cb.mas_in.haddr);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hwrite:%h", mas.master_cb.mas_in.hwrite);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hsize:%s", mas.master_cb.mas_in.hsize);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hburst:%s", mas.master_cb.mas_in.hburst);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hprot:%h", mas.master_cb.mas_in.hprot);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("htrans:%s", mas.master_cb.mas_in.htrans);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hmastlock:%h", mas.master_cb.mas_in.hmastlock);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("hwdata:%h", mas.master_cb.mas_in.hwdata);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("prior:%h", mas.master_cb.prio);
+//Hung mod 6_1_2021    $display("Send value");
+//Hung mod 6_1_2021    $display("haddr:%h", m.initial_haddr);
+//Hung mod 6_1_2021    $display("hwrite:%h", m.hwrite);
+//Hung mod 6_1_2021    $display("hsize:%s", m.hsize);
+//Hung mod 6_1_2021    $display("hburst:%s", m.hburst);
+//Hung mod 6_1_2021    $display("hprot:%h", m.hprot);
+//Hung mod 6_1_2021    $display("htrans:%s", m.htrans);
+//Hung mod 6_1_2021    $display("hmastlock:%h", m.hmastlock);
+//Hung mod 6_1_2021    $display("hwdata:%h", m.hwdata);
+//Hung mod 6_1_2021    $display("prior:%h", cfg.prior[portID]);
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("***************************************************");
+//Hung mod 6_1_2021    //Hung mod 6_1_2021 $display("%t: Doneeeee ......", $time);
+//Hung mod 6_1_2021    //put data in Mas_scoreboard
+//Hung mod 6_1_2021    foreach (cbsq[i]) begin
+//Hung mod 6_1_2021      cbsq[i].post_tx(this, fix);
+//Hung mod 6_1_2021    $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+//Hung mod 6_1_2021    end
+//Hung mod 6_1_2021  end
+//Hung mod 6_1_2021 
+//Hung mod 6_1_2021    //$display("%t: Driver debug ......", $time);
+//Hung mod 6_1_2021endtask: send
 
-  for(int i = 0; i < num; i++)  
+  //Hung mod 6_1_2021   
+  
+  for(int i = 0; i < num;)  
   begin
     //$display("============================================================================================================");
     //$display("Transfer.... [%0d]", i);
+    @(mas.master_cb);
     if(i == 0) begin
       mas.master_cb.mas_in.htrans <= NONSEQ; 
       //dbx mas.master_cb.mas_in.htrans = NONSEQ; 
@@ -208,71 +309,80 @@ task Mas_driver::send(input Master m);
       //dbx mas.master_cb.mas_in.haddr = fix.initial_haddr;
       mas.master_cb.mas_in.haddr <= fix.initial_haddr;
       $display("DBBBBB.... [%0d]", i);
+      
+      //put data in Mas_scoreboard
+      foreach (cbsq[i]) begin
+        cbsq[i].post_tx(this, fix);
+      $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+      end
+    $display("============================================================================================================");
+    $display("Transfer.... [%0d]", i);
+    $display("***************************************************");
+    $display("Send value");
+    $display("haddr:%h", m.initial_haddr);
+    $display("hwrite:%h", m.hwrite);
+    $display("hsize:%s", m.hsize);
+    $display("hburst:%s", m.hburst);
+    $display("hprot:%h", m.hprot);
+    $display("htrans:%s", m.htrans);
+    $display("hmastlock:%h", m.hmastlock);
+    $display("hwdata:%h", m.hwdata);
+    $display("prior:%h", cfg.prior[portID]);
+    $display("============================================================================================================");
+      i++;  
     end
-    else begin
+    else if(mas.master_cb.mas_out.hreadyout)
+    begin
       //@(mas.master_cb.mas_out.hreadyout);
         mas.master_cb.mas_in.htrans <= SEQ; 
         //dbx mas.master_cb.mas_in.htrans = SEQ; 
         fix.htrans = SEQ;
       //Hung mod 31_12_2020
-      if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (mas.master_cb.mas_in.haddr == limit_addr))
+      //Hung mod 6_1_2021 if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (mas.master_cb.mas_in.haddr == limit_addr))
+      //Sampling of clocking block output is not allowed
+      if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (fix.initial_haddr == limit_addr))
       begin
         //dbx mas.master_cb.mas_in.haddr = wrap_addr;
         mas.master_cb.mas_in.haddr <= wrap_addr;
         fix.initial_haddr = wrap_addr;
       end
       else begin
-        mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
+        //Hung mod 6_1_2021 mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
+        mas.master_cb.mas_in.haddr <= fix.initial_haddr + 2**(m.hsize);
         //dbx mas.master_cb.mas_in.haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
-        fix.initial_haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
+        //Hung mod 6_1_2021 fix.initial_haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
+        fix.initial_haddr = fix.initial_haddr + 2**(m.hsize);
       end    
-      $display("DBBBBB.... [%0d]", i);
-    end 
-  
 
-    //if(((m.hburst == WRAP4) || (m.hburst == WRAP8) || (m.hburst == WRAP16)) && (mas.master_cb.mas_in.haddr == limit_addr))
-    //begin
-    //  mas.master_cb.mas_in.haddr <= wrap_addr;
-    //  fix.initial_haddr = wrap_addr;
-    //end
-    //else begin
-    //  mas.master_cb.mas_in.haddr <= mas.master_cb.mas_in.haddr + 2**(m.hsize);
-    //  fix.initial_haddr = mas.master_cb.mas_in.haddr + 2**(m.hsize);
-    //end    
-    //mas.master_cb.mas_out.hwdata <= mas.master_cb.mas_out.hwdata + 1;
-    
-    //fix.initial_haddr = mas.master_cb.mas_in.haddr;
-
-    //put data in Mas_scoreboard
-    foreach (cbsq[i]) begin
-      cbsq[i].post_tx(this, fix);
-    $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
-    end
-    //$display("%t: Driver debug ......", $time);
-      
-    @(mas.master_cb);
-    wait(mas.master_cb.mas_out.hreadyout);
+      //put data in Mas_scoreboard
+      foreach (cbsq[i]) begin
+        cbsq[i].post_tx(this, fix);
+      $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+      end
     $display("============================================================================================================");
     $display("Transfer.... [%0d]", i);
     $display("***************************************************");
-    //$display("%0d transfer.... [%0d]", i);
     $display("Send value");
-    $display("haddr:%h", mas.master_cb.mas_in.haddr);
-    $display("hwrite:%h", mas.master_cb.mas_in.hwrite);
-    $display("hsize:%s", mas.master_cb.mas_in.hsize);
-    $display("hburst:%s", mas.master_cb.mas_in.hburst);
-    $display("hprot:%h", mas.master_cb.mas_in.hprot);
-    $display("htrans:%s", mas.master_cb.mas_in.htrans);
-    $display("hmastlock:%h", mas.master_cb.mas_in.hmastlock);
-    $display("hwdata:%h", mas.master_cb.mas_in.hwdata);
-    $display("prior:%h", mas.master_cb.prio);
-    $display("***************************************************");
-    $display("%t: Doneeeee ......", $time);
+    $display("haddr:%h", m.initial_haddr);
+    $display("hwrite:%h", m.hwrite);
+    $display("hsize:%s", m.hsize);
+    $display("hburst:%s", m.hburst);
+    $display("hprot:%h", m.hprot);
+    $display("htrans:%s", m.htrans);
+    $display("hmastlock:%h", m.hmastlock);
+    $display("hwdata:%h", m.hwdata);
+    $display("prior:%h", cfg.prior[portID]);
+    $display("============================================================================================================");
+      i++;  
+      $display("DBBBBB.... [%0d]", i);
+    end 
+  
+    //Hung mod 6_1_2021 $display("***************************************************");
+    //Hung mod 6_1_2021 $display("%t: Doneeeee ......", $time);
   end
  
     //$display("%t: Driver debug ......", $time);
 endtask: send
-
 
 //--------------------------------------------------------------------------------
 typedef class Slv_driver;
@@ -333,9 +443,12 @@ task Slv_driver::run();
   $display("***************************************");
    // $display("%t: Driver debug ......", $time);
   //Initial 
-  slv.slave_cb.slv_in.hreadyout = 0;
-  slv.slave_cb.slv_in.hresp = 0;
-  slv.slave_cb.slv_in.hrdata = '0;
+  //Hung mod 6_1_2021 slv.slave_cb.slv_in.hreadyout = 0;
+  //Hung mod 6_1_2021 slv.slave_cb.slv_in.hresp = 0;
+  //Hung mod 6_1_2021 slv.slave_cb.slv_in.hrdata = '0;
+  slv.slave_cb.slv_in.hreadyout <= 0;
+  slv.slave_cb.slv_in.hresp <= 0;
+  slv.slave_cb.slv_in.hrdata <= '0;
 
    // $display("%t: Driver debug ......", $time);
   forever begin
@@ -384,28 +497,25 @@ task Slv_driver::send(input Slave s);
   //  WRAP8, INCR8: num = 8;
   //  WRAP16, INCR16: num = 16;
   //endcase
-  slv.slave_cb.slv_in.hrdata = portID;
+  
+  //Hung mod 6_1_2021 slv.slave_cb.slv_in.hrdata = portID;
+  slv.slave_cb.slv_in.hrdata <= portID;
   fix.hrdata = portID;
   fix.hreadyout = 1;
   fix.hresp = 1;
-  
-  //for(int i = 0; i < num; i++)
-  //begin
-    //Hung db 4_1_2020 @(slv.slave_cb.hsel)
-    @(slv.slave_cb)
-    wait(slv.slave_cb.hsel)
-    $display("============================================================================================================");
-    $display("Response....");
-    slv.slave_cb.slv_in.hreadyout <= 1;
-    slv.slave_cb.slv_in.hresp <= 0;
-    //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
-    //Put data in Slv_scoreboard 
-    foreach(cbsq[i]) begin
-      cbsq[i].post_rx(this, fix);
-    $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
-    end
-  //end  
-
+ 
+  @(slv.slave_cb);
+  wait(slv.slave_cb.hsel);  // This is ok --> wait consume no delay
+  $display("============================================================================================================");
+  $display("Response....");
+  slv.slave_cb.slv_in.hreadyout <= 1;
+  slv.slave_cb.slv_in.hresp <= 0;
+  //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
+  //Put data in Slv_scoreboard 
+  foreach(cbsq[i]) begin
+    cbsq[i].post_rx(this, fix);
+  $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
+  end
 endtask: send 
 
 
