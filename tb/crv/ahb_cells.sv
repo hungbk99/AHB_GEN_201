@@ -64,7 +64,8 @@ class Master extends Basetrans;
   extern function void display(input string prefix=""); 
   extern function compare(input Master to);
   extern virtual function void copy_data(input Master copy);
-  extern virtual function Basetrans copy (input Basetrans to=null);   
+  //Hung mod 8_1_2021 extern virtual function Basetrans copy (input Basetrans to=null);   
+  extern virtual function Master copy (input Basetrans to=null);   
 
 endclass: Master
 
@@ -117,7 +118,8 @@ endfunction: copy_data
 
 //--------------------------------------------------------------------------------
 
-function Basetrans Master::copy(input Basetrans to=null);
+//Hung mod 8_1_2021 function Basetrans Master::copy(input Basetrans to=null);
+function Master Master::copy(input Basetrans to=null);
   Master dst;
   if(to == null) dst = new(this.start_addr, this.stop_addr);
   else           $cast(dst, to);
