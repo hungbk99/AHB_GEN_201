@@ -103,8 +103,11 @@ task  Mas_monitor::receive(output Slave s);
   //Hung db 2_1_2020
    s = new();
 
-   @(mas.master_cb.mas_out.hreadyout);
-   if(mas.master_cb.mas_out.hreadyout == 1'b1) begin
+   @(mas.master_cb);
+   //Hung db 8_1_2021 if(mas.master_cb.mas_out.hreadyout == 1'b1) begin
+   wait(mas.master_cb.mas_out.hreadyout) begin 
+   @(mas.master_cb);
+   //Hung db 8_1_2021
      //s.hreadyout <= 1'b1; 
      //s.hresp <= mas.master_cb.mas_out.hresp;
      //s.hrdata <= mas.master_cb.mas_out.hrdata; 
@@ -113,9 +116,9 @@ task  Mas_monitor::receive(output Slave s);
      s.hrdata = mas.master_cb.mas_out.hrdata; 
 
      s.display($sformatf("%t Master_Monitor (%0d) Receive", $time, portID)); 
-    
-    foreach(cbsq[i])
-      cbsq[i].post_rx(this, s);
+   
+     foreach(cbsq[i])
+       cbsq[i].post_rx(this, s);
    end
 endtask: receive
 
@@ -220,9 +223,12 @@ endtask: run
 task Slv_monitor::receive(output Master m);
   //Hung db 2_1_2020
   
-  @(slv.slave_cb); 
-  if(slv.slave_cb.hsel === 1'b1) begin
-    m = new(32'h0, 32'hFFFF_FFFF);
+  //@(slv.slave_cb); 
+  //Hung db 8_1_2021 if(slv.slave_cb.hsel === 1'b1) begin
+  wait(slv.slave_cb.hsel) begin
+  //Hung db 8_1_2021 if(slv.slave_cb.hsel === 1'b1) begin
+    @(slv.slave_cb); 
+    m = new(32'h0, 32'hFFFF_FF);
     m.initial_haddr = slv.slave_cb.slv_out.haddr; 
     m.hwrite = slv.slave_cb.slv_out.hwrite;
     m.hsize = slv.slave_cb.slv_out.hsize;
@@ -232,7 +238,7 @@ task Slv_monitor::receive(output Master m);
     m.hmastlock = slv.slave_cb.slv_out.hmastlock;
     m.hwdata = slv.slave_cb.slv_out.hwdata;
     m.display($sformatf("%t: Slave_Monitor (%0d) Receive", $time, portID));
-    
+ 
     foreach(cbsq[i])
       cbsq[i].post_rx(this, m);
   end  
