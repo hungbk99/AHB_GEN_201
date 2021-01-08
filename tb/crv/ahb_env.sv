@@ -385,7 +385,7 @@ task Environment::run();
         join_none
         //join_any
         //join
-        //Hung db 4_1_2021 running--;    
+        running--;    
       end   
  
       // Start all Slave channels 
@@ -413,11 +413,13 @@ task Environment::run();
           mmon[j].run();
         join_none
       end
-    join_any
+    //Hung mod 8_1_2021 join_any
+    join
+    //Hung mod 8_1_2021 join_any
 
     fork: timeout
-      //Hung db 4_1_2021 wait(running == 0)
-      //Hung db 4_1_2021   disable timeout;
+      wait(running == 0)
+        disable timeout;
 
       begin
         repeat(1000000) @(mas[0].master_cb);
@@ -425,6 +427,10 @@ task Environment::run();
           cfg.n_errors++;
       end  
     join_any
+    
+    begin: run_time
+        repeat(10000000) @(mas[0].master_cb);
+    end
   join
 endtask: run
 
