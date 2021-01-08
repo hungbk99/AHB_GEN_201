@@ -116,19 +116,19 @@ task Mas_driver::run();
         //if(m.hmastlock) disable mas_tx;
       end
       
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
       m.display($sformatf("%t: %0d", $time, portID));
       send(m);
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
   
       //foreach (cbsq[i]) 
       //  cbsq[i].post_tx(this, m);
     end
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
 
     mas_gen2drv.get(m);
     -> mas_drv2gen;
-    $display("%t: Driver debug ......", $time);
+    //$display("%t: Driver debug ......", $time);
   end
 
 endtask: run
@@ -310,6 +310,7 @@ task Mas_driver::send(input Master m);
       mas.master_cb.mas_in.haddr <= fix.initial_haddr;
       $display("DBBBBB.... [%0d]", i);
       
+    $display("============================================================================================================");
       //put data in Mas_scoreboard
       foreach (cbsq[i]) begin
         cbsq[i].post_tx(this, fix);
@@ -354,7 +355,10 @@ task Mas_driver::send(input Master m);
         fix.initial_haddr = fix.initial_haddr + 2**(m.hsize);
       end    
 
+    $display("============================================================================================================");
       //put data in Mas_scoreboard
+      ////Hung mod 8_1_2021
+      //@(mas.master_cb);
       foreach (cbsq[i]) begin
         cbsq[i].post_tx(this, fix);
       $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
@@ -380,21 +384,38 @@ task Mas_driver::send(input Master m);
     //Hung mod 6_1_2021 $display("***************************************************");
     //Hung mod 6_1_2021 $display("%t: Doneeeee ......", $time);
   end
- 
-    //$display("%t: Driver debug ......", $time);
+
+  //Hung mod 8_1_2021
+  /*
+  force output of each masters after transfering data into IDLE state 
+  if not, old value will remain on the output of each masters
+  as a result, hsel will be grant all the time
+  */
+  //Initial 
+  @(mas.master_cb);
+  mas.master_cb.mas_in.haddr <= '0;
+  mas.master_cb.mas_in.hwrite <= '0;
+  mas.master_cb.mas_in.hsize <= WORD;
+  mas.master_cb.mas_in.hburst <= SINGLE;
+  mas.master_cb.mas_in.hprot <= '0;
+  mas.master_cb.mas_in.htrans <= IDLE;
+  mas.master_cb.mas_in.hmastlock <= '0;
+  mas.master_cb.mas_in.hwdata <= '0;
+  $display("%t: Driver (Master) Clear ......", $time);
+  //Hung mod 8_1_2021
 endtask: send
 
 //--------------------------------------------------------------------------------
 typedef class Slv_driver;
 
 class Slv_driver_cbs;
-  virtual task pre_rx(
+  virtual task pre_tx(
     input Slv_driver drv,
     input Slave      s 
   );
   endtask
 
-  virtual task post_rx(
+  virtual task post_tx(
     input Slv_driver drv,
     input Slave      s
   );
@@ -457,7 +478,7 @@ task Slv_driver::run();
     slv_gen2drv.peek(s);
     begin: slv_tx
       //foreach(cbsq[i]) begin
-      //  cbsq[i].pre_rx(this, s);
+      //  cbsq[i].pre_tx(this, s);
       //end
       
      // $display("%t: Driver debug ......", $time);
@@ -467,7 +488,7 @@ task Slv_driver::run();
       send(s);
 
       //foreach(cbsq[i]) begin
-      //  cbsq[i].post_rx(this, s);
+      //  cbsq[i].post_tx(this, s);
       //end
 
       slv_gen2drv.get(s); 
@@ -502,7 +523,9 @@ task Slv_driver::send(input Slave s);
   slv.slave_cb.slv_in.hrdata <= portID;
   fix.hrdata = portID;
   fix.hreadyout = 1;
-  fix.hresp = 1;
+  //Hung db 8_1_2021 fix.hresp = 1;
+  fix.hresp = 0;  
+  //Hung db 8_1_2021 fix.hresp = 1;
  
   @(slv.slave_cb);
   wait(slv.slave_cb.hsel);  // This is ok --> wait consume no delay
@@ -513,9 +536,11 @@ task Slv_driver::send(input Slave s);
   //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
   //Put data in Slv_scoreboard 
   foreach(cbsq[i]) begin
-    cbsq[i].post_rx(this, fix);
+    cbsq[i].post_tx(this, fix);
   $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
+  $display("============================================================================================================");
   end
+
 endtask: send 
 
 
