@@ -87,9 +87,11 @@ class Slv_generator;
   endfunction
 
   task run();
-    Slave s;
+    //Hung mod 8_1_2021
+    forever begin
+      Slave s;
       $display("Slave Generator on .....");
-    //repeat (ncells) begin
+      //repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(s, blueprint.copy());
       slv_gen2drv.put(s);
@@ -97,6 +99,8 @@ class Slv_generator;
       @slv_drv2gen;
       $display("Master Driver receive ...");
     //end
+    end
+    //Hung mod 8_1_2021
   endtask
 
 endclass: Slv_generator
