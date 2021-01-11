@@ -50,14 +50,17 @@ class Mas_generator;
 
   task run();
     Master m;
-      $display("Master Generator on .....");
+      $display("Master Generator on ..... portID[%0d]", portID);
     repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(m, blueprint.copy()); // m is not a handle of blueprint
       mas_gen2drv.put(m); // wait until driver receive the data
-      $display("Master cells on .....");
+      $display("Master cells on ..... portID[%0d]", portID);
       @mas_drv2gen;
-      $display("Master Driver receive ...");
+      $display("###########################################################################################");
+      $display("Master Driver receive ... portID[%0d]", portID);
+      m.display($sformatf("%t:Master seed:", $time));
+      $display("###########################################################################################");
     end
   endtask
 
@@ -90,14 +93,14 @@ class Slv_generator;
     //Hung mod 8_1_2021
     forever begin
       Slave s;
-      $display("Slave Generator on .....");
+      $display("Slave Generator on ..... portID[%0d]", portID);
       //repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(s, blueprint.copy());
       slv_gen2drv.put(s);
-      $display("Slave cells on .....");
+      $display("Slave cells on ..... portID[%0d]", portID);
       @slv_drv2gen;
-      $display("Master Driver receive ...");
+      $display("Slave Driver receive ... portID[%0d]", portID);
     //end
     end
     //Hung mod 8_1_2021
