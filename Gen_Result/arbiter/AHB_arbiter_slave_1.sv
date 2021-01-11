@@ -52,7 +52,7 @@ module AHB_arbiter_slave_1
   } monitor_state, monitor_next_state;    
  
 `ifdef  DYNAMIC_PRIORITY_ARBITER_slave_1
-  `define PRIOR_GEN
+  `define PRIOR_GEN_slave_1
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] gen_req;    
   logic [SLAVE_X_MASTER_NUM-1:0][SLAVE_X_PRIOR_LEVEL-1:0] mask_req;
   logic [SLAVE_X_MASTER_NUM-1:0]                          collect_req;
@@ -284,8 +284,14 @@ module AHB_arbiter_slave_1
       monitor_state <= monitor_next_state;
   end  
 
-  //Hung mod 4_2_2020 assign hlast = grant & monitor_last;  
-  assign hlast = (monitor_state == MONITOR) ? (grant & monitor_last) : 1'b0;  
-          
+  //Hung mod 4_1_2021 assign hlast = grant & monitor_last;  
+  //Hung_mod_9_1_2021 assign hlast = (monitor_state == MONITOR) ? (|grant & monitor_last) : 1'b0;  
+  always_comb begin
+    for(int i = 0; i < SLAVE_X_MASTER_NUM; i++)
+    begin
+      hlast[i] = (monitor_state == MONITOR) ? (grant[i] & monitor_last) : 1'b0;
+    end
+  end
+  //Hung_mod_9_1_2021
 endmodule: AHB_arbiter_slave_1
 
