@@ -429,17 +429,18 @@ task Environment::run();
     join_any
     
     begin: run_time
-        repeat(10000000) @(mas[0].master_cb);
+        repeat(1000000) @(mas[0].master_cb);
     end
   join
 endtask: run
 
 function void Environment::wrap_up();
-  $display("%t: End of simulation, %d error%s",  
-    $time, cfg.n_errors, cfg.n_errors==1 ? "" : "s");
-    
+  $display("****************************************************************************");
   mscb.wrap_up;
   sscb.wrap_up;  
-
+  $display("Run time:: %t", $time);  
+  $display("END OF SIMULATION:: %0d Total error%s",  
+    cfg.n_errors, cfg.n_errors==1 ? "" : "s");
+  $display("****************************************************************************");
 endfunction: wrap_up
 
