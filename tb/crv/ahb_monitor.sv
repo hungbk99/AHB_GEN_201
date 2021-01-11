@@ -103,10 +103,10 @@ task  Mas_monitor::receive(output Slave s);
   //Hung db 2_1_2020
    s = new();
 
-   @(mas.master_cb);
+   //@(mas.master_cb);
    //Hung db 8_1_2021 if(mas.master_cb.mas_out.hreadyout == 1'b1) begin
-   wait(mas.master_cb.mas_out.hreadyout) begin 
    @(mas.master_cb);
+   wait(mas.master_cb.mas_out.hreadyout) begin 
    //Hung db 8_1_2021
      //s.hreadyout <= 1'b1; 
      //s.hresp <= mas.master_cb.mas_out.hresp;
@@ -144,6 +144,9 @@ class Slv_monitor;
   Slv_monitor_cbs  cbsq[$];
   int              portID;
 
+  //Hung_mod_11_1_2021
+  int cnt, num; 
+  //Hung_mod_11_1_2021
   extern function new( input vslv_itf slv,
                        input int      portID);
  
@@ -237,9 +240,24 @@ task Slv_monitor::receive(output Master m);
     m.htrans = slv.slave_cb.slv_out.htrans;
     m.hmastlock = slv.slave_cb.slv_out.hmastlock;
     m.hwdata = slv.slave_cb.slv_out.hwdata;
+    //Hung_mod_11_1_2021
+    case(m.hburst)
+      SINGLE, INCR: num = 1;
+      WRAP4, INCR4: num = 4;
+      WRAP8, INCR8: num = 8;
+      WRAP16, INCR16: num = 16;
+    endcase
+    
+    //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+    //$display("num=%d", num);    
+    //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+    //Hung_mod_11_1_2021
+    if(cnt < num) begin
     m.display($sformatf("%t: Slave_Monitor (%0d) Receive", $time, portID));
- 
     foreach(cbsq[i])
       cbsq[i].post_rx(this, m);
+    cnt++;
+    end else
+    cnt = 0;
   end  
 endtask: receive
