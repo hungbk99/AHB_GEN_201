@@ -431,6 +431,9 @@ class Slv_driver;
   vslv_itf        slv;
   Slv_driver_cbs  cbsq[$];
   int             portID;
+  //Hung_mod_11_1_2021
+  int             num, cnt;
+  //Hung_mod_11_1_2021
 
   extern function new (
     input mailbox   slv_gen2drv,
@@ -512,12 +515,6 @@ task Slv_driver::send(input Slave s);
   $display("Package fixing.......");
   fix = s;
 
-  //case(m.hburst)
-  //  SINGLE, INCR: num = 1;
-  //  WRAP4, INCR4: num = 4;
-  //  WRAP8, INCR8: num = 8;
-  //  WRAP16, INCR16: num = 16;
-  //endcase
   
   //Hung mod 6_1_2021 slv.slave_cb.slv_in.hrdata = portID;
   slv.slave_cb.slv_in.hrdata <= portID;
@@ -529,17 +526,35 @@ task Slv_driver::send(input Slave s);
  
   @(slv.slave_cb);
   wait(slv.slave_cb.hsel);  // This is ok --> wait consume no delay
-  $display("============================================================================================================");
-  $display("Response....");
   slv.slave_cb.slv_in.hreadyout <= 1;
   slv.slave_cb.slv_in.hresp <= 0;
+  
+  //Hung_mod_11_1_2021
+  case(slv.slave_cb.slv_out.hburst)
+    SINGLE, INCR: num = 1;
+    WRAP4, INCR4: num = 4;
+    WRAP8, INCR8: num = 8;
+    WRAP16, INCR16: num = 16;
+  endcase
+
+  //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+  //$display("num=%d", num);    
+  //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+    
   //slv.slave_cb.slv_out.hrdata = slv.slave_cb.slv_out.hrdata + 1;
-  //Put data in Slv_scoreboard 
-  foreach(cbsq[i]) begin
-    cbsq[i].post_tx(this, fix);
-  $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
-  $display("============================================================================================================");
-  end
+  //Put data in Slv_scoreboard
+  
+  if(cnt<num) begin 
+    $display("============================================================================================================");
+    $display("Response....");
+    foreach(cbsq[i])
+      cbsq[i].post_tx(this, fix);
+    $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
+    $display("============================================================================================================");
+    cnt++;
+  end else
+    cnt = 0;
+  //Hung_mod_11_1_2021
 
 endtask: send 
 
