@@ -131,7 +131,7 @@ endfunction: check_actual
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::display(input string prefix="");
-  $display("%t: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
+  $display("%t:[MASTER]: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     $display("Master: %d, expected: %d, actual: %d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
     foreach (expect_cells[i].mq[j])
@@ -143,10 +143,10 @@ endfunction: display
 //--------------------------------------------------------------------------------
 
 function void Mas_scoreboard::wrap_up();
-  $display("%t: WRAP: Total expected cells sent %d, Total actual cells received %d", $time, iexpect, iactual);
+  $display("[MASTER]: Total expected cells sent %0d, Total actual cells received %0d",  iexpect, iactual);
   foreach(expect_cells[i]) begin
     if(expect_cells[i].mq.size()) begin
-      $display("%t: ERROR:WRAP: cells remaining in Master[%d] scoreboard at the end of the test", $time, i);
+      $display("[MASTER]:[ERROR]: cells remaining in Master[%0d] scoreboard at the end of the test", i);
       cfg.n_errors++;
     end
   end
@@ -235,10 +235,17 @@ function void Slv_scoreboard::check_actual(input Slave s, input int portID);
   //Hung db 2_1_2020 expect_cells[s.hrdata].iactual++;
   expect_cells[s.hrdata].iactual++;
   iactual++; 
+ 
+  $display("before checking ......");
   foreach(expect_cells[s.hrdata].sq[i]) begin 
-    //Hung mod 6_1_2021
     expect_cells[s.hrdata].sq[i].display($sformatf("INFO: mq[%0d]", i));
     s.display();
+  end
+
+  foreach(expect_cells[s.hrdata].sq[i]) begin 
+    //Hung mod 6_1_2021
+    //expect_cells[s.hrdata].sq[i].display($sformatf("INFO: mq[%0d]", i));
+    //s.display();
     if(expect_cells[s.hrdata].sq[i].compare(s)) begin
       $display("%t: PASS:: Slave Cells Match............", $time);
       expect_cells[s.hrdata].sq.delete(i); 
@@ -251,6 +258,12 @@ function void Slv_scoreboard::check_actual(input Slave s, input int portID);
       cfg.n_errors++;
     end
   end
+  
+  $display("after checking ......");
+  foreach(expect_cells[s.hrdata].sq[i]) begin 
+    expect_cells[s.hrdata].sq[i].display($sformatf("INFO: mq[%0d]", i));
+    s.display();
+  end
   $display("============================================================================================================");
  
 endfunction: check_actual
@@ -258,7 +271,7 @@ endfunction: check_actual
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::display(input string prefix="");
-  $display("%t: Total expected cells sent %d, Total actual cells received %0d", $time, iexpect, iactual);
+  $display("%t:[SLAVE]: Total expected cells sent %0d, Total actual cells received %0d", $time, iexpect, iactual);
   foreach(expect_cells[i]) begin
     $display("Slave: %0d, expected: %0d, actual: %0d", i, expect_cells[i].iexpect, expect_cells[i].iactual);
     foreach (expect_cells[i].sq[j])
@@ -270,10 +283,10 @@ endfunction: display
 //--------------------------------------------------------------------------------
 
 function void Slv_scoreboard::wrap_up();
-  $display("%t: WRAP: Total expected cells sent %0d, Total actual cells received %0d", $time, iexpect, iactual);
+  $display("[SLAVE]: Total expected cells sent %0d, Total actual cells received %0d", iexpect, iactual);
   foreach(expect_cells[i]) begin
     if(expect_cells[i].sq.size()) begin
-      $display("%t: ERROR:WRAP: cells remaining in Slave[%0d] scoreboard at the end of the test", $time, i);
+      $display("[SLAVE]:[ERROR]: cells remaining in Slave[%0d] scoreboard at the end of the test", i);
       cfg.n_errors++;
     end
   end
