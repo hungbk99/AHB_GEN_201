@@ -2,8 +2,9 @@
 // File Name: 		ahb_generator.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
-// Version    Date      Author      Description
-// v0.0       2/10/2020 Quang Hung  First Creation
+// Version    Date       Author      Description
+// v0.0       02/10/2020 Quang Hung First Creation
+//            12/01/2021 Quang Hung Add support for decode error
 //////////////////////////////////////////////////////////////////////////////////
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
@@ -51,15 +52,20 @@ class Mas_generator;
   task run();
     Master m;
       $display("Master Generator on ..... portID[%0d]", portID);
+      $display("###########################################################################################");
+      $display("[MASTER CELLS]::%0d", ncells);
+      $display("###########################################################################################");
     repeat (ncells) begin
       assert(blueprint.randomize());
       $cast(m, blueprint.copy()); // m is not a handle of blueprint
       mas_gen2drv.put(m); // wait until driver receive the data
-      $display("Master cells on ..... portID[%0d]", portID);
+      //$display("Master cells on ..... portID[%0d]", portID);
+      $display("###########################################################################################");
+      m.display($sformatf("%t:[MASTER SEED]:", $time));
+      $display("###########################################################################################");
       @mas_drv2gen;
       $display("###########################################################################################");
       $display("Master Driver receive ... portID[%0d]", portID);
-      m.display($sformatf("%t:Master seed:", $time));
       $display("###########################################################################################");
     end
   endtask
