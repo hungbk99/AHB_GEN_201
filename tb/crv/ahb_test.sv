@@ -2,8 +2,9 @@
  * File Name: 		ahb_test.sv
  * Project Name:	AHB_Gen
  * Email:         quanghungbk1999@gmail.com
- * Version    Date      Author      Description
- * v0.0       2/10/2020 Quang Hung  First Creation
+ * Version    Date       Author      Description
+ * v0.0       02/10/2020 Quang Hung  First Creation
+ *            12/01/2021 Quang Hung  Add support for decode error
  *********************************************************************************/
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
