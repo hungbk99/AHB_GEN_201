@@ -2,8 +2,9 @@
 // File Name: 		ahb_monitor.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
-// Version    Date      Author      Description
-// v0.0       2/10/2020 Quang Hung  First Creation
+// Version    Date       Author      Description
+// v0.0       02/10/2020 Quang Hung  First Creation
+//            12/01/2021 Quang Hung  Add support for decode error
 //////////////////////////////////////////////////////////////////////////////////
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
@@ -110,15 +111,16 @@ task  Mas_monitor::receive(output Slave s);
    //Hung db 8_1_2021
      //s.hreadyout <= 1'b1; 
      //s.hresp <= mas.master_cb.mas_out.hresp;
-     //s.hrdata <= mas.master_cb.mas_out.hrdata; 
-     s.hreadyout = 1'b1; 
-     s.hresp = mas.master_cb.mas_out.hresp;
-     s.hrdata = mas.master_cb.mas_out.hrdata; 
+     //s.hrdata <= mas.master_cb.mas_out.hrdata;
+     
+       s.hreadyout = 1'b1; 
+       s.hresp = mas.master_cb.mas_out.hresp;
+       s.hrdata = mas.master_cb.mas_out.hrdata; 
 
-     s.display($sformatf("%t Master_Monitor (%0d) Receive", $time, portID)); 
+       s.display($sformatf("%t Master_Monitor (%0d) Receive", $time, portID)); 
    
-     foreach(cbsq[i])
-       cbsq[i].post_rx(this, s);
+       foreach(cbsq[i])
+         cbsq[i].post_rx(this, s);
    end
 endtask: receive
 
