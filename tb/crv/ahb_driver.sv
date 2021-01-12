@@ -2,8 +2,9 @@
 // File Name: 		ahb_driver.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
-// Version    Date      Author      Description
-// v0.0       2/10/2020 Quang Hung  First Creation
+// Version    Date       Author      Description
+// v0.0       02/10/2020 Quang Hung First Creation
+//            12/01/2021 Quang Hung Add support for decode error
 //////////////////////////////////////////////////////////////////////////////////
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
@@ -25,6 +26,11 @@ class Mas_driver_cbs;
     input Master m
   );
   endtask
+
+  virtual task dec_error(
+    input Mas_driver drv,
+    input Master      m);
+  endtask: dec_error
 
 endclass: Mas_driver_cbs  
 
@@ -297,11 +303,23 @@ task Mas_driver::send(input Master m);
 
   //Hung mod 6_1_2021   
   
-  for(int i = 0; i < num;)  
+  for(int i = 0; i < num;) 
   begin
     //$display("============================================================================================================");
     //$display("Transfer.... [%0d]", i);
     @(mas.master_cb);
+    //Hung_mod_12_1_2021
+    if(mas.master_cb.mas_out.hresp) begin
+      foreach (cbsq[i]) 
+        cbsq[i].dec_error(this, fix);
+      mas.master_cb.mas_in.htrans <= IDLE;
+      $display("****************************************************"); 
+      $display("%t:[INFO]:[ERROR RESPONSE][D]: received in Master[%0d]", $time, portID); 
+      $display("****************************************************"); 
+      break; 
+    end 
+    else
+    //Hung_mod_12_1_2021
     if(i == 0) begin
       mas.master_cb.mas_in.htrans <= NONSEQ; 
       //dbx mas.master_cb.mas_in.htrans = NONSEQ; 
@@ -552,8 +570,14 @@ task Slv_driver::send(input Slave s);
     $display("%t: Driver (Slave) Callback ...... cbsq_size=%0d", $time, cbsq.size());
     $display("============================================================================================================");
     cnt++;
-  end else
+  end else 
+  begin
     cnt = 0;
+    //Hung_mod_12_1_2021
+    @(slv.slave_cb);
+    slv.slave_cb.slv_in.hreadyout <= 0;
+    //Hung_mod_12_1_2021
+  end
   //Hung_mod_11_1_2021
 
 endtask: send 
