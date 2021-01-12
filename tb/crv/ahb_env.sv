@@ -2,8 +2,10 @@
  * File Name: 		Environment.sv
  * Project Name:	AHB_Gen
  * Email:         quanghungbk1999@gmail.com
- * Version    Date      Author      Description
- * v0.0       2/10/2020 Quang Hung  First Creation
+ * Version    Date       Author      Description
+ * v0.0       02/10/2020 Quang Hung  First Creation
+ *            12/01/2021 Quang Hung  Add support for decode error
+ *            12/01/2021 Quang Hung  Config maximum cells per masters
  *********************************************************************************/
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
@@ -29,6 +31,14 @@ class Mscb_driver_cbs extends Mas_driver_cbs;
                 );
     scb.save_expected(m);
   endtask: post_tx
+
+  //Hung_mod_12_1_2021
+  virtual task dec_error(
+                input Mas_driver drv,
+                input Master      m);
+    scb.clear_error(m, drv.portID);
+  endtask: dec_error
+  //Hung_mod_12_1_2021
 
 endclass: Mscb_driver_cbs
 
@@ -210,8 +220,11 @@ function Environment::new(
 
   this.masnum = masnum;
   this.slvnum = slvnum;
- 
-  cfg = new(masnum, slvnum);
+  
+  //Hung_mod_12_1_2021 
+  //cfg = new(masnum, slvnum);
+  cfg = new(masnum, slvnum, 4);
+  //Hung_mod_12_1_2021 
 
   if($test$plusargs("Random_seed"))
   begin
@@ -230,7 +243,7 @@ endfunction: new
 
 function void Environment::gen_cfg();
   assert(cfg.randomize());
-  cfg.display();
+  cfg.display("[ENV]");
 endfunction: gen_cfg
 
 //================================================================================
