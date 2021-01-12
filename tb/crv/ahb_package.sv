@@ -4,6 +4,7 @@
 // Email:         quanghungbk1999@gmail.com
 // Version    Date      Author      Description
 // v0.0       14/11/2020 Quang Hung  First Creation
+//            12/01/2021 Quang Hung  Add support for decode error
 //////////////////////////////////////////////////////////////////////////////////
 
 package ahb_package;
