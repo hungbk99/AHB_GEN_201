@@ -2,8 +2,9 @@
  * File Name: 		ahb_scoreboard.sv
  * Project Name:	AHB_Gen
  * Email:         quanghungbk1999@gmail.com
- * Version    Date      Author      Description
- * v0.0       2/10/2020 Quang Hung  First Creation
+ * Version    Date       Author      Description
+ * v0.0       02/10/2020 Quang Hung  First Creation
+ *            12/01/2021 Quang Hung  Add support for decode error
  *********************************************************************************/
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
@@ -30,7 +31,9 @@ class Mas_scoreboard;
   extern function void save_expected(Master m);  
   extern function void check_actual(input Master m, input int portID);
   extern function void display(string prefix="");
-
+  //Hung_mod_12_1_2021   
+  extern function void clear_error(input Master m, input int portID);
+  //Hung_mod_12_1_2021    
 endclass: Mas_scoreboard
 
 //--------------------------------------------------------------------------------
@@ -127,6 +130,17 @@ function void Mas_scoreboard::check_actual(input Master m, input int portID);
   $display("============================================================================================================");
  
 endfunction: check_actual
+
+//--------------------------------------------------------------------------------
+
+//Hung_mod_12_1_2021   
+function void Mas_scoreboard::clear_error(input Master m, input int portID);
+  foreach(expect_cells[m.hwdata].mq[i]) begin 
+    $display("%t: PASS:: ERROR CLEAR............ at MASTER[%0d]", $time, portID);
+    expect_cells[m.hwdata].mq.delete(i);  
+  end
+endfunction: clear_error
+//Hung_mod_12_1_2021   
 
 //--------------------------------------------------------------------------------
 
