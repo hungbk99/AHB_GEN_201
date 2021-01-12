@@ -326,8 +326,39 @@ task Mas_driver::send(input Master m);
       fix.htrans = NONSEQ;
       //dbx mas.master_cb.mas_in.haddr = fix.initial_haddr;
       mas.master_cb.mas_in.haddr <= fix.initial_haddr;
-      $display("DBBBBB.... [%0d]", i);
+      //$display("DBBBBB.... [%0d]", i);
       
+      //Hung_db_12_1_2021
+      if(num == 1) begin
+        $display("============================================================================================================");
+          //put data in Mas_scoreboard
+          ////Hung mod 8_1_2021
+          //@(mas.master_cb);
+          foreach (cbsq[i]) begin
+            cbsq[i].post_tx(this, fix);
+          $display("%t: Driver (Master) Callback ...... cbsq_size=%0d, i=%0d", $time, cbsq.size(), i);
+          end
+        $display("============================================================================================================");
+        $display("Transfer.... [%0d]", i);
+        $display("***************************************************");
+        $display("Send value");
+        $display("haddr:%h", m.initial_haddr);
+        $display("hwrite:%h", m.hwrite);
+        $display("hsize:%s", m.hsize);
+        $display("hburst:%s", m.hburst);
+        $display("hprot:%h", m.hprot);
+        $display("htrans:%s", m.htrans);
+        $display("hmastlock:%h", m.hmastlock);
+        $display("hwdata:%h", m.hwdata);
+        $display("prior:%h", cfg.prior[portID]);
+        $display("============================================================================================================");
+        @(mas.master_cb);
+        wait(mas.master_cb.mas_out.hreadyout);
+        mas.master_cb.mas_in.htrans <= IDLE;
+        break;
+      end
+      //Hung_db_12_1_2021
+
     $display("============================================================================================================");
       //put data in Mas_scoreboard
       foreach (cbsq[i]) begin

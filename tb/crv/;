@@ -435,7 +435,7 @@ task Environment::run();
         disable timeout;
 
       begin
-        repeat(300) @(mas[0].master_cb);
+        repeat(1000) @(mas[0].master_cb);
           $display("%t: ERRORRR: Timeout while waiting for master transactors", $time);
           cfg.n_errors++;
       end  

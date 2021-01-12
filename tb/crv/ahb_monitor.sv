@@ -250,9 +250,9 @@ task Slv_monitor::receive(output Master m);
       WRAP16, INCR16: num = 16;
     endcase
     
-    //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
-    //$display("num=%d", num);    
-    //$display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+    $display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
+    $display("num=%0d, cnt = %0d", num, cnt);    
+    $display("DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB");
     //Hung_mod_11_1_2021
     if(cnt < num) begin
     m.display($sformatf("%t: Slave_Monitor (%0d) Receive", $time, portID));

@@ -224,9 +224,9 @@ module AHB_arbiter_slave_1
   always_comb begin
     count_limit = '0;
     unique case(burst)
-        WRAP4, INCR4: count_limit = 3'h3;
-        WRAP8, INCR8: count_limit = 3'h7;
-        WRAP16, INCR16: count_limit = 3'hF;
+        WRAP4, INCR4: count_limit = 4'h3;
+        WRAP8, INCR8: count_limit = 4'h7;
+        WRAP16, INCR16: count_limit = 4'hF;
     endcase
   end    
 
