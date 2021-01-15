@@ -226,14 +226,16 @@ function Environment::new(
   cfg = new(masnum, slvnum, 4);
   //Hung_mod_12_1_2021 
 
-  if($test$plusargs("Random_seed"))
+  $display("#####################################################################");
+  if($test$plusargs("ntb_random_seed"))
   begin
     int seed;
-    $value$plusargs("Random_seed=%0d", seed);
-    $display("Simulation run with random seed = %d", seed);
+    $value$plusargs("ntb_random_seed=%d", seed);
+    $display("[SYSTEM SEED]Simulation run with random seed = %0d", seed);
   end
   else
-    $display("Simulation run with default random seed");
+    $display("[SYSTEM SEED]Simulation run with default random seed");
+  $display("#####################################################################");
 
 endfunction: new
 
