@@ -105,6 +105,10 @@ while (my $line = <SAMPLE>)
         print DEST ("\tslv_send_type payload_${master_name}_out;\n");
         print DEST ("\tlogic default_slv_sel_${master_name};\n");
         print DEST ("\tlogic [${slave_num}-1:0] hreq_${master_name};\n");
+        #Hung_add_16_1_2021
+        print DEST ("\tslv_send_type payload_dec_error_${master_name};\n");
+        print DEST ("\tlogic\t_dec_error_sel_${master_name};\n");
+        #Hung_add_16_1_2021
       }
     }
 
@@ -171,7 +175,18 @@ while (my $line = <SAMPLE>)
         print DEST ("\t\t.payload_in(payload_${master_name}_in),\n");  
         print DEST ("\t\t.payload_out(payload_${master_name}_out),\n");  
         print DEST ("\t\t.sel(hreq_${master_name})\n");  
-        print DEST ("\t);\n\n");  
+        print DEST ("\t);\n\n"); 
+        #Hung_add_16_1_2021
+        print DEST ("\tdefault_slave DS_${master_name}\n");
+        print DEST ("\t(\n");
+        print DEST ("\t\t.default_slv_sel(default_slv_sel_${master_name}),\n");
+        print DEST ("\t\t.hreadyout(payload_dec_error_${master_name}.hreadyout),\n");
+        print DEST ("\t\t.hresp(payload_dec_error_${master_name}.hresp),\n");
+        print DEST ("\t\t.error_sel(dec_error_sel_${master_name}),\n");
+        print DEST ("\t\t.*\n");
+        print DEST ("\t);\n\n");
+        print DEST ("\tassign payload_dec_error_${master_name}.hrdata = '0;\n\n");
+        #Hung_add_16_1_2021
       }
     }
   }

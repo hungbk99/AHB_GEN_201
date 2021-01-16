@@ -61,18 +61,26 @@ module AHB_bus
 	slv_send_type payload_master_1_out;
 	logic default_slv_sel_master_1;
 	logic [4-1:0] hreq_master_1;
+	slv_send_type payload_dec_error_master_1;
+	logic	_dec_error_sel_master_1;
 	logic [3-1:0][MI_PAYLOAD-1:0] payload_master_2_in;
 	slv_send_type payload_master_2_out;
 	logic default_slv_sel_master_2;
 	logic [3-1:0] hreq_master_2;
+	slv_send_type payload_dec_error_master_2;
+	logic	_dec_error_sel_master_2;
 	logic [2-1:0][MI_PAYLOAD-1:0] payload_master_3_in;
 	slv_send_type payload_master_3_out;
 	logic default_slv_sel_master_3;
 	logic [2-1:0] hreq_master_3;
+	slv_send_type payload_dec_error_master_3;
+	logic	_dec_error_sel_master_3;
 	logic [7-1:0][MI_PAYLOAD-1:0] payload_kemee_in;
 	slv_send_type payload_kemee_out;
 	logic default_slv_sel_kemee;
 	logic [7-1:0] hreq_kemee;
+	slv_send_type payload_dec_error_kemee;
+	logic	_dec_error_sel_kemee;
 
 	logic [3-1:0] hreq_slave_1;
 	logic [3-1:0][SI_PAYLOAD-1:0] payload_slave_1_in;
@@ -125,10 +133,6 @@ module AHB_bus
 	logic [2-1:0][2-1:0] hprior_slave_7;
 	logic hgrant_slave_7_master_1;
 	logic hgrant_slave_7_kemee;
-    //Hung add 15_1_2021
-    slv_send_type  payload_error_3; 
-    logic error_sel_3;
-    //Hung add 15_1_2021
 //================================================================================
 //#DECGEN# 
 	AHB_decoder_master_1 DEC_master_1	(
@@ -147,6 +151,17 @@ module AHB_bus
 		.sel(hreq_master_1)
 	);
 
+	default_slave DS_master_1
+	(
+		.default_slv_sel(default_slv_sel_master_1),
+		.hreadyout(payload_dec_error_master_1.hreadyout),
+		.hresp(payload_dec_error_master_1.hresp),
+		.error_sel(dec_error_sel_master_1),
+		.*
+	);
+
+	assign payload_dec_error_master_1.hrdata = '0;
+
 	AHB_decoder_master_2 DEC_master_2	(
 		.haddr(master_2_in.haddr),
 		.htrans(master_2_in.htrans),
@@ -163,6 +178,17 @@ module AHB_bus
 		.sel(hreq_master_2)
 	);
 
+	default_slave DS_master_2
+	(
+		.default_slv_sel(default_slv_sel_master_2),
+		.hreadyout(payload_dec_error_master_2.hreadyout),
+		.hresp(payload_dec_error_master_2.hresp),
+		.error_sel(dec_error_sel_master_2),
+		.*
+	);
+
+	assign payload_dec_error_master_2.hrdata = '0;
+
 	AHB_decoder_master_3 DEC_master_3	(
 		.haddr(master_3_in.haddr),
 		.htrans(master_3_in.htrans),
@@ -171,20 +197,6 @@ module AHB_bus
 		.*
 	);
 
-    //Hung add 15_1_2021
-    default_slave DS3(
-      .default_slv_sel(default_slv_sel_master_3),
-      .hreadyout(hreadyout_error_3),
-      .hresp(hresp_error_3), 
-      .error_sel(error_sel_3),
-      .*
-    );
-
-    assign payload_error_3.hreadyout = hreadyout_error_3;
-    assign payload_error_3.hrdata = '0;
-    assign payload_error_3.hresp = hresp_error_3;
-    //Hung add 15_1_2021
-      
 
 	AHB_mux_master_3 MUX_master_3
 	(
@@ -192,6 +204,17 @@ module AHB_bus
 		.payload_out(payload_master_3_out),
 		.sel(hreq_master_3)
 	);
+
+	default_slave DS_master_3
+	(
+		.default_slv_sel(default_slv_sel_master_3),
+		.hreadyout(payload_dec_error_master_3.hreadyout),
+		.hresp(payload_dec_error_master_3.hresp),
+		.error_sel(dec_error_sel_master_3),
+		.*
+	);
+
+	assign payload_dec_error_master_3.hrdata = '0;
 
 	AHB_decoder_kemee DEC_kemee	(
 		.haddr(kemee_in.haddr),
@@ -208,6 +231,17 @@ module AHB_bus
 		.payload_out(payload_kemee_out),
 		.sel(hreq_kemee)
 	);
+
+	default_slave DS_kemee
+	(
+		.default_slv_sel(default_slv_sel_kemee),
+		.hreadyout(payload_dec_error_kemee.hreadyout),
+		.hresp(payload_dec_error_kemee.hresp),
+		.error_sel(dec_error_sel_kemee),
+		.*
+	);
+
+	assign payload_dec_error_kemee.hrdata = '0;
 
 //================================================================================
 //#ARBGEN#
@@ -404,10 +438,7 @@ module AHB_bus
 	assign payload_master_2_in[2] = {slave_1_in.hreadyout & hgrant_slave_1_master_2, slave_1_in.hrdata, slave_1_in.hresp};
 	assign payload_master_2_in[1] = {slave_3_in.hreadyout & hgrant_slave_3_master_2, slave_3_in.hrdata, slave_3_in.hresp};
 	assign payload_master_2_in[0] = {slave_5_in.hreadyout & hgrant_slave_5_master_2, slave_5_in.hrdata, slave_5_in.hresp};
-    //Hung add 15_1_2021
-	//assign master_3_out = payload_master_3_out;
-	assign master_3_out = (error_sel_3) ? payload_error_3 : payload_master_3_out;
-    //Hung add 15_1_2021
+	assign master_3_out = payload_master_3_out;
 
 	assign payload_master_3_in[1] = {slave_4_in.hreadyout & hgrant_slave_4_master_3, slave_4_in.hrdata, slave_4_in.hresp};
 	assign payload_master_3_in[0] = {slave_5_in.hreadyout & hgrant_slave_5_master_3, slave_5_in.hrdata, slave_5_in.hresp};
@@ -422,56 +453,3 @@ module AHB_bus
 	assign payload_kemee_in[0] = {slave_7_in.hreadyout & hgrant_slave_7_kemee, slave_7_in.hrdata, slave_7_in.hresp};
 
 endmodule: AHB_bus
-
-
-module default_slave
-(
-  input          default_slv_sel,
-  output logic   hreadyout,
-                 hresp, 
-                 error_sel,
-  input          hclk,
-                 hreset_n 
-);
-
-  enum logic {
-    IDLE,
-    ERROR
-  } current_state, next_state;
-
-  always_comb begin
-    error_sel = 1'b0;
-    hreadyout = 1'b0;
-    hresp     = 1'b0;
-    case(current_state)
-      IDLE: begin
-        error_sel = 1'b1;
-        if(default_slv_sel)
-          next_state = ERROR;
-        else
-          next_state = current_state;
-      end
-      ERROR: begin
-        error_sel = 1'b1;
-        hresp = 1'b1;
-        if(!default_slv_sel)
-        begin
-          next_state = IDLE;
-          hreadyout = 1'b1;  
-        end
-        else
-          next_state = current_state;
-      end
-    endcase
-  end
-
-
-  always_ff @(posedge hclk, negedge hreset_n)
-  begin
-    if(!hreset_n)
-      current_state <= IDLE;
-    else
-      current_state <= next_state;
-  end
-
-endmodule: default_slave
