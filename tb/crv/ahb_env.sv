@@ -6,6 +6,7 @@
  * v0.0       02/10/2020 Quang Hung  First Creation
  *            12/01/2021 Quang Hung  Add support for decode error
  *            12/01/2021 Quang Hung  Config maximum cells per masters
+ *            16/01/2021 Quang Hung  Add coverage support
  *********************************************************************************/
 
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
