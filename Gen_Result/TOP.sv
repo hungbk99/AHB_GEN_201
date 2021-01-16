@@ -14,16 +14,16 @@ module TOP
 );
 	
   mas_send_type  master_1_in;
-	logic [$clog2(2)-1:0]  hprior_master_1;
+	logic [2-1:0]  hprior_master_1;
 	slv_send_type  master_1_out;
 	mas_send_type  master_2_in;
-	logic [$clog2(2)-1:0]  hprior_master_2;
+	logic [2-1:0]  hprior_master_2;
 	slv_send_type  master_2_out;
 	mas_send_type  master_3_in;
-	logic [$clog2(2)-1:0]  hprior_master_3;
+	logic [2-1:0]  hprior_master_3;
 	slv_send_type  master_3_out;
 	mas_send_type  kemee_in;
-	logic [$clog2(2)-1:0]  hprior_kemee;
+	logic [2-1:0]  hprior_kemee;
   slv_send_type  kemee_out;
 //#MI#
 	slv_send_type  slave_1_in;

@@ -54,13 +54,13 @@ module AHB_decoder_kemee
 	assign high_addr[1] = 32'h0000_4FFF;
 //db	slave_5
 	assign low_addr[2] = 32'h0000_2404;
-	assign high_addr[2] = 32'h0000_24FF;
+	assign high_addr[2] = 32'h0000_2AFF;
 //db	slave_4
 	assign low_addr[3] = 32'h0000_2000;
-	assign high_addr[3] = 32'h0000_2403;
+	assign high_addr[3] = 32'h0000_24FF;
 //db	slave_3
 	assign low_addr[4] = 32'h0000_1000;
-	assign high_addr[4] = 32'h0000_100F;
+	assign high_addr[4] = 32'h0000_19FF;
 //db	slave_2
 	assign low_addr[5] = 32'h0000_0400;
 	assign high_addr[5] = 32'h0000_0CF0;

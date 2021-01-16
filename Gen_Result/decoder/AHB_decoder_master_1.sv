@@ -51,7 +51,7 @@ module AHB_decoder_master_1
 	assign high_addr[0] = 32'h0000_5FFF;
 //db	slave_5
 	assign low_addr[1] = 32'h0000_2404;
-	assign high_addr[1] = 32'h0000_24FF;
+	assign high_addr[1] = 32'h0000_2AFF;
 //db	slave_2
 	assign low_addr[2] = 32'h0000_0400;
 	assign high_addr[2] = 32'h0000_0CF0;

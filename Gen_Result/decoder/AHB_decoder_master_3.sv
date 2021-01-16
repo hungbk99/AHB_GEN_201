@@ -48,10 +48,10 @@ module AHB_decoder_master_3
 //#ADDRMAPGEN#
 //db	slave_5
 	assign low_addr[0] = 32'h0000_2404;
-	assign high_addr[0] = 32'h0000_24FF;
+	assign high_addr[0] = 32'h0000_2AFF;
 //db	slave_4
 	assign low_addr[1] = 32'h0000_2000;
-	assign high_addr[1] = 32'h0000_2403;
+	assign high_addr[1] = 32'h0000_24FF;
 //================================================================================
   assign haddr_buf = haddr; 
   assign htrans_buf = htrans; 
