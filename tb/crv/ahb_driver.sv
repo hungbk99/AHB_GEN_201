@@ -305,14 +305,14 @@ task Mas_driver::send(input Master m);
   
   for(int i = 0; i < num;) 
   begin
-    //$display("============================================================================================================");
-    //$display("Transfer.... [%0d]", i);
     @(mas.master_cb);
     //Hung_mod_12_1_2021
     if(mas.master_cb.mas_out.hresp) begin
       foreach (cbsq[i]) 
         cbsq[i].dec_error(this, fix);
       mas.master_cb.mas_in.htrans <= IDLE;
+    $display("============================================================================================================");
+    $display("Transfer.... [%0d]", i);
       $display("****************************************************"); 
       $display("%t:[INFO]:[ERROR RESPONSE][D]: received in Master[%0d]", $time, portID); 
       $display("****************************************************"); 
@@ -353,8 +353,13 @@ task Mas_driver::send(input Master m);
         $display("prior:%h", cfg.prior[portID]);
         $display("============================================================================================================");
         @(mas.master_cb);
-        wait(mas.master_cb.mas_out.hreadyout);
+        //Hung_db_15_1_2021 wait(mas.master_cb.mas_out.hreadyout);
+        wait(mas.master_cb.mas_out.hreadyout || mas.master_cb.mas_out.hresp);
         mas.master_cb.mas_in.htrans <= IDLE;
+        if(mas.master_cb.mas_out.hresp) begin
+          foreach (cbsq[i]) 
+            cbsq[i].dec_error(this, fix);
+        end
         break;
       end
       //Hung_db_12_1_2021

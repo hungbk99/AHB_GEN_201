@@ -1,0 +1,1508 @@
+Compiler version L-2016.06-SP2_Full64; Runtime version L-2016.06-SP2_Full64;  Jan 15 14:07 2021
+VCD+ Writer L-2016.06-SP2_Full64 Copyright (c) 1991-2016 by Synopsys Inc.
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_4.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_4, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_5.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_5, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_6.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_6, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_7.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_7, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_1.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_1, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_2.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_2, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_3.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_3, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_1.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_1, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_2.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_2, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_3.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_3, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_4.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_4, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_5.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_5, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_6.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_6, at time 0s.
+
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_7.sv, 226
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_7, at time 0s.
+
+********************************************************************
+    Simulation was run with:............
+    MasPort := 4
+    SlvPort := 7
+********************************************************************
+db master virtual interface .........           0
+db master virtual interface .........           1
+db master virtual interface .........           2
+db master virtual interface .........           3
+ 
+db slave virtual interface ..........           0
+db slave virtual interface ..........           1
+db slave virtual interface ..........           2
+db slave virtual interface ..........           3
+db slave virtual interface ..........           4
+db slave virtual interface ..........           5
+db slave virtual interface ..........           6
+Simulation run with default random seed
+=====================================================================================
+[ENV]:[INITIAL CONFIG]: 4 masters, 7 slaves
+ 
+ 
+master in used = 2, cells = 2, prio = 2 
+master in used = 3, cells = 2, prio = 0 
+ 
+=====================================================================================
+                   0: Build.............
+db master generator +++++++++++++           0
+db master driver    +++++++++++++           0
+                   0: id debug ......... 1
+db master generator +++++++++++++           1
+db master driver    +++++++++++++           1
+                   0: id debug ......... 2
+db master generator +++++++++++++           2
+db master driver    +++++++++++++           2
+                   0: id debug ......... 3
+db master generator +++++++++++++           3
+db master driver    +++++++++++++           3
+                   0: id debug ......... 4
+======================================================
+db slave generator +++++++++++++           0
+db slave driver    +++++++++++++           0
+db slave generator +++++++++++++           1
+db slave driver    +++++++++++++           1
+db slave generator +++++++++++++           2
+db slave driver    +++++++++++++           2
+db slave generator +++++++++++++           3
+db slave driver    +++++++++++++           3
+db slave generator +++++++++++++           4
+db slave driver    +++++++++++++           4
+db slave generator +++++++++++++           5
+db slave driver    +++++++++++++           5
+db slave generator +++++++++++++           6
+db slave driver    +++++++++++++           6
+======================================================
+db master monitor+++++++++++++           0
+db master monitor+++++++++++++           1
+db master monitor+++++++++++++           2
+db master monitor+++++++++++++           3
+======================================================
+db slave monitor++++++++++++++           0
+db slave monitor++++++++++++++           1
+db slave monitor++++++++++++++           2
+db slave monitor++++++++++++++           3
+db slave monitor++++++++++++++           4
+db slave monitor++++++++++++++           5
+db slave monitor++++++++++++++           6
+======================================================
+db master driver connect scoreboard+++++++++++++           0
+db master driver connect scoreboard+++++++++++++           1
+db master driver connect scoreboard+++++++++++++           2
+db master driver connect scoreboard+++++++++++++           3
+======================================================
+db master driver connect scoreboard+++++++++++++           0
+db master driver connect scoreboard+++++++++++++           1
+db master driver connect scoreboard+++++++++++++           2
+db master driver connect scoreboard+++++++++++++           3
+                   0: Runnnn.............
+db smon+++++++++++++           0
+db smon+++++++++++++           1
+db smon+++++++++++++           2
+db smon+++++++++++++           3
+db smon+++++++++++++           4
+db smon+++++++++++++           5
+db smon+++++++++++++           6
+db sgen + sdrv+++++++++++++           0
+db sgen + sdrv+++++++++++++           1
+db sgen + sdrv+++++++++++++           2
+db sgen + sdrv+++++++++++++           3
+db sgen + sdrv+++++++++++++           4
+db sgen + sdrv+++++++++++++           5
+db sgen + sdrv+++++++++++++           6
+db mmon+++++++++++++           0
+db mmon+++++++++++++           1
+db mmon+++++++++++++           2
+db mmon+++++++++++++           3
+########################################################################
+db +++++++++++++           0
+db mgen + mdrv+++++++++++++           0
+########################################################################
+db +++++++++++++           1
+db mgen + mdrv+++++++++++++           1
+########################################################################
+db +++++++++++++           2
+db mgen + mdrv+++++++++++++           2
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Generate...
+master in used:           2
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Master Generator on ..... portID[2]
+###########################################################################################
+[MASTER CELLS]::2
+###########################################################################################
+                   0: id debug ......... 5
+###########################################################################################
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                    0:[MASTER SEED]:
+CELL_ID:           4 
+Rand: initial_addr = 1004, hwrite = 1, hsize = WORD, hburst = WRAP16, hprot = c, htrans = SEQ, hmastlock = 1, hwdata = 8250e0fa 
+###########################################################################################
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Drive...
+master in used:           2
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                   0: Driver debug ......
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                    0: 2
+CELL_ID:           4 
+Rand: initial_addr = 1004, hwrite = 1, hsize = WORD, hburst = WRAP16, hprot = c, htrans = SEQ, hmastlock = 1, hwdata = 8250e0fa 
+Master sendinggg.....
+Package fixing.......
+wrap addr: 00001000 | limit addr: 0000103c
+########################################################################
+db +++++++++++++           3
+db mgen + mdrv+++++++++++++           3
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Generate...
+master in used:           3
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Master Generator on ..... portID[3]
+###########################################################################################
+[MASTER CELLS]::2
+###########################################################################################
+                   0: id debug ......... 6
+###########################################################################################
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                    0:[MASTER SEED]:
+CELL_ID:           5 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 4998be64 
+###########################################################################################
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Drive...
+master in used:           3
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                   0: Driver debug ......
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                    0: 3
+CELL_ID:           5 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 4998be64 
+Master sendinggg.....
+Package fixing.......
+wrap addr: 000020a0 | limit addr: 000020a3
+Slave Generator on ..... portID[0]
+Slave cells on ..... portID[0]
+***************************************
+Config: hrdata = 3b6bea56, hresp = 0 
+INFO:                    0: 0
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[1]
+Slave cells on ..... portID[1]
+***************************************
+Config: hrdata = 09739b36, hresp = 1 
+INFO:                    0: 1
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[2]
+Slave cells on ..... portID[2]
+***************************************
+Config: hrdata = cef02b4e, hresp = 0 
+INFO:                    0: 2
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+***************************************
+Config: hrdata = 492bd947, hresp = 0 
+INFO:                    0: 3
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[4]
+Slave cells on ..... portID[4]
+***************************************
+Config: hrdata = 2cf6334b, hresp = 0 
+INFO:                    0: 4
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[5]
+Slave cells on ..... portID[5]
+***************************************
+Config: hrdata = ed966f25, hresp = 0 
+INFO:                    0: 5
+Slave sendinggg......
+Package fixing.......
+Slave Generator on ..... portID[6]
+Slave cells on ..... portID[6]
+***************************************
+Config: hrdata = adbb0620, hresp = 0 
+INFO:                    0: 6
+Slave sendinggg......
+Package fixing.......
+============================================================================================================
+                  10: id debug ......... 7
+============================================================================================================
+                  10: Master Scoreboard Saved
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                   10: Mas scoreboard Saved:
+CELL_ID:           6 
+Rand: initial_addr = 1004, hwrite = 1, hsize = WORD, hburst = WRAP16, hprot = c, htrans = NONSEQ, hmastlock = 1, hwdata = 2 
+Config: start_addr = 1000, stop_addr = 100f 
+INFO: INFO: mq[0]
+CELL_ID:           6 
+Rand: initial_addr = 1004, hwrite = 1, hsize = WORD, hburst = WRAP16, hprot = c, htrans = NONSEQ, hmastlock = 1, hwdata = 2 
+============================================================================================================
+                  10: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [0]
+***************************************************
+Send value
+haddr:00001004
+hwrite:1
+hsize:WORD
+hburst:WRAP16
+hprot:c
+htrans:NONSEQ
+hmastlock:1
+hwdata:00000002
+prior:2
+============================================================================================================
+============================================================================================================
+                  10: id debug ......... 8
+============================================================================================================
+                  10: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   10: Mas scoreboard Saved:
+CELL_ID:           7 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:           7 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                  10: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [0]
+***************************************************
+Send value
+haddr:000020a0
+hwrite:1
+hsize:BYTE
+hburst:INCR4
+hprot:5
+htrans:NONSEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                  30: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   30: Slv scoreboard Saved:
+============================================================================================================
+                  30: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+                  30: PASS:: ERROR CLEAR............ at MASTER[2]
+============================================================================================================
+Transfer.... [1]
+****************************************************
+                  30:[INFO]:[ERROR RESPONSE][D]: received in Master[2]
+****************************************************
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = cb01d929, hresp = 1 
+INFO:                   30: 3
+Slave sendinggg......
+Package fixing.......
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   40 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   40: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                  40: PASS:: Slave Cells Match............
+after checking ......
+============================================================================================================
+Config: hrdata = 00000000, hresp = 1 
+INFO:                   40 Master_Monitor (2) Receive
+============================================================================================================
+Config: hrdata = 00000000, hresp = 1 
+INFO:                   40: Slave Scoreboard Check.......
+Master: 2
+                  40: ERROR: Cell not found because the scoreboard for Slave 0 empty
+before checking ......
+after checking ......
+============================================================================================================
+                  40: id debug ......... 9
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=4, cnt = 0
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   40: Slave_Monitor (3) Receive
+CELL_ID:           8 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   40:Master Scoreboard Check.......
+CELL_ID:           8 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:           7 
+Rand: initial_addr = 20a0, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+                  40: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                  40: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   40: Slv scoreboard Saved:
+============================================================================================================
+                  40: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+                  40: Driver (Master) Clear ......
+============================================================================================================
+                  40: id debug ......... 10
+============================================================================================================
+                  40: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   40: Mas scoreboard Saved:
+CELL_ID:           9 
+Rand: initial_addr = 20a1, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:           9 
+Rand: initial_addr = 20a1, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                  40: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [1]
+***************************************************
+Send value
+haddr:000020a1
+hwrite:1
+hsize:BYTE
+hburst:INCR4
+hprot:5
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [2]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+###########################################################################################
+Master Driver receive ... portID[2]
+###########################################################################################
+                  40: id debug ......... 11
+###########################################################################################
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                   40:[MASTER SEED]:
+CELL_ID:          10 
+Rand: initial_addr = 1004, hwrite = 0, hsize = HALFWORD, hburst = INCR, hprot = 2, htrans = BUSY, hmastlock = 0, hwdata = 837401f8 
+###########################################################################################
+Config: hrdata = bfb5d184, hresp = 0 
+INFO:                   40: 3
+Slave sendinggg......
+Package fixing.......
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                   40: 2
+CELL_ID:          10 
+Rand: initial_addr = 1004, hwrite = 0, hsize = HALFWORD, hburst = INCR, hprot = 2, htrans = BUSY, hmastlock = 0, hwdata = 837401f8 
+Master sendinggg.....
+Package fixing.......
+wrap addr: 00000000 | limit addr: 00000000
+                  50: id debug ......... 12
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=4, cnt = 1
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   50: Slave_Monitor (3) Receive
+CELL_ID:          11 
+Rand: initial_addr = 20a1, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   50:Master Scoreboard Check.......
+CELL_ID:          11 
+Rand: initial_addr = 20a1, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:           9 
+Rand: initial_addr = 20a1, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                  50: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                  50: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   50: Slv scoreboard Saved:
+============================================================================================================
+                  50: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+============================================================================================================
+                  50: id debug ......... 13
+============================================================================================================
+                  50: Master Scoreboard Saved
+Config: start_addr = 1000, stop_addr = 100f 
+INFO:                   50: Mas scoreboard Saved:
+CELL_ID:          12 
+Rand: initial_addr = 1004, hwrite = 0, hsize = HALFWORD, hburst = INCR, hprot = 2, htrans = NONSEQ, hmastlock = 0, hwdata = 2 
+Config: start_addr = 1000, stop_addr = 100f 
+INFO: INFO: mq[0]
+CELL_ID:          12 
+Rand: initial_addr = 1004, hwrite = 0, hsize = HALFWORD, hburst = INCR, hprot = 2, htrans = NONSEQ, hmastlock = 0, hwdata = 2 
+============================================================================================================
+                  50: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [0]
+***************************************************
+Send value
+haddr:00001004
+hwrite:0
+hsize:HALFWORD
+hburst:INCR
+hprot:2
+htrans:NONSEQ
+hmastlock:0
+hwdata:00000002
+prior:2
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   50 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   50: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                  50: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                  50: id debug ......... 14
+============================================================================================================
+                  50: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   50: Mas scoreboard Saved:
+CELL_ID:          13 
+Rand: initial_addr = 20a2, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          13 
+Rand: initial_addr = 20a2, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                  50: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [2]
+***************************************************
+Send value
+haddr:000020a2
+hwrite:1
+hsize:BYTE
+hburst:INCR4
+hprot:5
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [3]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = a97d7acc, hresp = 0 
+INFO:                   50: 3
+Slave sendinggg......
+Package fixing.......
+                  60: id debug ......... 15
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=4, cnt = 2
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   60: Slave_Monitor (3) Receive
+CELL_ID:          14 
+Rand: initial_addr = 20a2, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   60:Master Scoreboard Check.......
+CELL_ID:          14 
+Rand: initial_addr = 20a2, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          13 
+Rand: initial_addr = 20a2, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                  60: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                  60: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   60: Slv scoreboard Saved:
+============================================================================================================
+                  60: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   60 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   60: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                  60: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                  60: id debug ......... 16
+============================================================================================================
+                  60: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   60: Mas scoreboard Saved:
+CELL_ID:          15 
+Rand: initial_addr = 20a3, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          15 
+Rand: initial_addr = 20a3, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                  60: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [3]
+***************************************************
+Send value
+haddr:000020a3
+hwrite:1
+hsize:BYTE
+hburst:INCR4
+hprot:5
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [4]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 97053b94, hresp = 0 
+INFO:                   60: 3
+Slave sendinggg......
+Package fixing.......
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_4.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_4, at time 70s.
+
+                  70: PASS:: ERROR CLEAR............ at MASTER[2]
+                  70: id debug ......... 17
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=4, cnt = 3
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   70: Slave_Monitor (3) Receive
+CELL_ID:          16 
+Rand: initial_addr = 20a3, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                   70:Master Scoreboard Check.......
+CELL_ID:          16 
+Rand: initial_addr = 20a3, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          15 
+Rand: initial_addr = 20a3, hwrite = 1, hsize = BYTE, hburst = INCR4, hprot = 5, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                  70: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   70 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                   70: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                  70: PASS:: Slave Cells Match............
+after checking ......
+============================================================================================================
+                  70: Driver (Master) Clear ......
+###########################################################################################
+Master Driver receive ... portID[3]
+###########################################################################################
+                  70: id debug ......... 18
+###########################################################################################
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   70:[MASTER SEED]:
+CELL_ID:          17 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = IDLE, hmastlock = 0, hwdata = df10413f 
+###########################################################################################
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   70: 3
+CELL_ID:          17 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = IDLE, hmastlock = 0, hwdata = df10413f 
+Master sendinggg.....
+Package fixing.......
+wrap addr: 000020c0 | limit addr: 000020dc
+Config: hrdata = 00000000, hresp = 1 
+INFO:                   80 Master_Monitor (2) Receive
+============================================================================================================
+Config: hrdata = 00000000, hresp = 1 
+INFO:                   80: Slave Scoreboard Check.......
+Master: 2
+                  80: ERROR: Cell not found because the scoreboard for Slave 0 empty
+before checking ......
+after checking ......
+============================================================================================================
+                  80: id debug ......... 19
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=1, cnt = 4
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+                  80: Driver (Master) Clear ......
+============================================================================================================
+                  80: id debug ......... 20
+============================================================================================================
+                  80: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                   80: Mas scoreboard Saved:
+CELL_ID:          19 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          19 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                  80: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [0]
+***************************************************
+Send value
+haddr:000020dc
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:NONSEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+###########################################################################################
+Master Driver receive ... portID[2]
+###########################################################################################
+Config: hrdata = ad07cb24, hresp = 0 
+INFO:                   80: 3
+Slave sendinggg......
+Package fixing.......
+============================================================================================================
+Response....
+============================================================================================================
+                 100: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  100: Slv scoreboard Saved:
+============================================================================================================
+                 100: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 314f69c4, hresp = 0 
+INFO:                  100: 3
+Slave sendinggg......
+Package fixing.......
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  110 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  110: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 110: PASS:: Slave Cells Match............
+after checking ......
+============================================================================================================
+                 110: id debug ......... 21
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 0
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  110: Slave_Monitor (3) Receive
+CELL_ID:          20 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  110:Master Scoreboard Check.......
+CELL_ID:          20 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          19 
+Rand: initial_addr = 20dc, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = NONSEQ, hmastlock = 0, hwdata = 3 
+                 110: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 110: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  110: Slv scoreboard Saved:
+============================================================================================================
+                 110: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+============================================================================================================
+                 110: id debug ......... 22
+============================================================================================================
+                 110: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  110: Mas scoreboard Saved:
+CELL_ID:          21 
+Rand: initial_addr = 20e0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          21 
+Rand: initial_addr = 20e0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 110: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [1]
+***************************************************
+Send value
+haddr:000020e0
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [2]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 18a65d66, hresp = 0 
+INFO:                  110: 3
+Slave sendinggg......
+Package fixing.......
+                 120: id debug ......... 23
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 1
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  120: Slave_Monitor (3) Receive
+CELL_ID:          22 
+Rand: initial_addr = 20e0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  120:Master Scoreboard Check.......
+CELL_ID:          22 
+Rand: initial_addr = 20e0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          21 
+Rand: initial_addr = 20e0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 120: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 120: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  120: Slv scoreboard Saved:
+============================================================================================================
+                 120: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  120 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  120: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 120: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 120: id debug ......... 24
+============================================================================================================
+                 120: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  120: Mas scoreboard Saved:
+CELL_ID:          23 
+Rand: initial_addr = 20e4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          23 
+Rand: initial_addr = 20e4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 120: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [2]
+***************************************************
+Send value
+haddr:000020e4
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [3]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = de5538c4, hresp = 0 
+INFO:                  120: 3
+Slave sendinggg......
+Package fixing.......
+                 130: id debug ......... 25
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 2
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  130: Slave_Monitor (3) Receive
+CELL_ID:          24 
+Rand: initial_addr = 20e4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  130:Master Scoreboard Check.......
+CELL_ID:          24 
+Rand: initial_addr = 20e4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          23 
+Rand: initial_addr = 20e4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 130: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 130: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  130: Slv scoreboard Saved:
+============================================================================================================
+                 130: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  130 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  130: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 130: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 130: id debug ......... 26
+============================================================================================================
+                 130: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  130: Mas scoreboard Saved:
+CELL_ID:          25 
+Rand: initial_addr = 20e8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          25 
+Rand: initial_addr = 20e8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 130: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [3]
+***************************************************
+Send value
+haddr:000020e8
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [4]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 97352a19, hresp = 0 
+INFO:                  130: 3
+Slave sendinggg......
+Package fixing.......
+                 140: id debug ......... 27
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 3
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  140: Slave_Monitor (3) Receive
+CELL_ID:          26 
+Rand: initial_addr = 20e8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  140:Master Scoreboard Check.......
+CELL_ID:          26 
+Rand: initial_addr = 20e8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          25 
+Rand: initial_addr = 20e8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 140: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 140: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  140: Slv scoreboard Saved:
+============================================================================================================
+                 140: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  140 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  140: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 140: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 140: id debug ......... 28
+============================================================================================================
+                 140: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  140: Mas scoreboard Saved:
+CELL_ID:          27 
+Rand: initial_addr = 20ec, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          27 
+Rand: initial_addr = 20ec, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 140: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [4]
+***************************************************
+Send value
+haddr:000020ec
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [5]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 392bee57, hresp = 0 
+INFO:                  140: 3
+Slave sendinggg......
+Package fixing.......
+                 150: id debug ......... 29
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 4
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  150: Slave_Monitor (3) Receive
+CELL_ID:          28 
+Rand: initial_addr = 20ec, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  150:Master Scoreboard Check.......
+CELL_ID:          28 
+Rand: initial_addr = 20ec, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          27 
+Rand: initial_addr = 20ec, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 150: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 150: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  150: Slv scoreboard Saved:
+============================================================================================================
+                 150: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  150 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  150: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 150: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 150: id debug ......... 30
+============================================================================================================
+                 150: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  150: Mas scoreboard Saved:
+CELL_ID:          29 
+Rand: initial_addr = 20f0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          29 
+Rand: initial_addr = 20f0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 150: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [5]
+***************************************************
+Send value
+haddr:000020f0
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [6]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 210808a2, hresp = 0 
+INFO:                  150: 3
+Slave sendinggg......
+Package fixing.......
+                 160: id debug ......... 31
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 5
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  160: Slave_Monitor (3) Receive
+CELL_ID:          30 
+Rand: initial_addr = 20f0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  160:Master Scoreboard Check.......
+CELL_ID:          30 
+Rand: initial_addr = 20f0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          29 
+Rand: initial_addr = 20f0, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 160: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 160: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  160: Slv scoreboard Saved:
+============================================================================================================
+                 160: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  160 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  160: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 160: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 160: id debug ......... 32
+============================================================================================================
+                 160: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  160: Mas scoreboard Saved:
+CELL_ID:          31 
+Rand: initial_addr = 20f4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          31 
+Rand: initial_addr = 20f4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 160: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [6]
+***************************************************
+Send value
+haddr:000020f4
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [7]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 95aa7517, hresp = 0 
+INFO:                  160: 3
+Slave sendinggg......
+Package fixing.......
+                 170: id debug ......... 33
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 6
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  170: Slave_Monitor (3) Receive
+CELL_ID:          32 
+Rand: initial_addr = 20f4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  170:Master Scoreboard Check.......
+CELL_ID:          32 
+Rand: initial_addr = 20f4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          31 
+Rand: initial_addr = 20f4, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 170: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+============================================================================================================
+Response....
+============================================================================================================
+                 170: Slave Scoreboard Saved
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  170: Slv scoreboard Saved:
+============================================================================================================
+                 170: Driver (Slave) Callback ...... cbsq_size=1
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  170 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  170: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[1]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 170: PASS:: Slave Cells Match............
+after checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+============================================================================================================
+============================================================================================================
+                 170: id debug ......... 34
+============================================================================================================
+                 170: Master Scoreboard Saved
+Config: start_addr = 2000, stop_addr = 2403 
+INFO:                  170: Mas scoreboard Saved:
+CELL_ID:          33 
+Rand: initial_addr = 20f8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          33 
+Rand: initial_addr = 20f8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+                 170: Driver (Master) Callback ...... cbsq_size=1, i=0
+============================================================================================================
+Transfer.... [7]
+***************************************************
+Send value
+haddr:000020f8
+hwrite:1
+hsize:WORD
+hburst:INCR8
+hprot:c
+htrans:SEQ
+hmastlock:0
+hwdata:00000003
+prior:0
+============================================================================================================
+DBBBBB.... [8]
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 3487a3e9, hresp = 0 
+INFO:                  170: 3
+Slave sendinggg......
+Package fixing.......
+
+Warning-[RT-NCMUCS] No condition matches in statement
+../Gen_Result/arbiter/AHB_arbiter_slave_4.sv, 224
+  No condition matches in 'unique case' statement. 'default' specification is 
+  missing, inside top.DUT.bus.ARB_slave_4, at time 180s.
+
+                 180: id debug ......... 35
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=8, cnt = 7
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  180: Slave_Monitor (3) Receive
+CELL_ID:          34 
+Rand: initial_addr = 20f8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+============================================================================================================
+Config: start_addr = 0, stop_addr = ffffff 
+INFO:                  180:Master Scoreboard Check.......
+CELL_ID:          34 
+Rand: initial_addr = 20f8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+Slave: 3
+Queue:: before checking ..................................
+Config: start_addr = 2000, stop_addr = 2403 
+INFO: INFO: mq[0]
+CELL_ID:          33 
+Rand: initial_addr = 20f8, hwrite = 1, hsize = WORD, hburst = INCR8, hprot = c, htrans = SEQ, hmastlock = 0, hwdata = 3 
+                 180: PASS:: Master Cells Match............
+Queue:: after checking .....................................
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  180 Master_Monitor (3) Receive
+============================================================================================================
+Config: hrdata = 00000003, hresp = 0 
+INFO:                  180: Slave Scoreboard Check.......
+Master: 3
+before checking ......
+Config: hrdata = 00000003, hresp = 0 
+INFO: INFO: mq[0]
+Config: hrdata = 00000003, hresp = 0 
+INFO: 
+                 180: PASS:: Slave Cells Match............
+after checking ......
+============================================================================================================
+                 180: Driver (Master) Clear ......
+###########################################################################################
+Master Driver receive ... portID[3]
+###########################################################################################
+                 190: id debug ......... 36
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+num=1, cnt = 8
+DBDBDBDBDDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDB
+Slave Driver receive ... portID[3]
+Slave Generator on ..... portID[3]
+Slave cells on ..... portID[3]
+Config: hrdata = 2f2b7496, hresp = 0 
+INFO:                  190: 3
+Slave sendinggg......
+Package fixing.......
+****************************************************************************
+[MASTER]: Total expected cells sent 14, Total actual cells received 12
+[SLAVE]: Total expected cells sent 12, Total actual cells received 14
+Run time::                10000
+END OF SIMULATION:: 0 Total errors
+****************************************************************************
+$finish at simulation time                10000
+
+---------------------------------------------------------------------------
+VCS Coverage Metrics: during simulation line, cond, FSM, branch, tgl was monitored
+---------------------------------------------------------------------------
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 10000
+CPU Time:      0.410 seconds;       Data structure size:   0.1Mb
+Fri Jan 15 14:07:35 2021
+CPU time: 1.190 seconds to compile + .302 seconds to elab + .155 seconds to link + .539 seconds in simulation
