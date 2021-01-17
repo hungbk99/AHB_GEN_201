@@ -100,6 +100,59 @@ class Sscb_monitor_cbs extends Slv_monitor_cbs;
 
 endclass: Sscb_monitor_cbs
 
+//Hung_add_17_1_2021
+/================================================================================
+/ Call Coverage from Slave Monitor
+/================================================================================
+
+class Cov_smonitor_cbs extends Slv_monitor
+  Coverage cov;
+
+  function new (Coverage cov);
+    this.cov = cov;
+  endfunction: new
+
+  //virtual task post_tx
+  //(
+  //  input Mas_driver  mdrv,
+  //  input Master      m
+  //);
+  //  cov.mas_sample(m.htrans, m.hsize, m.hburst, m.hwdata); 
+  //endtask: post_tx
+
+  virtual task post_rx
+  (
+    input Slv_monitor smon,
+    input Master      m
+  );
+    cov.slv_sample(m.htrans, m.hsize, m.hburst, m.hwdata); 
+  endtask: post_rx
+
+endclass: Cov_smonitor_cbs
+
+/================================================================================
+/ Call Coverage from Slave Monitor
+/================================================================================
+
+class Cov_mdriver_cbs extends Mas_driver 
+  Coverage cov;
+
+  function new (Coverage cov);
+    this.cov = cov;
+  endfunction: new
+
+  virtual task post_tx(
+                input Mas_driver drv,
+                input Master     m
+                );
+    cov.mas_sample(m.htrans, m.hsize, m.hburst, m.hwdata); 
+  endtask: post_tx
+
+
+endclass: Cov_mmonitor_cbs
+
+//Hung_add_17_1_2021
+
 //cov//================================================================================
 //cov// Call Coverage from Master Monitor
 //cov//================================================================================
@@ -174,7 +227,9 @@ class Environment;
   Slv_scoreboard sscb;
   
   Config         cfg;
-//cvr  Coverage   cov[];
+  //Hung_add_17_1_2021
+  Coverage       cov[];
+  //Hung_add_17_1_2021
 
   //virtual  ahb_itf.mas_itf   mas[];
   //virtual  ahb_itf.slv_itf   slv[];
@@ -273,6 +328,9 @@ function void Environment::build();
   sscb = new(cfg); 
   //mcov = new();
   //scov = new();
+  //Hung_add_17_1_2021
+  cov = new(masnum, slvnum);
+  //Hung_add_17_1_2021
 
   //Connect DUT with Drivers, Drivers with Generators
   foreach(mgen[i]) begin
@@ -342,16 +400,11 @@ function void Environment::build();
       smon[i].cbsq.push_back(ssmc);
   end
 
-//cov  // connect coverage wth callbacks
-//cov  begin
-//cov    Cov_mmonitor_cbs mc = new(mcov);    
-//cov    foreach (mnon[i]) mmon[i].cbsq.push_back(mc);
-//cov  end
-//cov  
-//cov  begin  
-//cov    Cov_smonitor_cbs sc = new(scov);
-//cov    foreach (smon[i]) smon[i].sbsq.push_back(sc);
-//cov  end
+  // connect coverage wth callbacks
+  begin
+    Cov_cbs cc = new(cov);    
+    foreach (mnon[i]) mmon[i].cbsq.push_back(mc);
+  end
 
 endfunction: build
 
