@@ -105,10 +105,12 @@ class Coverage;
   endgroup: Slv_Cov
 
   function new(input [7:0] masnum, input [7:0] slvnum);
+    this.masnum = masnum;   
+    this.slvnum = slvnum; 
     Mas_Cov = new;
     Slv_Cov = new;
-    this.masnum = masnum;
-    this.slvnum = slvnum;
+    //Hung_db_18_1_2021 this.masnum = masnum;
+    //Hung_db_18_1_2021 this.slvnum = slvnum;
   endfunction: new
 
   function void mas_sample(
