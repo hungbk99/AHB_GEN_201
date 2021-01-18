@@ -107,7 +107,7 @@ while (my $line = <SAMPLE>)
         print DEST ("\tlogic [${slave_num}-1:0] hreq_${master_name};\n");
         #Hung_add_16_1_2021
         print DEST ("\tslv_send_type payload_dec_error_${master_name};\n");
-        print DEST ("\tlogic\t_dec_error_sel_${master_name};\n");
+        print DEST ("\tlogic\tdec_error_sel_${master_name};\n");
         #Hung_add_16_1_2021
       }
     }
@@ -336,7 +336,10 @@ while (my $line = <SAMPLE>)
       if(($sheet_1_data[$i_1][0] eq 'DECODER_IDENTIFY') && ($sheet_1_data[$i_1][1] ne 'sample'))
       {
         my $master_name = $sheet_1_data[$i_1][1];
-        print DEST ("\tassign ${master_name}_out = payload_${master_name}_out;\n");
+        #Hung_mod_18_1_2021
+        #print DEST ("\tassign ${master_name}_out = payload_${master_name}_out;\n");
+        print DEST ("\tassign ${master_name}_out = (dec_error_sel_${master_name}) ? payload_dec_error_${master_name} : payload_${master_name}_out;\n");
+        #Hung_mod_18_1_2021
         $i_1++;
         my $slave_num = $sheet_1_data[$i_1][1];
         print ("$slave_num\n");
