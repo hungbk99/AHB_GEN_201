@@ -9,8 +9,8 @@
  *            16/01/2021 Quang Hung  Add coverage support
  *********************************************************************************/
 
-class Coverage
-  `import ahb_package::*;
+import ahb_package::*;
+class Coverage;
   bit [1:0] mas_htrans_cov;
   bit [2:0] mas_hsize_cov;
   bit [2:0] mas_hburst_cov;
@@ -24,7 +24,7 @@ class Coverage
   bit [7:0]   mas_cov, 
               slv_cov;
   
-  covergroup AHB_Cov
+  covergroup Mas_Cov;
     coverpoint mas_htrans_cov
     {
       bins IDLE = {0};
@@ -38,7 +38,7 @@ class Coverage
       bins BYTE = {0};
       bins HALFWORD = {1};
       bins WORD = {2};
-      ignore_bins unsupported = {[3,$]}     
+      ignore_bins unsupported = {[3:$]};     
     }
 
     coverpoint mas_hburst_cov
@@ -64,7 +64,7 @@ class Coverage
 
   endgroup: Mas_Cov
 
-  covergroup Slv_Cov
+  covergroup Slv_Cov;
     coverpoint slv_htrans_cov
     {
       bins IDLE = {0};
@@ -78,7 +78,7 @@ class Coverage
       bins BYTE = {0};
       bins HALFWORD = {1};
       bins WORD = {2};
-      ignore_bins unsupported = {[3,$]}     
+      ignore_bins unsupported = {[3:$]};    
     }
 
     coverpoint slv_hburst_cov
@@ -95,7 +95,7 @@ class Coverage
 
     coverpoint slv_cov
     {
-      bins slv_cov[] = {[0:slv_num-1]};
+      bins slv_cov[] = {[0:slvnum-1]};
     }
 
     cross slv_cov, slv_htrans_cov;
@@ -105,7 +105,8 @@ class Coverage
   endgroup: Slv_Cov
 
   function new(input [7:0] masnum, input [7:0] slvnum);
-    AHB_Cov = new;
+    Mas_Cov = new;
+    Slv_Cov = new;
     this.masnum = masnum;
     this.slvnum = slvnum;
   endfunction: new
@@ -115,7 +116,7 @@ class Coverage
     input bit [2:0] mas_hsize,
     input bit [2:0] mas_hburst,
     input bit [7:0] master
-  )
+  );
     this.mas_htrans_cov = mas_htrans;
     this.mas_hsize_cov = mas_hsize;
     this.mas_hburst_cov = mas_hburst;

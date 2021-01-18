@@ -14,6 +14,7 @@
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
+`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_coverage.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_env.sv"
 `include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_test.sv"
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/dut.sv"

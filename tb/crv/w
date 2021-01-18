@@ -16,7 +16,6 @@
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_monitor.sv"
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_scoreboard.sv"
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_generator.sv"
-//`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_coverage.sv"
 //================================================================================
 // Call Scoreboard from Master Driver
 //================================================================================
@@ -102,11 +101,11 @@ class Sscb_monitor_cbs extends Slv_monitor_cbs;
 endclass: Sscb_monitor_cbs
 
 //Hung_add_17_1_2021
-//================================================================================
-// Call Coverage from Slave Monitor
-//================================================================================
+/================================================================================
+/ Call Coverage from Slave Monitor
+/================================================================================
 
-class Cov_smonitor_cbs extends Slv_monitor_cbs;
+class Cov_smonitor_cbs extends Slv_monitor
   Coverage cov;
 
   function new (Coverage cov);
@@ -131,11 +130,11 @@ class Cov_smonitor_cbs extends Slv_monitor_cbs;
 
 endclass: Cov_smonitor_cbs
 
-//================================================================================
-// Call Coverage from Slave Monitor
-//================================================================================
+/================================================================================
+/ Call Coverage from Slave Monitor
+/================================================================================
 
-class Cov_mdriver_cbs extends Mas_driver_cbs;
+class Cov_mdriver_cbs extends Mas_driver 
   Coverage cov;
 
   function new (Coverage cov);
@@ -150,7 +149,7 @@ class Cov_mdriver_cbs extends Mas_driver_cbs;
   endtask: post_tx
 
 
-endclass: Cov_mdriver_cbs
+endclass: Cov_mmonitor_cbs
 
 //Hung_add_17_1_2021
 
@@ -229,7 +228,7 @@ class Environment;
   
   Config         cfg;
   //Hung_add_17_1_2021
-  Coverage       cov;
+  Coverage       cov[];
   //Hung_add_17_1_2021
 
   //virtual  ahb_itf.mas_itf   mas[];
@@ -403,13 +402,8 @@ function void Environment::build();
 
   // connect coverage with callbacks
   begin
-    Cov_smonitor_cbs smcc = new(cov);    
-    foreach (smon[i]) smon[i].cbsq.push_back(smcc);
-  end
-
-  begin
-    Cov_mdriver_cbs mdcc = new(cov);
-    foreach (mdrv[i]) mdrv[i].cbsq.push_back(mdcc);
+    Cov_cbs smcc = new(cov);    
+    foreach (mnon[i]) mmon[i].cbsq.push_back(smcc);
   end
 
 endfunction: build
