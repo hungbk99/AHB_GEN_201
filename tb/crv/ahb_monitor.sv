@@ -107,7 +107,10 @@ task  Mas_monitor::receive(output Slave s);
    //@(mas.master_cb);
    //Hung db 8_1_2021 if(mas.master_cb.mas_out.hreadyout == 1'b1) begin
    @(mas.master_cb);
-   wait(mas.master_cb.mas_out.hreadyout) begin 
+   //Hung_mod_18_1_2021
+   //wait(mas.master_cb.mas_out.hreadyout) begin 
+   wait((mas.master_cb.mas_out.hreadyout) && (!mas.master_cb.mas_out.hresp)) begin 
+   //Hung_mod_18_1_2021
    //Hung db 8_1_2021
      //s.hreadyout <= 1'b1; 
      //s.hresp <= mas.master_cb.mas_out.hresp;
