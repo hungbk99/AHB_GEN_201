@@ -9,6 +9,8 @@
  *            16/01/2021 Quang Hung  Add coverage support
  *********************************************************************************/
 
+`define QUESTA
+
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_cells.sv"
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/ahb_interface.sv"
 //`include "D:/Project/AMBA_BUS/AHB_GEN_201/tb/crv/config.sv"
@@ -284,6 +286,7 @@ function Environment::new(
   //Hung_mod_12_1_2021 
 
   $display("#####################################################################");
+  `ifdef VCS
   if($test$plusargs("ntb_random_seed"))
   begin
     int seed;
@@ -293,7 +296,17 @@ function Environment::new(
   else
     $display("[SYSTEM SEED]Simulation run with default random seed");
   $display("#####################################################################");
-
+  `elsif QUESTA
+  if($test$plusargs("sv_seed"))
+  begin
+    int seed;
+    $value$plusargs("sv_seed=%d", seed);
+    $display("[SYSTEM SEED]Simulation run with random seed = %0d", seed);
+  end
+  else
+    $display("[SYSTEM SEED]Simulation run with default random seed");
+  $display("#####################################################################");
+  `endif
 endfunction: new
 
 //================================================================================
