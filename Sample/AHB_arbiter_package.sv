@@ -175,7 +175,7 @@ import AHB_package::*;
     always_comb begin
       for(int i = 0; i < REQ_NUM; i++)
       begin
-        raw_grant[i] = collect_req[i] & ~(hlast[i] & hsel); 
+        raw_grant[i] = collect_req[i] & ~(hlast[i] & hsel); //Hung_note_25_2_2021 This could cause error -> try (hlast & hsel & hreadyout)
       end
     end 
   
