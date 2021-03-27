@@ -2,11 +2,13 @@
 // File Name: 		AHB_decoder#NUM#.sv
 // Project Name:	AHB_Gen
 // Email:         quanghungbk1999@gmail.com
-// Version    Date      Author      Description
-// v0.0       14/11/2020 Quang Hung  First Creation, this version does not support
-//                                   hsplit & hretry
-// v1.0       02/12/2020 Quang Hung  Simple Scheme Decoder for AHB 
-//                                   This version still not support hsplit, hretry and hremap    
+// Version    Date        Author      Description
+// v0.0       14/11/2020  Quang Hung  First Creation, this version does not support
+//                                    hsplit & hretry
+// v1.0       02/12/2020  Quang Hung  Simple Scheme Decoder for AHB 
+//                                    This version still not support hsplit, hretry and hremap    
+//            27/03/2021  Quang Hung  Modify -> Bug 
+//                                    decode -> address boundary
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 //================================================================================
@@ -55,7 +57,8 @@ module AHB_decoder#NUM#
       always_comb begin
         slave_detect[i] = 1'b0;
         //Hung db 2_1_2020 if((haddr_buf[AHB_ADDR_WIDTH-1:10] > low_addr[i])&&(haddr_buf[AHB_ADDR_WIDTH-1:10] < high_addr[i]))
-        if((haddr_buf > low_addr[i])&&(haddr_buf < high_addr[i]))
+        //Hung_mod_27_03_2021 if((haddr_buf > low_addr[i])&&(haddr_buf < high_addr[i])) 
+        if((haddr_buf >= low_addr[i])&&(haddr_buf <= high_addr[i])) 
           slave_detect[i] = 1'b1;  
       end
     end
